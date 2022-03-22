@@ -81,7 +81,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\jamsp\Downloads\Group 101 (1).svg" />
+                                                <entry key="imagePath" value="C:\Users\jamsp\Downloads\Frame 1 (1).svg" />
                                                 <entry key="scalingPercent" value="80" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
@@ -118,7 +118,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
-                                      <entry key="backgroundColor" value="dd0000" />
+                                      <entry key="backgroundColor" value="c10d64" />
                                     </map>
                                   </option>
                                 </PersistentState>
