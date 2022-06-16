@@ -56,17 +56,14 @@ public class OnBoarding extends AppCompatActivity {
             findViewById(R.id.get_started_btn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(OnBoarding.this, RegisterMaterial.class);
+                    Intent intent = new Intent(OnBoarding.this, WelcomeChurch.class);
                     startActivity(intent);
                     finish();
                 }
             });
         }
 
-        public void skip(View view) {
-            startActivity(new Intent(this, WelcomeChurch.class));
-            finish();
-        }
+
 
         public void next(View view) {
             viewPager.setCurrentItem(currentPos + 1);
@@ -79,14 +76,14 @@ public class OnBoarding extends AppCompatActivity {
 
             for (int i = 0; i < dots.length; i++) {
                 dots[i] = new TextView(this);
-                dots[i].setText(Html.fromHtml("•"));
-                dots[i].setTextSize(35);
-
+                dots[i].setText(Html.fromHtml("."));
+                dots[i].setTextSize(70);
+                dots[i].setTextColor(getResources().getColor(R.color.dotsdefault));
                 dotsLayout.addView(dots[i]);
             }
 
             if (dots.length > 0) {
-                dots[position].setTextColor(getResources().getColor(R.color.black));
+                dots[position].setTextColor(getResources().getColor(R.color.purple_500));
             }
 
         }

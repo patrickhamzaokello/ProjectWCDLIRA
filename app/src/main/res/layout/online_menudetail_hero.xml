@@ -31,7 +31,7 @@
                     android:contentDescription="@string/app_name"
                     android:scaleType="fitXY"
                     android:padding="5dp"
-                    android:src="@drawable/menuimage" />
+                    android:src="@drawable/aboutus" />
 
                 <ProgressBar
                     android:id="@+id/product_detail_image_progress"

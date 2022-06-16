@@ -519,7 +519,7 @@ public class Profile extends Fragment implements com.pkasemer.worshipcenterdownt
 
         AlertDialog.Builder android = new AlertDialog.Builder(getContext());
         android.setTitle("Coming Soon");
-        android.setIcon(R.drawable.africanwoman);
+        android.setIcon(R.drawable.aboutus);
         android.setMessage("This Menu Category will be updated with great tastes soon, Stay Alert for Updates.")
                 .setCancelable(false)
 

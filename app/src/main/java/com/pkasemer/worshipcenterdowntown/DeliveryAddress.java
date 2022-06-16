@@ -466,7 +466,7 @@ public class DeliveryAddress extends AppCompatActivity implements  com.pkasemer.
 
         AlertDialog.Builder android = new AlertDialog.Builder(DeliveryAddress.this);
         android.setTitle("Coming Soon");
-        android.setIcon(R.drawable.africanwoman);
+        android.setIcon(R.drawable.aboutus);
         android.setMessage("This Menu Category will be updated with great tastes soon, Stay Alert for Updates.")
                 .setCancelable(false)
 

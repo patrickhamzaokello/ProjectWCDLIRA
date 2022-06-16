@@ -1,22 +1,21 @@
 <resources>
     <string name="app_name">WCD</string>
     <!--Title-->
-
-    <string name="first_slide_title">Welcome!</string>
-    <string name="second_slide_title">Healthy Options</string>
-    <string name="third_slide_title">Share Meals</string>
-    <string name="fourth_slide_title">Professional Service</string>
+    <string name="first_slide_title">Our Vision &amp; Mission</string>
+    <string name="second_slide_title">Cell and Clan Activities</string>
+    <string name="third_slide_title">Church Sermons</string>
+    <string name="fourth_slide_title">Church Events</string>
 
     <!--Descriptions-->
-    <string name="first_slide_desc">At Zodongo Foods, We are ready to offer you the best services and best food around  Town. Slide Left for more Information to get you familiar with our services. </string>
-    <string name="second_slide_desc">We have a whole category that shows all foods in this range. Try Our Assorted Category that features Food Menu that caters to your health and for your family</string>
-    <string name="third_slide_desc">We make it Easy for you to share meals with your loved ones. select a menu and share it with friends and family. Eating Together builds strong bonds between families and friends.</string>
-    <string name="fourth_slide_desc">We pride our selves in the professional Serivice that we offer from customer support to Safe and Fast Handling of Orders. Tap "Lets Get Started" button to SignUp on Zodongo Foods</string>
+    <string name="first_slide_desc">Transforming Christ\'s Reign in the City, On a Mission to Love and Touch the City with His Compassion. </string>
+    <string name="second_slide_desc">Where you belong and share the journey of following christ while connecting with your community and meeting new people.</string>
+    <string name="third_slide_desc">Don’t miss any sermon, we have it all with fast access, neatly designed to allow you read it and enjoy the word of God. </string>
+    <string name="fourth_slide_desc">We shall show you all the upcoming events organized by the church. stay tuned not to miss any. </string>
 
     <!--Buttons-->
     <string name="skip_btn">Skip</string>
     <string name="next_btn">Next</string>
-    <string name="let_get_started">Lets Get Started</string>
+    <string name="let_get_started">Let\'s Get Started</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
     <string name="title_search">Search</string>

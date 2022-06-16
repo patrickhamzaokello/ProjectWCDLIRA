@@ -35,7 +35,7 @@ app:cardPreventCornerOverlap="false">
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:background="@color/purple_500"
-                android:src="@drawable/africanwoman"></ImageView>
+                android:src="@drawable/aboutus"></ImageView>
 
 
             <ProgressBar

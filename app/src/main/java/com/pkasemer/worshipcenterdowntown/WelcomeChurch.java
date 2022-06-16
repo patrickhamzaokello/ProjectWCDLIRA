@@ -3,8 +3,10 @@ package com.pkasemer.worshipcenterdowntown;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -40,6 +42,24 @@ public class WelcomeChurch extends AppCompatActivity {
         slogan.setAnimation(bottomAnim);
         thirdIntro.setAnimation(bottomAnim);
 
+
+        findViewById(R.id.w_create_account).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeChurch.this, RegisterMaterial.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        findViewById(R.id.w_login_screen).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeChurch.this, LoginMaterial.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 }
