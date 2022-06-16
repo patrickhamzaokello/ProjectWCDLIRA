@@ -30,8 +30,8 @@ import android.widget.Toast;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.pkasemer.worshipcenterdowntown.Adapters.UserAddressesAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.Models.Address;
 import com.pkasemer.worshipcenterdowntown.Models.CreateAddress;
@@ -81,7 +81,7 @@ public class DeliveryAddress extends AppCompatActivity implements  com.pkasemer.
 
     List<UserAddress> userAddresses;
 
-    private MovieService movieService;
+    private ApiService apiService;
     private Object PaginationAdapterCallback;
 
 
@@ -154,7 +154,7 @@ public class DeliveryAddress extends AppCompatActivity implements  com.pkasemer.
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(DeliveryAddress.this).create(MovieService.class);
+        apiService = ApiBase.getClient(DeliveryAddress.this).create(ApiService.class);
 
         loadFirstPage();
 
@@ -306,7 +306,7 @@ public class DeliveryAddress extends AppCompatActivity implements  com.pkasemer.
 
 
     private Call<CreateAddressResponse> postCreateUserAddress() {
-        return movieService.postCreateAddress(createAddress);
+        return apiService.postCreateAddress(createAddress);
     }
 
 
@@ -424,7 +424,7 @@ public class DeliveryAddress extends AppCompatActivity implements  com.pkasemer.
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<Address> callUserAddresses() {
-        return movieService.getAddresses(
+        return apiService.getAddresses(
                 userId,
                 currentPage
         );

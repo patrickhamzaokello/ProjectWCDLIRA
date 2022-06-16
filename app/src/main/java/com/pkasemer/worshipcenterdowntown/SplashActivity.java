@@ -15,12 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private static final int SPLASH_SCREEN = 5000;
+    private static final int SPLASH_SCREEN = 3000;
     SharedPreferences onboarding_sharedPreferences;
 
     Animation topAnim, bottomAnim;
-    ImageView image;
-    TextView logo, slogan;
+    TextView s_logo, s_slogan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,18 +28,16 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_activity);
 
         ActionBar actionBar = getSupportActionBar(); // or getActionBar();
-        getSupportActionBar().setTitle("Zodongo Foods"); // set the top title
-        String title = actionBar.getTitle().toString(); // get the title
         actionBar.hide();
-
         //animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.splashbottom_animation);
 
-        image = findViewById(R.id.splashimage);
+        s_logo = findViewById(R.id.s_logo);
+        s_slogan = findViewById(R.id.s_slogan);
 
-        image.setAnimation(topAnim);
-
+        s_logo.setAnimation(topAnim);
+        s_slogan.setAnimation(bottomAnim);
 
 
 
@@ -59,16 +56,10 @@ public class SplashActivity extends AppCompatActivity {
                     Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
                     startActivity(intent);
                 } else {
-                    Intent intent = new Intent(SplashActivity.this, LoginMaterial.class);
+                    Intent intent = new Intent(SplashActivity.this, WelcomeChurch.class);
                     startActivity(intent);
 
-//                    Pair[] pairs = new Pair[3];
-//                    pairs[0] = new Pair<View, String>(image,"logo_image");
-//                    pairs[1] = new Pair<View, String>(logo,"logo_text");
-//                    pairs[2] = new Pair<View, String>(slogan,"logo_desc");
-//
-//                    ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(SplashActivity.this, pairs);
-//                    startActivity(intent, options.toBundle());
+
                 }
                 finish();
 

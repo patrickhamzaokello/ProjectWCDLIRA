@@ -58,7 +58,7 @@ public class LoginMaterial extends AppCompatActivity {
         }
 
         //Hooks
-        callSignUp = findViewById(R.id.signup_screen);
+        callSignUp = findViewById(R.id.w_login_screen);
         loginbtn = findViewById(R.id.login_btn);
         logoText = findViewById(R.id.login_welcomeback);
         sloganText = findViewById(R.id.login_subtext);

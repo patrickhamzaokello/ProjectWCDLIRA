@@ -18,8 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.SearchQueryAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.Product;
 import com.pkasemer.worshipcenterdowntown.Models.SearchResult;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationScrollListener;
@@ -57,7 +57,7 @@ public class SearchView extends AppCompatActivity implements SearchAdapterCallBa
     private final int selectCategoryId = 3;
 
     ActionBar actionBar;
-    private MovieService movieService;
+    private ApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +115,7 @@ public class SearchView extends AppCompatActivity implements SearchAdapterCallBa
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(SearchView.this).create(MovieService.class);
+        apiService = ApiBase.getClient(SearchView.this).create(ApiService.class);
 
 
 
@@ -237,7 +237,7 @@ public class SearchView extends AppCompatActivity implements SearchAdapterCallBa
     }
 
     private Call<SearchResult> callSearchAPI() {
-        return movieService.getSearch(
+        return apiService.getSearch(
                 queryString,
                 currentPage
         );

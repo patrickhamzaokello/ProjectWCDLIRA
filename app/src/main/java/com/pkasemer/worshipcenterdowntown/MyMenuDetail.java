@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.OnlineMenuDetailAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.FoodDBModel;
 import com.pkasemer.worshipcenterdowntown.Models.ProductDetail;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedCategoryMenuItemResult;
@@ -60,7 +60,7 @@ public class MyMenuDetail extends AppCompatActivity implements MenuDetailListene
     private int selectCategoryId;
     private int selectMenuId;
 
-    private MovieService movieService;
+    private ApiService apiService;
     ActionBar actionBar;
     List<SelectedProduct> categories;
 
@@ -118,7 +118,7 @@ public class MyMenuDetail extends AppCompatActivity implements MenuDetailListene
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(MyMenuDetail.this).create(MovieService.class);
+        apiService = ApiBase.getClient(MyMenuDetail.this).create(ApiService.class);
         btnRetry.setOnClickListener(v -> loadFirstPage());
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
@@ -272,7 +272,7 @@ public class MyMenuDetail extends AppCompatActivity implements MenuDetailListene
 
 
     private Call<ProductDetail> callProductDetail() {
-        return movieService.getMenuDetails(
+        return apiService.getMenuDetails(
                 selectMenuId,
                 selectCategoryId,
                 currentPage

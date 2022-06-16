@@ -20,8 +20,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.UserOrdersAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Dialogs.OrderNotFound;
 import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedCategoryMenuItemResult;
@@ -61,7 +61,7 @@ public class ManageOrders extends AppCompatActivity implements PaginationAdapter
     private int currentPage = PAGE_START;
     private int customerId;
 
-    private MovieService movieService;
+    private ApiService apiService;
     private Object PaginationAdapterCallback;
 
     ActionBar actionBar;
@@ -119,7 +119,7 @@ public class ManageOrders extends AppCompatActivity implements PaginationAdapter
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(ManageOrders.this).create(MovieService.class);
+        apiService = ApiBase.getClient(ManageOrders.this).create(ApiService.class);
         btnRetry.setOnClickListener(v -> loadFirstPage());
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
@@ -247,7 +247,7 @@ public class ManageOrders extends AppCompatActivity implements PaginationAdapter
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<UserOrders> callUserOrdersApi() {
-        return movieService.getUserOrders(
+        return apiService.getUserOrders(
                 customerId,
                 currentPage
         );

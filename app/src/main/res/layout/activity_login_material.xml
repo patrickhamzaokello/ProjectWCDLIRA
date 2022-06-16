@@ -133,7 +133,7 @@
 
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/signup_screen"
+                    android:id="@+id/w_login_screen"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

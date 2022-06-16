@@ -21,8 +21,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.HomeSectionedRecyclerViewAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.Category;
 import com.pkasemer.worshipcenterdowntown.Models.HomeCategories;
 import com.pkasemer.worshipcenterdowntown.R;
@@ -65,7 +65,7 @@ public class Home extends Fragment implements PaginationAdapterCallback {
 
     List<Category> categories;
 
-    private MovieService movieService;
+    private ApiService apiService;
     private Object PaginationAdapterCallback;
 
 
@@ -130,7 +130,7 @@ public class Home extends Fragment implements PaginationAdapterCallback {
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(getContext()).create(MovieService.class);
+        apiService = ApiBase.getClient(getContext()).create(ApiService.class);
 
         loadFirstPage();
 
@@ -235,7 +235,7 @@ public class Home extends Fragment implements PaginationAdapterCallback {
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<HomeCategories> callHomeCategories() {
-        return movieService.getMenuCategoriesSection(
+        return apiService.getMenuCategoriesSection(
                 currentPage
         );
     }

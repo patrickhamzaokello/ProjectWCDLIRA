@@ -17,8 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Dialogs.ChangeLocation;
 import com.pkasemer.worshipcenterdowntown.Dialogs.ChangePaymentMethod;
 import com.pkasemer.worshipcenterdowntown.Dialogs.OrderConfirmationDialog;
@@ -40,7 +40,7 @@ import retrofit2.Response;
 
 public class PlaceOrder extends AppCompatActivity implements ChangeLocation.NoticeDialogListener, OrderConfirmationDialog.OrderConfirmLister {
 
-    private MovieService movieService;
+    private ApiService apiService;
     private SenseDBHelper db;
     boolean food_db_itemchecker;
     List<FoodDBModel> cartitemlist;
@@ -69,7 +69,7 @@ public class PlaceOrder extends AppCompatActivity implements ChangeLocation.Noti
         String title = actionBar.getTitle().toString(); // get the title
         actionBar.hide();
 
-        movieService = MovieApi.getClient(PlaceOrder.this).create(MovieService.class);
+        apiService = ApiBase.getClient(PlaceOrder.this).create(ApiService.class);
         db = new SenseDBHelper(PlaceOrder.this);
         cartitemlist = db.listTweetsBD();
 
@@ -226,7 +226,7 @@ public class PlaceOrder extends AppCompatActivity implements ChangeLocation.Noti
 
 
     private Call<OrderResponse> postAllCartItems() {
-        return movieService.postCartOrder(orderRequest);
+        return apiService.postCartOrder(orderRequest);
     }
 
 

@@ -30,8 +30,8 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.textfield.TextInputEditText;
 import com.pkasemer.worshipcenterdowntown.Adapters.UserAddressesAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.LoginMaterial;
 import com.pkasemer.worshipcenterdowntown.ManageOrders;
@@ -85,7 +85,7 @@ public class Profile extends Fragment implements com.pkasemer.worshipcenterdownt
 
     List<UserAddress> userAddresses;
 
-    private MovieService movieService;
+    private ApiService apiService;
     private Object PaginationAdapterCallback;
 
 
@@ -211,7 +211,7 @@ public class Profile extends Fragment implements com.pkasemer.worshipcenterdownt
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(getContext()).create(MovieService.class);
+        apiService = ApiBase.getClient(getContext()).create(ApiService.class);
 
         loadFirstPage();
 
@@ -362,7 +362,7 @@ public class Profile extends Fragment implements com.pkasemer.worshipcenterdownt
 
 
     private Call<CreateAddressResponse> postCreateUserAddress() {
-        return movieService.postCreateAddress(createAddress);
+        return apiService.postCreateAddress(createAddress);
     }
 
 
@@ -479,7 +479,7 @@ public class Profile extends Fragment implements com.pkasemer.worshipcenterdownt
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<Address> callUserAddresses() {
-        return movieService.getAddresses(
+        return apiService.getAddresses(
                 userId,
                 currentPage
         );

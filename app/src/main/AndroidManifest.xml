@@ -20,35 +20,38 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.DeliveryAddress"
+            android:name=".WelcomeChurch"
             android:exported="false" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.SearchView"
+            android:name=".DeliveryAddress"
             android:exported="false" />
-        <activity android:name="com.pkasemer.worshipcenterdowntown.ManageOrders" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.PlaceOrder"
+            android:name=".SearchView"
+            android:exported="false" />
+        <activity android:name=".ManageOrders" />
+        <activity
+            android:name=".PlaceOrder"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.MyMenuDetail"
+            android:name=".MyMenuDetail"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.MySelectedCategory"
+            android:name=".MySelectedCategory"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.RootActivity"
+            android:name=".RootActivity"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.RegisterMaterial"
+            android:name=".RegisterMaterial"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.LoginMaterial"
+            android:name=".LoginMaterial"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.OnBoarding"
+            android:name=".OnBoarding"
             android:exported="true" />
         <activity
-            android:name="com.pkasemer.worshipcenterdowntown.SplashActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +61,7 @@
         </activity>
 
         <service
-            android:name="com.pkasemer.worshipcenterdowntown.CustomMessagingService"
+            android:name=".CustomMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -82,7 +85,7 @@
             android:value="@string/default_notification_channel_id" />
 
         <receiver
-            android:name="com.pkasemer.worshipcenterdowntown.NotificationReceiver"
+            android:name=".NotificationReceiver"
             android:enabled="true"
             android:exported="false" />
     </application>

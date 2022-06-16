@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.SelectedCategoryPaginationAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedCategory;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedCategoryMenuItemResult;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedCategoryResult;
@@ -60,7 +60,7 @@ public class MySelectedCategory extends AppCompatActivity implements PaginationA
     private int currentPage = PAGE_START;
     private int selectCategoryId;
 
-    private MovieService movieService;
+    private ApiService apiService;
     private Object PaginationAdapterCallback;
 
 
@@ -126,7 +126,7 @@ public class MySelectedCategory extends AppCompatActivity implements PaginationA
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(MySelectedCategory.this).create(MovieService.class);
+        apiService = ApiBase.getClient(MySelectedCategory.this).create(ApiService.class);
         btnRetry.setOnClickListener(v -> loadFirstPage());
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
@@ -251,7 +251,7 @@ public class MySelectedCategory extends AppCompatActivity implements PaginationA
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<SelectedCategory> callTopRatedMoviesApi() {
-        return movieService.getSelectedCategory(
+        return apiService.getSelectedCategory(
                 selectCategoryId,
                 currentPage
         );

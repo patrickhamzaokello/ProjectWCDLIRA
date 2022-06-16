@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DD0000"
+    android:background="@color/purple_500"
     android:orientation="vertical"
     android:layout_centerVertical="true"
     android:layout_gravity="center"
@@ -13,79 +13,54 @@
 
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/ic_nice_pattern"
+        android:background="@drawable/ic_ellipse_577"
         android:gravity="center"
-        >
-
-
-
-        <ImageView
-            android:id="@+id/splashimage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/custom_cart_btn_done"
-            android:theme="@style/WhiteBtn">
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/introtext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Kakebe Shop Online"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="20dp"
-            android:includeFontPadding="false"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:layout_marginTop="30dp"
-            android:layout_below="@+id/splashimage"
-            />
-
-        <TextView
-            android:id="@+id/secondintrotext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="You Order, We Deliver"
-            android:textColor="@color/white"
-            android:layout_marginHorizontal="20dp"
-            android:fontFamily="@font/montserrat"
-            android:textSize="18sp"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:layout_below="@id/introtext"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/secondintrotext"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="30dp"
-            android:fontFamily="@font/montserrat"
-            android:gravity="center"
-            android:includeFontPadding="false"
-            android:padding="10dp"
-            android:text="Choose from over one million products available to be delivered to your desired location / address"
-            android:textColor="@color/white"
-            android:textSize="10sp" />
-
-
-
+        app:layout_constraintTop_toTopOf="parent">
 
     </RelativeLayout>
 
+    <TextView
+        android:id="@+id/s_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="Worship Center Downtown Lira"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="20dp" />
+
+    <TextView
+        android:id="@+id/s_slogan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/s_logo"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:includeFontPadding="false"
+        android:text="Jesus Revealed"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/s_logo"
+      />
 
 
 
 
 
 
-</LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

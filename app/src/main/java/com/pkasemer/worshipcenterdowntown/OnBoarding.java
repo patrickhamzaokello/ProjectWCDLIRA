@@ -64,7 +64,7 @@ public class OnBoarding extends AppCompatActivity {
         }
 
         public void skip(View view) {
-            startActivity(new Intent(this, LoginMaterial.class));
+            startActivity(new Intent(this, WelcomeChurch.class));
             finish();
         }
 

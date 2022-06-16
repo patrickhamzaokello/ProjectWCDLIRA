@@ -22,8 +22,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.searchHomeAdapter;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieApi;
-import com.pkasemer.worshipcenterdowntown.Apis.MovieService;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
+import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.SearchCategoriee;
 import com.pkasemer.worshipcenterdowntown.Models.SearchHome;
 import com.pkasemer.worshipcenterdowntown.R;
@@ -61,7 +61,7 @@ public class Search extends Fragment implements SearchAdapterCallBack {
 
     List<SearchCategoriee> searchCategoriees;
 
-    private MovieService movieService;
+    private ApiService apiService;
 
 
     public Search() {
@@ -124,7 +124,7 @@ public class Search extends Fragment implements SearchAdapterCallBack {
         });
 
         //init service and load data
-        movieService = MovieApi.getClient(getContext()).create(MovieService.class);
+        apiService = ApiBase.getClient(getContext()).create(ApiService.class);
 
         loadFirstPage();
 
@@ -228,7 +228,7 @@ public class Search extends Fragment implements SearchAdapterCallBack {
      * by @{@link PaginationScrollListener} to load next page.
      */
     private Call<SearchHome> callMostSearched() {
-        return movieService.getMostSearched(
+        return apiService.getMostSearched(
                 currentPage
         );
     }
