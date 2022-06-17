@@ -46,8 +46,6 @@ public class LoginMaterial extends AppCompatActivity {
         setContentView(R.layout.activity_login_material);
 
         ActionBar actionBar = getSupportActionBar(); // or getActionBar();
-        getSupportActionBar().setTitle("Zodongo Foods"); // set the top title
-        String title = actionBar.getTitle().toString(); // get the title
         actionBar.hide();
 
         //if the user is already logged in we will directly start the profile activity
@@ -85,21 +83,19 @@ public class LoginMaterial extends AppCompatActivity {
             public void onClick(View view) {
                 //open register screen
                 Intent intent = new Intent(LoginMaterial.this, RegisterMaterial.class);
-//                Pair[] pairs = new Pair[6];
-//                pairs[0] = new Pair<View, String>(image,"logo_image");
-//                pairs[1] = new Pair<View, String>(logoText,"logo_text");
-//                pairs[2] = new Pair<View, String>(sloganText,"logo_desc");
-//                pairs[3] = new Pair<View, String>(username_layout,"username_input");
-//                pairs[4] = new Pair<View, String>(password_layout,"password_input");
-//                pairs[5] = new Pair<View, String>(loginbtn,"account_button");
-//                pairs[6] = new Pair<View, String>(callSignUp,"account_change");
-//
-//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(LoginMaterial.this, pairs);
-//                startActivity(intent, options.toBundle());
                 startActivity(intent);
             }
         });
 
+
+        findViewById(R.id.forgotPassword).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //open register screen
+                Intent intent = new Intent(LoginMaterial.this, ForgotPassword.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

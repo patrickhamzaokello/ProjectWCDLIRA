@@ -75,7 +75,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/white"
         android:textAllCaps="false"
-        android:paddingVertical="18dp"
+        android:paddingVertical="12dp"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/w_login_screen"
         app:strokeWidth="1dp" />

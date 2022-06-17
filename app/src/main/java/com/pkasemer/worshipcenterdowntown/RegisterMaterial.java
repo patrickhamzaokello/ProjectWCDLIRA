@@ -1,5 +1,6 @@
 package com.pkasemer.worshipcenterdowntown;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
@@ -26,6 +28,9 @@ import com.pkasemer.worshipcenterdowntown.Models.User;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -37,7 +42,6 @@ public class RegisterMaterial extends AppCompatActivity {
     TextInputLayout username_layout, password_layout;
 
     TextInputEditText inputTextFullname, inputTextEmail, inputTextPhone, inputTextPassword, inputTextConfirmPassword;
-    RadioGroup radioGroupGender;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,14 +62,12 @@ public class RegisterMaterial extends AppCompatActivity {
         }
 
 
-        //Hooks
 
         //Hooks
         callLogIN = findViewById(R.id.login_screen);
         register_btn = findViewById(R.id.register_btn);
         logoText = findViewById(R.id.register_welcomeback);
         sloganText = findViewById(R.id.register_subtext);
-
         username_layout = findViewById(R.id.login_username);
         password_layout = findViewById(R.id.login_password);
 
@@ -86,20 +88,8 @@ public class RegisterMaterial extends AppCompatActivity {
         callLogIN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //if user pressed on login
-                //we will open the login screen
-                Intent intent = new Intent(RegisterMaterial.this, LoginMaterial.class);
 
-//                Pair[] pairs = new Pair[6];
-//                pairs[0] = new Pair<View, String>(logoText,"logo_text");
-//                pairs[1] = new Pair<View, String>(sloganText,"logo_desc");
-//                pairs[2] = new Pair<View, String>(username_layout,"username_input");
-//                pairs[3] = new Pair<View, String>(password_layout,"password_input");
-//                pairs[4] = new Pair<View, String>(register_btn,"account_button");
-//                pairs[5] = new Pair<View, String>(callLogIN,"account_change");
-//
-//                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(RegisterMaterial.this, pairs);
-//                startActivity(intent, options.toBundle());
+                Intent intent = new Intent(RegisterMaterial.this, LoginMaterial.class);
                 startActivity(intent);
             }
         });
@@ -115,10 +105,7 @@ public class RegisterMaterial extends AppCompatActivity {
         final String user_password = inputTextPassword.getText().toString().trim();
         final String confirm_password = inputTextConfirmPassword.getText().toString().trim();
 
-//        final String gender = ((RadioButton) findViewById(radioGroupGender.getCheckedRadioButtonId())).getText().toString();
 
-
-        //first we will do the validations
 
         if (TextUtils.isEmpty(full_name)) {
             inputTextFullname.setError("Enter Full Name");
@@ -262,5 +249,6 @@ public class RegisterMaterial extends AppCompatActivity {
                 .setContentText("Try different Username and Email")
                 .show();
     }
+
 
 }
