@@ -21,10 +21,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
+import com.pkasemer.worshipcenterdowntown.Adapters.SermonPageAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
+import com.pkasemer.worshipcenterdowntown.Models.AllSermon;
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
 import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
+import com.pkasemer.worshipcenterdowntown.Models.SermonPage;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
@@ -44,7 +47,7 @@ public class Search extends Fragment implements PaginationAdapterCallback {
 
     private static final String TAG = "MainActivity";
 
-    HomeFeedAdapter adapter;
+    SermonPageAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
     RecyclerView rv;
@@ -63,7 +66,7 @@ public class Search extends Fragment implements PaginationAdapterCallback {
     private int currentPage = PAGE_START;
     private final int selectCategoryId = 3;
 
-    List<HomeFeed> homeFeeds;
+    List<AllSermon> allSermons;
 
     private ApiService apiService;
     private Object PaginationAdapterCallback;
@@ -96,7 +99,7 @@ public class Search extends Fragment implements PaginationAdapterCallback {
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
 
-        adapter = new HomeFeedAdapter(getContext(), this);
+        adapter = new SermonPageAdapter(getContext(), this);
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
@@ -161,21 +164,21 @@ public class Search extends Fragment implements PaginationAdapterCallback {
         hideErrorView();
         currentPage = PAGE_START;
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<SermonPage>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<SermonPage> call, Response<SermonPage> response) {
                 hideErrorView();
 
 //                Log.i(TAG, "onResponse: " + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
                 // Got data. Send it to adapter
-                homeFeeds = fetchResults(response);
+                allSermons = fetchResults(response);
                 progressBar.setVisibility(View.GONE);
-                if(homeFeeds.isEmpty()){
+                if(allSermons.isEmpty()){
                     showCategoryErrorView();
                     return;
                 } else {
-                    adapter.addAll(homeFeeds);
+                    adapter.addAll(allSermons);
                 }
 
                 if (currentPage < TOTAL_PAGES) adapter.addLoadingFooter();
@@ -183,7 +186,7 @@ public class Search extends Fragment implements PaginationAdapterCallback {
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<SermonPage> call, Throwable t) {
                 t.printStackTrace();
                 showErrorView(t);
             }
@@ -192,35 +195,35 @@ public class Search extends Fragment implements PaginationAdapterCallback {
 
 
 
-    private List<HomeFeed> fetchResults(Response<HomeBase> response) {
-        HomeBase homeBase = response.body();
-        TOTAL_PAGES = homeBase.getTotalPages();
+    private List<AllSermon> fetchResults(Response<SermonPage> response) {
+        SermonPage sermonPage = response.body();
+        TOTAL_PAGES = sermonPage.getTotalPages();
         System.out.println("total pages" + TOTAL_PAGES);
 
-        return homeBase.getHomeFeed();
+        return sermonPage.getAllSermons();
     }
 
     private void loadNextPage() {
         Log.d(TAG, "loadNextPage: " + currentPage);
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<SermonPage>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<SermonPage> call, Response<SermonPage> response) {
                 Log.i(TAG, "onResponse: " + currentPage
                         + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
                 adapter.removeLoadingFooter();
                 isLoading = false;
 
-                homeFeeds = fetchResults(response);
-                adapter.addAll(homeFeeds);
+                allSermons = fetchResults(response);
+                adapter.addAll(allSermons);
 
                 if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
                 else isLastPage = true;
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<SermonPage> call, Throwable t) {
                 t.printStackTrace();
                 adapter.showRetry(true, fetchErrorMessage(t));
             }
@@ -234,8 +237,8 @@ public class Search extends Fragment implements PaginationAdapterCallback {
      * As {@link #currentPage} will be incremented automatically
      * by @{@link PaginationScrollListener} to load next page.
      */
-    private Call<HomeBase> callHomeCategories() {
-        return apiService.getHomeFeedRequest(
+    private Call<SermonPage> callHomeCategories() {
+        return apiService.getSermonPageRequest(
                 currentPage
         );
     }

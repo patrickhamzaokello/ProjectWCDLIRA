@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -23,6 +25,7 @@ import com.pkasemer.worshipcenterdowntown.Models.SliderBanner;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class HomeSliderAdapter extends SliderViewAdapter<HomeSliderAdapter.SliderAdapterViewHolder> {

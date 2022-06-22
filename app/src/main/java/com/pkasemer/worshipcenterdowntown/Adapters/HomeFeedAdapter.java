@@ -23,6 +23,7 @@ import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -120,6 +121,21 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 // passing this array list inside our adapter class.
                 HomeSliderAdapter slideradapter = new HomeSliderAdapter(context, homeFeed.getSliderBanners());
                 heroVh.sliderView.setSliderAdapter(slideradapter);
+
+
+                Calendar c = Calendar.getInstance();
+                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+
+                if(timeOfDay >= 0 && timeOfDay < 12){
+                    heroVh.home_greeting.setText("Good Morning, Okot");
+                }else if(timeOfDay >= 12 && timeOfDay < 16){
+                    heroVh.home_greeting.setText("Good Afternoon, Okot");
+                }else if(timeOfDay >= 16 && timeOfDay < 21){
+                    heroVh.home_greeting.setText("Good Evening, Okot");
+                }else if(timeOfDay >= 22 && timeOfDay < 24){
+                    heroVh.home_greeting.setText("Good Night, Okot");
+                }
+
                 break;
             case DAILY_HIGHLIGHTS:
                 final CategoryVH categoryVH = (CategoryVH) holder;
@@ -287,11 +303,13 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     protected class HeroVH extends RecyclerView.ViewHolder {
 
         private final SliderView sliderView;
+        private final TextView home_greeting;
 
         public HeroVH(View itemView) {
             super(itemView);
             // init views
             sliderView = itemView.findViewById(R.id.home_slider);
+            home_greeting = itemView.findViewById(R.id.home_greeting);
 
 
         }

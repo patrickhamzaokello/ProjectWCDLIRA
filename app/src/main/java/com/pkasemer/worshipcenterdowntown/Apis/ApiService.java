@@ -3,7 +3,7 @@ package com.pkasemer.worshipcenterdowntown.Apis;
 
 
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
-
+import com.pkasemer.worshipcenterdowntown.Models.SermonPage;
 
 
 import retrofit2.Call;
@@ -21,6 +21,11 @@ public interface ApiService {
 
     @GET("home_feed.php")
     Call<HomeBase> getHomeFeedRequest(
+            @Query("page") int pageIndex
+    );
+
+    @GET("sermons.php")
+    Call<SermonPage> getSermonPageRequest(
             @Query("page") int pageIndex
     );
 

@@ -29,7 +29,6 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.pkasemer.worshipcenterdowntown.Models.DailyHighlight;
-import com.pkasemer.worshipcenterdowntown.Models.Home;
 import com.pkasemer.worshipcenterdowntown.Models.HomeEvent;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
