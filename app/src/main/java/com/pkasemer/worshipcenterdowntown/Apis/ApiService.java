@@ -19,11 +19,10 @@ public interface ApiService {
 
 
 
-    @GET("homefeed_request.php")
+    @GET("home_feed.php")
     Call<HomeBase> getHomeFeedRequest(
             @Query("page") int pageIndex
     );
-
 
 
 
