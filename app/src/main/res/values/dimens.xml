@@ -12,5 +12,9 @@
     <dimen name="poster_thumb_height">96dp</dimen>
 
     <dimen name="poster_hero_height">192dp</dimen>
+    <dimen name="cardsize">270dp</dimen>
+    <dimen name="sectionHeading">18sp</dimen>
+    <dimen name="SectionSubheading">15sp</dimen>
+    <dimen name="home_image_slider">157dp</dimen>
 
 </resources>

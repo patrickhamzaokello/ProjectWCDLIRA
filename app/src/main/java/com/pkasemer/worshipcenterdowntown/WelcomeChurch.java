@@ -13,6 +13,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
+
 public class WelcomeChurch extends AppCompatActivity {
 
     SharedPreferences onboarding_sharedPreferences;
@@ -29,6 +31,15 @@ public class WelcomeChurch extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar(); // or getActionBar();
         actionBar.hide();
+
+        //if the user is already logged in we will directly start the profile activity
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            finish();
+            startActivity(new Intent(this, RootActivity.class));
+            return;
+        }
+
+
         //animation
         topAnim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         bottomAnim = AnimationUtils.loadAnimation(this, R.anim.splashbottom_animation);

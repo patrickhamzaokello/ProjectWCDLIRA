@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/cardsize"
+    android:layout_height="180dp"
+
+    android:clipToPadding="false"
+    android:padding="10dp">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:scaleType="fitXY"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp">
+
+        <Button
+            android:id="@+id/btnCartItemRemove"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:background="@drawable/ic_ei_share_apple"
+            android:theme="@style/Highlightshare" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image_card_view"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:padding="20sp">
+
+
+            <TextView
+                android:id="@+id/highlight_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="left"
+                android:maxLines="1"
+                android:text="Home Essentials"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/highlight_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/highlight_title"
+                android:layout_marginVertical="10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:gravity="left"
+                android:maxLines="3"
+                android:text="Sing to God, sing praise to his name, extol him who rides on the clouds — his name is the Lord — and rejoice before him. A father to the fatherless, a defender of widows, is God in his holy dwelling."
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+
+            <TextView
+                android:id="@+id/highlight_verse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/highlight_desc"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:gravity="left"
+                android:maxLines="1"
+                android:text="Psalms 29:11s"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+
+</RelativeLayout>
+

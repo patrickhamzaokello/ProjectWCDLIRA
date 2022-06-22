@@ -25,6 +25,12 @@
         <item name="colorAccent">@color/buttonRed</item>
     </style>
 
+    <style name="Highlightshare" parent="Theme.AppCompat.Light">
+        <item name="colorPrimary">#B2B2B2</item>
+        <item name="colorPrimaryDark">#B2B2B2</item>
+        <item name="colorAccent">#B2B2B2</item>
+    </style>
+
     <style name="LightBTN" parent="Theme.AppCompat.Light">
         <item name="colorPrimary">@color/btnLight</item>
         <item name="colorPrimaryDark">@color/btnLight</item>

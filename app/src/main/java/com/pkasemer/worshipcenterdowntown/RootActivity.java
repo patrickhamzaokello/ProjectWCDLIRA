@@ -17,19 +17,14 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.pkasemer.worshipcenterdowntown.Adapters.CartAdapter;
-import com.pkasemer.worshipcenterdowntown.HelperClasses.CartItemHandlerListener;
-import com.pkasemer.worshipcenterdowntown.Models.FoodDBModel;
-import com.pkasemer.worshipcenterdowntown.localDatabase.SenseDBHelper;
+
 
 import java.util.List;
 
-public class RootActivity extends AppCompatActivity implements CartItemHandlerListener {
+public class RootActivity extends AppCompatActivity {
 
     BottomNavigationView navView;
-    SenseDBHelper db;
-    List<FoodDBModel> cartitemlist;
-    CartAdapter cartAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +37,14 @@ public class RootActivity extends AppCompatActivity implements CartItemHandlerLi
         actionBar.hide();
 
 
-
         //Initialize Bottom Navigation View.
         navView = findViewById(R.id.bottomNav_view);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mMasage,new IntentFilter(getString(R.string.cartcoutAction)));
+        LocalBroadcastManager.getInstance(this).registerReceiver(mMasage, new IntentFilter(getString(R.string.cartcoutAction)));
 
-        db = new SenseDBHelper(this);
 
         //Pass the ID's of Different destinations
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile )
+                R.id.navigation_home, R.id.navigation_search, R.id.navigation_cart, R.id.navigation_profile)
                 .build();
 
         //Initialize NavController.
@@ -60,7 +53,6 @@ public class RootActivity extends AppCompatActivity implements CartItemHandlerLi
         navView.getOrCreateBadge(R.id.navigation_cart).setBackgroundColor(getResources().getColor(R.color.sweetRed));
 
         //updating cart counts
-        updatecartCount();
 
     }
 
@@ -73,16 +65,16 @@ public class RootActivity extends AppCompatActivity implements CartItemHandlerLi
     }
 
 
-    public BroadcastReceiver mMasage=new BroadcastReceiver() {
+    public BroadcastReceiver mMasage = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String cartcount=intent.getStringExtra(getString(R.string.cartCount));
+            String cartcount = intent.getStringExtra(getString(R.string.cartCount));
 
-            if((Integer.parseInt(cartcount)) != 0){
+            if ((Integer.parseInt(cartcount)) != 0) {
                 navView.getOrCreateBadge(R.id.navigation_cart).setNumber(Integer.parseInt(cartcount));
                 navView.getOrCreateBadge(R.id.navigation_cart).setVisible(true);
 
-            }else {
+            } else {
                 navView.getOrCreateBadge(R.id.navigation_cart).clearNumber();
                 navView.getOrCreateBadge(R.id.navigation_cart).setVisible(false);
 
@@ -90,51 +82,5 @@ public class RootActivity extends AppCompatActivity implements CartItemHandlerLi
         }
     };
 
-    private void updatecartCount() {
-        int mycartcount = db.countCart();
-        if(mycartcount != 0){
-            navView.getOrCreateBadge(R.id.navigation_cart).setNumber(mycartcount);
-            navView.getOrCreateBadge(R.id.navigation_cart).setVisible(true);
 
-        }else {
-            navView.getOrCreateBadge(R.id.navigation_cart).clearNumber();
-            navView.getOrCreateBadge(R.id.navigation_cart).setVisible(false);
-        }
-
-        refreshcartPage();
-
-
-    }
-
-
-    private void refreshcartPage(){
-
-        db = new SenseDBHelper(this);
-        cartitemlist = db.listTweetsBD();
-
-        if (cartitemlist.size() > 0) {
-            cartAdapter = new CartAdapter(this, cartitemlist, this);
-            cartAdapter.notifyDataSetChanged();
-        }
-        else {
-//            recyclerView.setVisibility(View.GONE);
-//            emptycartwarning();
-        }
-    }
-
-
-    @Override
-    public void increment(int qty, FoodDBModel foodDBModel) {
-
-    }
-
-    @Override
-    public void decrement(int qty, FoodDBModel foodDBModel) {
-
-    }
-
-    @Override
-    public void deletemenuitem(String foodMenu_id, FoodDBModel foodDBModel) {
-
-    }
 }

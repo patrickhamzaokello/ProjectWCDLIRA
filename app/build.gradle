@@ -142,6 +142,7 @@ dependencies {
     implementation 'com.shobhitpuri.custombuttons:google-signin:1.1.0'
 
 
-
+// jsoup HTML parser library @ https://jsoup.org/
+    implementation 'org.jsoup:jsoup:1.15.1'
 
 }

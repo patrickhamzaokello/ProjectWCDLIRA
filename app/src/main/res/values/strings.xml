@@ -18,8 +18,8 @@
     <string name="let_get_started">Let\'s Get Started</string>
     <string name="title_home">Home</string>
     <string name="title_profile">Profile</string>
-    <string name="title_search">Search</string>
-    <string name="title_Cart">Cart</string>
+    <string name="title_Sermon">Sermon</string>
+    <string name="title_Alerts">Alerts</string>
 
     <string name="default_notification_channel_id">PushNotifications</string>
 

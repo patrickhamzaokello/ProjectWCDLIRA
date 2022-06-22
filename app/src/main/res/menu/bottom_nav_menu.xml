@@ -9,13 +9,13 @@
     <item
         android:id="@+id/navigation_search"
         android:enabled="true"
-        android:icon="@drawable/ic_mysearch"
-        android:title="@string/title_search" />
+        android:icon="@drawable/ic_wc_book"
+        android:title="@string/title_Sermon" />
     <item
         android:id="@+id/navigation_cart"
         android:enabled="true"
-        android:icon="@drawable/ic_mycart"
-        android:title="@string/title_Cart" />
+        android:icon="@drawable/ic_wc_message"
+        android:title="@string/title_Alerts" />
     <item
         android:id="@+id/navigation_profile"
         android:enabled="true"

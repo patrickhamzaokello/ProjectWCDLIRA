@@ -61,8 +61,8 @@ public class ApiBase {
             retrofit = new Retrofit.Builder()
                     .client(buildClient(context))
                     .addConverterFactory(GsonConverterFactory.create())
-//                    .baseUrl("http://192.168.1.102:8080/projects/KakebeAPI/Requests/")
-                    .baseUrl("https://xyzobide.kakebeshop.com/KakebeAPI/Requests/")
+                    .baseUrl("http://192.168.0.121:8080/projects/WorshipCenterAPI/Requests/")
+//                    .baseUrl("https://xyzobide.kakebeshop.com/KakebeAPI/Requests/")
                     .build();
         }
         return retrofit;

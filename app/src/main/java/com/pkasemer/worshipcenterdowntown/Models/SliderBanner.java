@@ -8,38 +8,49 @@ import com.google.gson.annotations.SerializedName;
 @Generated("jsonschema2pojo")
 public class SliderBanner {
 
-    @SerializedName("id")
+    @SerializedName("sliderid")
     @Expose
-    private Integer id;
-    @SerializedName("link")
+    private Integer sliderid;
+    @SerializedName("serialid")
     @Expose
-    private Integer link;
-    @SerializedName("filePath")
+    private Integer serialid;
+    @SerializedName("filename")
     @Expose
-    private String filePath;
+    private String filename;
+    @SerializedName("cdate")
+    @Expose
+    private String cdate;
 
-    public Integer getId() {
-        return id;
+    public Integer getSliderid() {
+        return sliderid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setSliderid(Integer sliderid) {
+        this.sliderid = sliderid;
     }
 
-    public Integer getLink() {
-        return link;
+    public Integer getSerialid() {
+        return serialid;
     }
 
-    public void setLink(Integer link) {
-        this.link = link;
+    public void setSerialid(Integer serialid) {
+        this.serialid = serialid;
     }
 
-    public String getFilePath() {
-        return filePath;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getCdate() {
+        return cdate;
+    }
+
+    public void setCdate(String cdate) {
+        this.cdate = cdate;
     }
 
 }

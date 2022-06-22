@@ -45,7 +45,7 @@ public class HomeSliderAdapter extends SliderViewAdapter<HomeSliderAdapter.Slide
     // inside on Create View Holder method.
     @Override
     public SliderAdapterViewHolder onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_slider_layout, null);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_slider_design, null);
         return new SliderAdapterViewHolder(inflate);
     }
 
@@ -58,7 +58,7 @@ public class HomeSliderAdapter extends SliderViewAdapter<HomeSliderAdapter.Slide
 
         Glide
                 .with(viewHolder.itemView)
-                .load(BASE_URL_IMG + sliderBanner.getFilePath())
+                .load(BASE_URL_IMG + sliderBanner.getFilename())
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -73,22 +73,20 @@ public class HomeSliderAdapter extends SliderViewAdapter<HomeSliderAdapter.Slide
                     }
 
                 })
-                .diskCacheStrategy(DiskCacheStrategy.ALL)   // cache both original & resized image
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .centerCrop()
                 .transition(withCrossFade(factory))
                 .into(viewHolder.imageViewBackground);
     }
 
-    // this method will return
-    // the count of our list.
+
     @Override
     public int getCount() {
         return sliderBanners.size();
     }
 
     static class SliderAdapterViewHolder extends SliderViewAdapter.ViewHolder {
-        // Adapter class for initializing
-        // the views of our slider view.
+
         View itemView;
         ImageView imageViewBackground;
         ProgressBar msliderProgress;

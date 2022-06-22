@@ -65,10 +65,35 @@
                     app:boxStrokeColor="@color/black"
                     app:boxStrokeErrorColor="@color/purple_500"
                     android:layout_marginTop="5dp"
-                    android:hint="Full Name*">
+                    android:hint="First Name*">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputTextFullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="text"
+                        android:textColor="@color/black"
+
+                        />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/login_lastname"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hintTextColor="@color/black"
+                    android:textColorHint="@color/black"
+                    app:boxStrokeColor="@color/black"
+                    app:boxStrokeErrorColor="@color/purple_500"
+                    android:layout_marginTop="5dp"
+                    android:hint="Last Name *">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/inputTextLastname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="text"
@@ -91,7 +116,7 @@
                     android:textColorHint="@color/black"
                     app:boxStrokeColor="@color/black"
                     app:boxStrokeErrorColor="@color/purple_500"
-                    android:hint="Email*">
+                    android:hint="Email">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputTextEmail"
