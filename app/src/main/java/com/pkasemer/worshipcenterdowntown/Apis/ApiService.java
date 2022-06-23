@@ -3,6 +3,7 @@ package com.pkasemer.worshipcenterdowntown.Apis;
 
 
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
+import com.pkasemer.worshipcenterdowntown.Models.SelectedEventPage;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermonPage;
 import com.pkasemer.worshipcenterdowntown.Models.SermonPage;
@@ -38,8 +39,8 @@ public interface ApiService {
     );
 
     @GET("selected_event.php")
-    Call<SelectedSermonPage> getEventDetails(
-            @Query("EventID") int sermonID,
+    Call<SelectedEventPage> getEventDetails(
+            @Query("eventID") int eventID,
             @Query("page") int pageIndex
     );
 

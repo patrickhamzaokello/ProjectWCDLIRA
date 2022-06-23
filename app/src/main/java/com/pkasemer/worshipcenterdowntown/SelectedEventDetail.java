@@ -21,9 +21,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.pkasemer.worshipcenterdowntown.Adapters.SelectedEventAdapter;
 import com.pkasemer.worshipcenterdowntown.Adapters.SelectedSermonAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
+import com.pkasemer.worshipcenterdowntown.Models.SelectedEvent;
+import com.pkasemer.worshipcenterdowntown.Models.SelectedEventPage;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermonPage;
 import com.pkasemer.worshipcenterdowntown.Utils.MenuDetailListener;
@@ -40,7 +43,7 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
 
 
     private static final String TAG = "MyMenuDetail";
-    SelectedSermonAdapter adapter;
+    SelectedEventAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
     RecyclerView rv;
@@ -63,7 +66,7 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
 
     private ApiService apiService;
     ActionBar actionBar;
-    List<SelectedSermon> categories;
+    List<SelectedEvent> categories;
 
 
     @Override
@@ -89,13 +92,13 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
         txtError = findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = findViewById(R.id.main_swiperefresh);
 
-        adapter = new SelectedSermonAdapter(SelectedEventDetail.this,  this);
+        adapter = new SelectedEventAdapter(SelectedEventDetail.this,  this);
 
         linearLayoutManager = new LinearLayoutManager(SelectedEventDetail.this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
-//        rv.setAdapter(adapter);
+        rv.setAdapter(adapter);
 
         rv.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -185,12 +188,10 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
         hideErrorView();
         currentPage = PAGE_START;
 
-        callProductDetail().enqueue(new Callback<SelectedSermonPage>() {
+        callProductDetail().enqueue(new Callback<SelectedEventPage>() {
             @Override
-            public void onResponse(Call<SelectedSermonPage> call, Response<SelectedSermonPage> response) {
+            public void onResponse(Call<SelectedEventPage> call, Response<SelectedEventPage> response) {
                 hideErrorView();
-
-//                Log.i(TAG, "onResponse: " + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
                 // Got data. Send it to adapter
                 categories = fetchResults(response);
@@ -207,7 +208,7 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
             }
 
             @Override
-            public void onFailure(Call<SelectedSermonPage> call, Throwable t) {
+            public void onFailure(Call<SelectedEventPage> call, Throwable t) {
                 t.printStackTrace();
                 showErrorView(t);
             }
@@ -218,9 +219,9 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
     private void loadNextPage() {
         Log.d(TAG, "loadNextPage: " + currentPage);
 
-        callProductDetail().enqueue(new Callback<SelectedSermonPage>() {
+        callProductDetail().enqueue(new Callback<SelectedEventPage>() {
             @Override
-            public void onResponse(Call<SelectedSermonPage> call, Response<SelectedSermonPage> response) {
+            public void onResponse(Call<SelectedEventPage> call, Response<SelectedEventPage> response) {
                 Log.i(TAG, "onResponse: " + currentPage
                         + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
@@ -235,7 +236,7 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
             }
 
             @Override
-            public void onFailure(Call<SelectedSermonPage> call, Throwable t) {
+            public void onFailure(Call<SelectedEventPage> call, Throwable t) {
                 t.printStackTrace();
                 adapter.showRetry(true, fetchErrorMessage(t));
             }
@@ -244,17 +245,17 @@ public class SelectedEventDetail extends AppCompatActivity  implements MenuDetai
 
 
 
-    private List<SelectedSermon> fetchResults(Response<SelectedSermonPage> response) {
-        SelectedSermonPage productDetail = response.body();
+    private List<SelectedEvent> fetchResults(Response<SelectedEventPage> response) {
+        SelectedEventPage productDetail = response.body();
         TOTAL_PAGES = productDetail.getTotalPages();
         System.out.println("total pages" + TOTAL_PAGES);
 
-        return productDetail.getSelectedSermon();
+        return productDetail.getSelectedEvent();
     }
 
 
-    private Call<SelectedSermonPage> callProductDetail() {
-        return apiService.getSermonDetails(
+    private Call<SelectedEventPage> callProductDetail() {
+        return apiService.getEventDetails(
                 selectMenuId,
                 currentPage
         );
