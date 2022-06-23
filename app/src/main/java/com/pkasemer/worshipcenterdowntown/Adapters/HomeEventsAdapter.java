@@ -3,6 +3,7 @@ package com.pkasemer.worshipcenterdowntown.Adapters;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +18,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -28,10 +28,9 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.pkasemer.worshipcenterdowntown.Models.DailyHighlight;
 import com.pkasemer.worshipcenterdowntown.Models.HomeEvent;
+import com.pkasemer.worshipcenterdowntown.SelectedEventDetail;
 import com.pkasemer.worshipcenterdowntown.R;
-import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.GlideApp;
 
 import java.util.ArrayList;
@@ -131,7 +130,20 @@ public class HomeEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                         .centerCrop()
                         .transition(withCrossFade(factory))
                         .into(movieVH.event_image);
+                //show toast on click of show all button
+                movieVH.event_image.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent i = new Intent(context.getApplicationContext(), SelectedEventDetail.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
+                        //PACK DATA
+                        i.putExtra("SENDER_KEY", "MenuDetails");
+                        i.putExtra("selectedEventId", featuredCategory.getEventid());
+                        i.putExtra("selectedEVentTitle", featuredCategory.getEventtitle());
+                        context.startActivity(i);
+                    }
+                });
 
 
                 break;

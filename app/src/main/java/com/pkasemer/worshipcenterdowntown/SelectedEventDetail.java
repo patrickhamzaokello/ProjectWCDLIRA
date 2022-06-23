@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.pkasemer.worshipcenterdowntown.Adapters.OnlineMenuDetailAdapter;
+import com.pkasemer.worshipcenterdowntown.Adapters.SelectedSermonAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
@@ -36,11 +36,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MySelectedCategory extends AppCompatActivity  implements MenuDetailListener {
+public class SelectedEventDetail extends AppCompatActivity  implements MenuDetailListener {
 
 
     private static final String TAG = "MyMenuDetail";
-    OnlineMenuDetailAdapter adapter;
+    SelectedSermonAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
     RecyclerView rv;
@@ -74,7 +74,7 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
         if (actionBar != null) {
             actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.purple_500)));
             actionBar.setElevation(0);
-            actionBar.setTitle("Sermon");
+            actionBar.setTitle("Event");
         }
         // add back arrow to toolbar
         if (getSupportActionBar() != null){
@@ -89,13 +89,13 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
         txtError = findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = findViewById(R.id.main_swiperefresh);
 
-        adapter = new OnlineMenuDetailAdapter(MySelectedCategory.this,  this);
+        adapter = new SelectedSermonAdapter(SelectedEventDetail.this,  this);
 
-        linearLayoutManager = new LinearLayoutManager(MySelectedCategory.this, LinearLayoutManager.VERTICAL, false);
+        linearLayoutManager = new LinearLayoutManager(SelectedEventDetail.this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        rv.setAdapter(adapter);
+//        rv.setAdapter(adapter);
 
         rv.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -123,7 +123,7 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
         });
 
         //init service and load data
-        apiService = ApiBase.getClient(MySelectedCategory.this).create(ApiService.class);
+        apiService = ApiBase.getClient(SelectedEventDetail.this).create(ApiService.class);
         btnRetry.setOnClickListener(v -> loadFirstPage());
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
@@ -154,8 +154,8 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
     {
         //RECEIVE DATA VIA INTENT
         Intent i = getIntent();
-        int menu_detail_id = i.getIntExtra("selectedSermonId",1);
-        sermonTitle = i.getStringExtra("selectedSermonTitle");
+        int menu_detail_id = i.getIntExtra("selectedEventId",1);
+        sermonTitle = i.getStringExtra("selectedEVentTitle");
         //SET DATA TO TEXTVIEWS
         selectMenuId = menu_detail_id;
         actionBar.setTitle(sermonTitle);
@@ -283,7 +283,7 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
 
         progressBar.setVisibility(View.GONE);
 
-        AlertDialog.Builder android = new AlertDialog.Builder(MySelectedCategory.this);
+        AlertDialog.Builder android = new AlertDialog.Builder(SelectedEventDetail.this);
         android.setTitle("Coming Soon");
         android.setMessage("This Menu Category will be updated with great tastes soon, Stay Alert for Updates.")
                 .setCancelable(false)
@@ -292,7 +292,7 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         //go to activity
-                        Intent intent = new Intent(MySelectedCategory.this, RootActivity.class);
+                        Intent intent = new Intent(SelectedEventDetail.this, RootActivity.class);
                         startActivity(intent);
                     }
                 });
@@ -300,7 +300,7 @@ public class MySelectedCategory extends AppCompatActivity  implements MenuDetail
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //go to activity
-                Intent intent = new Intent(MySelectedCategory.this, RootActivity.class);
+                Intent intent = new Intent(SelectedEventDetail.this, RootActivity.class);
                 startActivity(intent);
             }
         });

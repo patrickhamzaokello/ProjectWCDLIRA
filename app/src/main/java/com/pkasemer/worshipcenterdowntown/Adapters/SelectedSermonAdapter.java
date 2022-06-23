@@ -18,7 +18,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -44,7 +43,7 @@ import java.util.List;
  * Created by Suleiman on 19/10/16.
  */
 
-public class OnlineMenuDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class SelectedSermonAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int ITEM = 0;
     private static final int LOADING = 1;
@@ -72,7 +71,7 @@ public class OnlineMenuDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
     int totalPrice;
 
 
-    public OnlineMenuDetailAdapter(Context context, MenuDetailListener callback) {
+    public SelectedSermonAdapter(Context context, MenuDetailListener callback) {
         this.context = context;
         this.mCallback = callback;
         selectedProducts = new ArrayList<>();
@@ -172,7 +171,7 @@ public class OnlineMenuDetailAdapter extends RecyclerView.Adapter<RecyclerView.V
                 movieVH.itemRecyclerView.setLayoutManager(ITEMVH_HorizontalLayout);
 
 
-                SimilarProductsAdapter adapter = new SimilarProductsAdapter(context, selectedProduct.getHomeSermons());
+                SimiliarSermonsAdapter adapter = new SimiliarSermonsAdapter(context, selectedProduct.getHomeSermons());
                 movieVH.itemRecyclerView.setAdapter(adapter);
 
                 break;

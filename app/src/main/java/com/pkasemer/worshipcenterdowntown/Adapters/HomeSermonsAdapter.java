@@ -37,7 +37,7 @@ import java.util.List;
 public class HomeSermonsAdapter extends RecyclerView.Adapter<HomeSermonsAdapter.ItemViewHolder> {
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        private final TextView home_sermon_title,home_sermon_description,sermon_author,sermon_verse;
+        private final TextView home_sermon_title, home_sermon_description, sermon_author, sermon_verse;
         private final ProgressBar mProgress;
         private final ImageView sermon_banner;
 
@@ -52,18 +52,15 @@ public class HomeSermonsAdapter extends RecyclerView.Adapter<HomeSermonsAdapter.
             mProgress = itemView.findViewById(R.id.sermon_image_progress_bar);
 
 
-
         }
     }
 
     private final Context context;
     private final List<HomeSermon> products;
-      private static final String BASE_URL_IMG = "";
+    private static final String BASE_URL_IMG = "";
 
     DrawableCrossFadeFactory factory =
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
-
-
 
 
     public HomeSermonsAdapter(Context context, List<HomeSermon> products) {
@@ -125,7 +122,6 @@ public class HomeSermonsAdapter extends RecyclerView.Adapter<HomeSermonsAdapter.
             }
         });
     }
-
 
 
     private RequestBuilder<Drawable> loadImage(@NonNull String posterPath) {

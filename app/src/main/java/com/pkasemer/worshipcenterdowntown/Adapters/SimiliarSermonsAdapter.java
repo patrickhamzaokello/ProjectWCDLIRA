@@ -35,7 +35,7 @@ import org.jsoup.Jsoup;
 
 import java.util.List;
 
-public class SimilarProductsAdapter extends RecyclerView.Adapter<SimilarProductsAdapter.ItemViewHolder> {
+public class SimiliarSermonsAdapter extends RecyclerView.Adapter<SimiliarSermonsAdapter.ItemViewHolder> {
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
         private final TextView home_sermon_title,home_sermon_description,sermon_author,sermon_verse;
@@ -64,7 +64,7 @@ public class SimilarProductsAdapter extends RecyclerView.Adapter<SimilarProducts
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
 
-    public SimilarProductsAdapter(Context context, List<HomeSermon> products) {
+    public SimiliarSermonsAdapter(Context context, List<HomeSermon> products) {
         this.context = context;
         this.products = products;
     }

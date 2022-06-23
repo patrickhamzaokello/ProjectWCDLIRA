@@ -21,7 +21,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.pkasemer.worshipcenterdowntown.Adapters.OnlineMenuDetailAdapter;
+import com.pkasemer.worshipcenterdowntown.Adapters.SelectedSermonAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
@@ -40,7 +40,7 @@ public class SelectedSermonDetail extends AppCompatActivity  implements MenuDeta
 
 
     private static final String TAG = "MyMenuDetail";
-    OnlineMenuDetailAdapter adapter;
+    SelectedSermonAdapter adapter;
     LinearLayoutManager linearLayoutManager;
 
     RecyclerView rv;
@@ -89,7 +89,7 @@ public class SelectedSermonDetail extends AppCompatActivity  implements MenuDeta
         txtError = findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = findViewById(R.id.main_swiperefresh);
 
-        adapter = new OnlineMenuDetailAdapter(SelectedSermonDetail.this,  this);
+        adapter = new SelectedSermonAdapter(SelectedSermonDetail.this,  this);
 
         linearLayoutManager = new LinearLayoutManager(SelectedSermonDetail.this, LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);

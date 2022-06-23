@@ -42,7 +42,7 @@
             android:name=".SelectedSermonDetail"
             android:exported="true" />
         <activity
-            android:name=".MySelectedCategory"
+            android:name=".SelectedEventDetail"
             android:exported="true" />
         <activity
             android:name=".RootActivity"

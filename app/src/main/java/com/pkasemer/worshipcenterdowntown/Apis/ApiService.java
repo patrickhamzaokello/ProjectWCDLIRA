@@ -37,6 +37,12 @@ public interface ApiService {
             @Query("page") int pageIndex
     );
 
+    @GET("selected_event.php")
+    Call<SelectedSermonPage> getEventDetails(
+            @Query("EventID") int sermonID,
+            @Query("page") int pageIndex
+    );
+
 
 
 
