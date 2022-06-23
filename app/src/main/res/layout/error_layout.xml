@@ -27,7 +27,7 @@
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:textColor="@color/black"
-            android:text="You can't access Kakebe Shop Online Right now due to Poor Internet Connection, Try again"/>
+            android:text="WCDT Server is Offline"/>
 
         <TextView
             android:id="@+id/error_txt_cause"

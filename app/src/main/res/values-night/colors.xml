@@ -1,4 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#3A428C</color>
+    <color name="purple_500">#3A428C</color>
+    <color name="purple_700">#3A428C</color>
+    <color name="teal_200">#3A428C</color>
+    <color name="teal_700">#262626</color>
+    <color name="texton_green">#DEFFDD</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="rootbg">#EFF1F6</color>
+
+    <color name="shimmer_color">#366C6C6C</color>
+    <color name="light_grey">#A6A6A6</color>
+    <color name="light_black">#404040</color>
+
+
+    <color name="green1">#ECF2BB</color>
+    <color name="green2">#D9CA9C</color>
+    <color name="green3">#D9564A</color>
+    <color name="green4">#D96B43</color>
+
+    <color name="changebtn">#228765</color>
+    <color name="order_locationcolor">#228765</color>
+
+
+    <color name="mygreen">#064025</color>
+    <color name="buttonGreen">#175313</color>
+
+    <color name="profilecards">#EC0F43</color>
+
+    <color name="sweetRed">#FF0012</color>
+    <color name="buttonRed">#CE2630</color>
+    <color name="btnClose">#FFB1B1</color>
+
+    <color name="btnLight">#8C8C8C</color>
+
+    <color name="onboardingBG">#fff</color>
+    <color name="niceGreen">#15950D</color>
+    <color name="niceBlue">#0075D3</color>
+    <color name="pendingstatus">#D59F00</color>
+    <color name="accountcolors">#FFFFFF</color>
+    <color name="profilecardtext">#ECECEC</color>
     <color name="dotsdefault">#C2C3C7</color>
+
+
 </resources>

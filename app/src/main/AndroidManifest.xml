@@ -39,7 +39,7 @@
             android:name=".PlaceOrder"
             android:exported="true" />
         <activity
-            android:name=".MyMenuDetail"
+            android:name=".SelectedSermonDetail"
             android:exported="true" />
         <activity
             android:name=".MySelectedCategory"

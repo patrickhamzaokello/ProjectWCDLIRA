@@ -3,6 +3,7 @@ package com.pkasemer.worshipcenterdowntown.Adapters;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 
 import com.pkasemer.worshipcenterdowntown.Models.HomeSermon;
+import com.pkasemer.worshipcenterdowntown.SelectedSermonDetail;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.Utils.GlideApp;
 
@@ -107,26 +109,19 @@ public class HomeSermonsAdapter extends RecyclerView.Adapter<HomeSermonsAdapter.
                 .transition(withCrossFade(factory))
                 .into(holder.sermon_banner);
 
-//        holder.home_st_carttn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//            }
-//        });
-
 
         //show toast on click of show all button
         holder.sermon_banner.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(context.getApplicationContext(), MyMenuDetail.class);
-//                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-//
-//                //PACK DATA
-//                i.putExtra("SENDER_KEY", "MenuDetails");
-//                i.putExtra("selectMenuId", product.getId());
-//                i.putExtra("category_selected_key", product.getCategoryId());
-//                context.startActivity(i);
+                Intent i = new Intent(context.getApplicationContext(), SelectedSermonDetail.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                //PACK DATA
+                i.putExtra("SENDER_KEY", "MenuDetails");
+                i.putExtra("selectedSermonId", product.getSermonid());
+                i.putExtra("selectedSermonTitle", product.getSermontitle());
+                context.startActivity(i);
             }
         });
     }

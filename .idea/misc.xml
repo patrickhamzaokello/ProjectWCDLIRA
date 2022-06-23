@@ -84,6 +84,8 @@
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_create_new_password.xml" value="0.16" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_forgot_password.xml" value="0.1" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_login_material.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_my_menu_detail.xml" value="0.1421193573068095" />
+        <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_my_selected_category.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_on_boarding.xml" value="0.14" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_register_material.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/activity_search_view.xml" value="0.1421193573068095" />
@@ -129,6 +131,8 @@
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/selected_category_hero_design.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/selected_category_item_hero.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/selected_category_pagination_item_list.xml" value="0.12635869565217392" />
+        <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/selected_sermon_hero.xml" value="0.18" />
+        <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/sermon_detail_similar_layout.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/sermon_page_design.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/layout/sermon_page_layout.xml" value="0.1421193573068095" />
         <entry key="..\:/Users/jamsp/AndroidStudioProjects/WorshipcenterApp/app/src/main/res/menu/bottom_nav_menu.xml" value="0.1" />

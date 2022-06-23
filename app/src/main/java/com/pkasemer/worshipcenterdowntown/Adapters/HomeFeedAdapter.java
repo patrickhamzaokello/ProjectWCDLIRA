@@ -127,13 +127,13 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
                 if(timeOfDay >= 0 && timeOfDay < 12){
-                    heroVh.home_greeting.setText("Good Morning, Okot");
+                    heroVh.home_greeting.setText("Good morning, Okot");
                 }else if(timeOfDay >= 12 && timeOfDay < 16){
-                    heroVh.home_greeting.setText("Good Afternoon, Okot");
+                    heroVh.home_greeting.setText("Good afternoon, Okot");
                 }else if(timeOfDay >= 16 && timeOfDay < 21){
-                    heroVh.home_greeting.setText("Good Evening, Okot");
+                    heroVh.home_greeting.setText("Good evening, Okot");
                 }else if(timeOfDay >= 22 && timeOfDay < 24){
-                    heroVh.home_greeting.setText("Good Night, Okot");
+                    heroVh.home_greeting.setText("Good night, Okot");
                 }
 
                 break;
