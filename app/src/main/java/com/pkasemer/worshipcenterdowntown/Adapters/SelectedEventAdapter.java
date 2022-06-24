@@ -171,12 +171,8 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
                 //recycler view for grid items products
 
                 //recycler view for items
-                movieVH.itemRecyclerView.setHasFixedSize(true);
-                movieVH.itemRecyclerView.setNestedScrollingEnabled(false);
 
                 /* set layout manager on basis of recyclerview enum type */
-
-
                 LinearLayoutManager ITEMVH_HorizontalLayout = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
                 movieVH.itemRecyclerView.setLayoutManager(ITEMVH_HorizontalLayout);
 

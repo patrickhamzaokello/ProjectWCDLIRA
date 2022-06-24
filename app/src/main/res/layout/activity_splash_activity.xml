@@ -57,7 +57,22 @@
 
 
 
-
+    <TextView
+        android:id="@+id/smallltext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/s_logo"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:includeFontPadding="false"
+        android:paddingBottom="10dp"
+        android:text="Kakebe Technologies Limited"
+        android:textColor="@color/white"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

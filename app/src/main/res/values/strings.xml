@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WCD</string>
+    <string name="app_name">WCDT LIRA</string>
     <!--Title-->
     <string name="first_slide_title">Our Vision &amp; Mission</string>
     <string name="second_slide_title">Cell and Clan Activities</string>
@@ -17,7 +17,7 @@
     <string name="next_btn">Next</string>
     <string name="let_get_started">Let\'s Get Started</string>
     <string name="title_home">Home</string>
-    <string name="title_profile">Profile</string>
+    <string name="title_profile">About</string>
     <string name="title_Sermon">Sermon</string>
     <string name="title_Alerts">Alerts</string>
 
@@ -43,4 +43,5 @@
     <string name="i_am_here">I am Here</string>
     <string name="provider_failed">Provider Failed</string>
     <string name="search_hint">Search</string>
+    <string name="about_church">PAG Worship Centre is a church of believers who were thirsty for a congregational worship teamed up to begin a service. In their midst were servants of God who have a passion for True Worship and a Leadership that transforms a Christian life through holistic approach. Mathew 5:14-15.\"you are the Light of World” Shine your Light so your Father in Heaven be glorified” We are Christ Church</string>
 </resources>

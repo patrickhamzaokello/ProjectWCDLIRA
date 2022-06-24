@@ -81,8 +81,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\jamsp\Downloads\mimba care logo single-02 1.png" />
-                                                <entry key="scalingPercent" value="136" />
+                                                <entry key="imagePath" value="C:\Users\jamsp\Downloads\WCDT LIRA (1).svg" />
+                                                <entry key="scalingPercent" value="74" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -118,6 +118,7 @@
                                   <option name="values">
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
+                                      <entry key="backgroundColor" value="ffffff" />
                                     </map>
                                   </option>
                                 </PersistentState>

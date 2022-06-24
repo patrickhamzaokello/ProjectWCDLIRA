@@ -40,7 +40,6 @@
             android:paddingVertical="10dp"
             android:text="@string/let_get_started"
             android:textAllCaps="false"
-            android:visibility="invisible"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:strokeColor="@color/purple_500"

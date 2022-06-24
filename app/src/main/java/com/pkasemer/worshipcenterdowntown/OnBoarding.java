@@ -56,7 +56,11 @@ public class OnBoarding extends AppCompatActivity {
             findViewById(R.id.get_started_btn).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(OnBoarding.this, WelcomeChurch.class);
+//                    Intent intent = new Intent(OnBoarding.this, WelcomeChurch.class);
+//                    startActivity(intent);
+//                    finish();
+
+                    Intent intent = new Intent(OnBoarding.this, RootActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -99,17 +103,17 @@ public class OnBoarding extends AppCompatActivity {
                 addDots(position);
                 currentPos = position;
 
-                if (position == 0) {
-                    letsGetStarted.setVisibility(View.INVISIBLE);
-                } else if (position == 1) {
-                    letsGetStarted.setVisibility(View.INVISIBLE);
-                } else if (position == 2) {
-                    letsGetStarted.setVisibility(View.INVISIBLE);
-                } else {
-                    animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.bottom_anim);
-                    letsGetStarted.setAnimation(animation);
-                    letsGetStarted.setVisibility(View.VISIBLE);
-                }
+//                if (position == 0) {
+//                    letsGetStarted.setVisibility(View.INVISIBLE);
+//                } else if (position == 1) {
+//                    letsGetStarted.setVisibility(View.INVISIBLE);
+//                } else if (position == 2) {
+//                    letsGetStarted.setVisibility(View.INVISIBLE);
+//                } else {
+//                    animation = AnimationUtils.loadAnimation(OnBoarding.this, R.anim.bottom_anim);
+//                    letsGetStarted.setAnimation(animation);
+//                    letsGetStarted.setVisibility(View.VISIBLE);
+//                }
 
             }
 

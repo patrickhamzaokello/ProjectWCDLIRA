@@ -66,21 +66,6 @@ public class RegisterMaterial extends AppCompatActivity {
             return;
         }
 
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-
-            ActivityCompat.requestPermissions(RegisterMaterial.this, new String[]{
-                    Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE
-            }, 121);
-
-            return;
-        }
-        String phonenumber = telephonyManager.getLine1Number();
-        Log.w("phonenumber", "onCreate: " + phonenumber );
-
-
-
 
         //Hooks
         callLogIN = findViewById(R.id.login_screen);
