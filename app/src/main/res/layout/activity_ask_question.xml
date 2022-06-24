@@ -1,9 +1,172 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:layout_centerVertical="true"
+android:layout_centerInParent="true"
+android:background="@color/accountcolors"
+android:scaleType="fitXY"
+tools:context=".AskQuestion">
+
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AskQuestion">
+    android:layout_marginTop="40dp"
+    android:layout_centerVertical="true"
+    android:layout_centerInParent="true"
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp">
+
+        <TextView
+            android:id="@+id/login_welcomeback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="Ask a Question"
+            android:textColor="@color/purple_500"
+            android:textSize="30sp"
+            android:transitionName="logo_text"
+
+            />
+
+        <TextView
+            android:id="@+id/login_subtext"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/montserrat"
+            android:includeFontPadding="false"
+            android:text="Sumbit your Question to be answered during the event"
+            android:textColor="@color/light_black"
+            android:textSize="14sp"
+            android:transitionName="logo_desc" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/aksname"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name [Optional]"
+                android:textColorHint="@color/black"
+                android:transitionName="username_input"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeErrorColor="@color/purple_500"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextaskUsername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/purple_500" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_username"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Question * "
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/black"
+                android:transitionName="username_input"
+                app:boxStrokeColor="@color/black"
+                app:boxStrokeErrorColor="@color/purple_500"
+                app:hintTextColor="@color/black">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/inputTextAskQuestion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textAutoComplete"
+                    android:textColor="@color/purple_500" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+
+
+            <Button
+                android:id="@+id/login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="5dp"
+                android:background="#000000"
+                android:text="Submit"
+                android:textColor="#fff"
+                android:transitionName="account_button"
+
+                />
+
+
+
+
+
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="By submitting your Question, you agree to our Terms of Service and Privacy Policy"
+            android:textColor="@color/light_black"
+            android:textSize="14dp" />
+
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/montserrat"
+            android:gravity="center"
+            android:text="Powered by Kakebe Technologies"
+            android:textColor="#7C7C7C"
+            android:paddingBottom="20dp"
+
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="gone" />
+
+</RelativeLayout>
+
+</ScrollView>
+

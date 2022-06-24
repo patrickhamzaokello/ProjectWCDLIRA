@@ -61,8 +61,8 @@ public class ApiBase {
             retrofit = new Retrofit.Builder()
                     .client(buildClient(context))
                     .addConverterFactory(GsonConverterFactory.create())
-//                    .baseUrl("http://172.20.10.6:8080/projects/WorshipCenterAPI/Requests/")
-                    .baseUrl("https://worshipcenterdowntown.com/mobile/v1/")
+//                    .baseUrl("http://192.168.0.155:8080/projects/WorshipCenterAPI/v1/")
+                    .baseUrl("https://ad.worshipcenterdowntown.com/mobile-api/v1/")
                     .build();
         }
         return retrofit;
