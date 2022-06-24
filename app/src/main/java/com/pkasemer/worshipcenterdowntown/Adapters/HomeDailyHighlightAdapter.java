@@ -107,7 +107,7 @@ public class HomeDailyHighlightAdapter extends RecyclerView.Adapter<RecyclerView
                 movieVH.highlight_desc.setText(featuredCategory.getNewsDescription());
                 movieVH.highlight_verse.setText(featuredCategory.getVerse());
 
-                String sharetext = featuredCategory.getNewsTitle()+ " -- " + featuredCategory.getNewsDescription().toString() + " - "+ featuredCategory.getVerse();
+                String sharetext = "Worship Center Downtown Lira - " + featuredCategory.getNewsTitle()+ " -- " + featuredCategory.getNewsDescription().toString() + " - "+ featuredCategory.getVerse();
 
                 movieVH.btnshare.setOnClickListener(new View.OnClickListener() {
                     @Override

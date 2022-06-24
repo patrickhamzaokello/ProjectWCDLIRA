@@ -252,8 +252,7 @@ public class Home extends Fragment implements PaginationAdapterCallback {
     @Override
     public void onResume() {
         super.onResume();
-        adapter.clear();
-        loadFirstPage();
+        doRefresh();
     }
     /**
      * @param throwable required for {@link #fetchErrorMessage(Throwable)}

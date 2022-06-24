@@ -3,6 +3,7 @@ package com.pkasemer.worshipcenterdowntown.Adapters;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
@@ -17,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,10 +31,12 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.pkasemer.worshipcenterdowntown.AskQuestion;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedEvent;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
+import com.pkasemer.worshipcenterdowntown.SelectedEventDetail;
 import com.pkasemer.worshipcenterdowntown.Utils.GlideApp;
 import com.pkasemer.worshipcenterdowntown.Utils.MenuDetailListener;
 
@@ -48,8 +52,6 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
     private static final int ITEM = 0;
     private static final int LOADING = 1;
     private static final int HERO = 2;
-
-
 
 
 
@@ -149,6 +151,17 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
                         .centerCrop()
                         .transition(withCrossFade(factory))
                         .into(heroVh.selected_sermon_banner);
+
+
+                heroVh.event_ask_question.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent i = new Intent(context.getApplicationContext(), AskQuestion.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(i);
+                    }
+                });
 
 
                 break;
@@ -317,7 +330,7 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
         private final ImageView selected_sermon_banner;
         private final TextView sermon_title, sermon_description, sermon_preacher, sermon_info_date;
 
-
+        private final CardView event_ask_question;
         private final ProgressBar mProgress;
 
         private final LinearLayout relatedProductslayout;
@@ -338,7 +351,7 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
             mProgress = itemView.findViewById(R.id.image_progress);
-
+            event_ask_question = itemView.findViewById(R.id.event_ask_question);
 
         }
     }

@@ -304,12 +304,26 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material/icons/materialicons/local_post_office/baseline_local_post_office_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_carbon_location" />
-                            <entry key="sourceFile" value="C:\Users\jamsp\Downloads\carbon_location.svg" />
+                            <entry key="outputName" value="ic_baseline_local_post_office_24" />
+                            <entry key="sourceFile" value="C:\Users\jamsp\Downloads\ei_share-apple (1).svg" />
                           </map>
                         </option>
                       </PersistentState>

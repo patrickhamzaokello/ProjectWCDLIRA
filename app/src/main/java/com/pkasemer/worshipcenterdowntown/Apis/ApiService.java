@@ -2,6 +2,7 @@ package com.pkasemer.worshipcenterdowntown.Apis;
 
 
 
+import com.pkasemer.worshipcenterdowntown.Models.AlertsPage;
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedEventPage;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
@@ -18,8 +19,6 @@ import retrofit2.http.Query;
 
 
 public interface ApiService {
-
-
 
 
     @GET("home_feed.php")
@@ -44,6 +43,10 @@ public interface ApiService {
             @Query("page") int pageIndex
     );
 
+    @GET("notices.php")
+    Call<AlertsPage> getAlertPageRequest(
+            @Query("page") int pageIndex
+    );
 
 
 
