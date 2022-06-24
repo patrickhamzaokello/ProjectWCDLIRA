@@ -135,7 +135,6 @@ public class Search extends Fragment implements PaginationAdapterCallback {
         //init service and load data
         apiService = ApiBase.getClient(getContext()).create(ApiService.class);
 
-        loadFirstPage();
 
         btnRetry.setOnClickListener(v -> loadFirstPage());
 
@@ -253,6 +252,12 @@ public class Search extends Fragment implements PaginationAdapterCallback {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        adapter.clear();
+        loadFirstPage();
+    }
 
     /**
      * @param throwable required for {@link #fetchErrorMessage(Throwable)}

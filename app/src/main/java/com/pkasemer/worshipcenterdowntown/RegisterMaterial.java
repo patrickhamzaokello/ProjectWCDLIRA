@@ -1,9 +1,12 @@
 package com.pkasemer.worshipcenterdowntown;
 
+import android.Manifest;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +17,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
@@ -61,6 +66,20 @@ public class RegisterMaterial extends AppCompatActivity {
             return;
         }
 
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(RegisterMaterial.this, new String[]{
+                    Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS,Manifest.permission.READ_PHONE_STATE
+            }, 121);
+
+            return;
+        }
+        String phonenumber = telephonyManager.getLine1Number();
+        Log.w("phonenumber", "onCreate: " + phonenumber );
+
+
 
 
         //Hooks
@@ -97,6 +116,16 @@ public class RegisterMaterial extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == 121 && resultCode == RESULT_OK){
+            //PERMISSION IS GRANTED
+            startActivity(new Intent(RegisterMaterial.this, RegisterMaterial.class ));
+            finish();
+        }
+    }
 
     private void registerUser() {
         final String full_name = inputTextFullname.getText().toString().trim();

@@ -3,10 +3,12 @@ package com.pkasemer.worshipcenterdowntown.Adapters;
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageButton;
@@ -104,6 +106,20 @@ public class HomeDailyHighlightAdapter extends RecyclerView.Adapter<RecyclerView
                 movieVH.highlight_title.setText(featuredCategory.getNewsTitle());
                 movieVH.highlight_desc.setText(featuredCategory.getNewsDescription());
                 movieVH.highlight_verse.setText(featuredCategory.getVerse());
+
+                String sharetext = featuredCategory.getNewsTitle()+ " -- " + featuredCategory.getNewsDescription().toString() + " - "+ featuredCategory.getVerse();
+
+                movieVH.btnshare.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent shareIntent = new Intent();
+                        shareIntent.setAction(Intent.ACTION_SEND);
+                        shareIntent.putExtra(Intent.EXTRA_TEXT,sharetext);
+                        shareIntent.setType("text/plain");
+                        shareIntent = Intent.createChooser(shareIntent, "Share via: ");
+                        context.startActivity(shareIntent);
+                    }
+                });
 
 
                 break;
@@ -251,12 +267,15 @@ public class HomeDailyHighlightAdapter extends RecyclerView.Adapter<RecyclerView
     protected class MovieVH extends RecyclerView.ViewHolder {
 
         private  final  TextView highlight_title, highlight_desc, highlight_verse;
+        private final Button btnshare;
 
         public MovieVH(View itemView) {
             super(itemView);
             highlight_title = itemView.findViewById(R.id.highlight_title);
             highlight_desc = itemView.findViewById(R.id.highlight_desc);
             highlight_verse = itemView.findViewById(R.id.highlight_verse);
+            btnshare = itemView.findViewById(R.id.btnshare);
+
 
         }
     }

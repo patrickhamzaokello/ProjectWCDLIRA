@@ -141,7 +141,7 @@ public class SelectedSermonDetail extends AppCompatActivity  implements MenuDeta
 
         //DETERMINE WHO STARTED THIS ACTIVITY
         final String sender=this.getIntent().getExtras().getString("SENDER_KEY");
-
+        adapter.clear();
         //IF ITS THE FRAGMENT THEN RECEIVE DATA
         if(sender != null)
         {
