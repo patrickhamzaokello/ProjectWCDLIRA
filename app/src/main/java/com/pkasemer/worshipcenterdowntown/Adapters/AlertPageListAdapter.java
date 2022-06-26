@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -40,6 +41,7 @@ public class AlertPageListAdapter extends RecyclerView.Adapter<AlertPageListAdap
     class ItemViewHolder extends RecyclerView.ViewHolder {
         private final TextView home_sermon_title,home_sermon_description,sermon_author,sermon_verse;
         private final RelativeLayout Redlive;
+        private final CardView alert_share;
 
 
         public ItemViewHolder(View itemView) {
@@ -49,6 +51,7 @@ public class AlertPageListAdapter extends RecyclerView.Adapter<AlertPageListAdap
             sermon_author = itemView.findViewById(R.id.sermon_author);
             sermon_verse = itemView.findViewById(R.id.sermon_verse);
             Redlive = itemView.findViewById(R.id.Redlive);
+            alert_share = itemView.findViewById(R.id.alert_share);
 
         }
     }
@@ -85,6 +88,21 @@ public class AlertPageListAdapter extends RecyclerView.Adapter<AlertPageListAdap
         if(position != 0){
             holder.Redlive.setVisibility(View.GONE);
         }
+
+        String sharetext = product.getNoticetitle() + " -- " + html2text(product.getNoticedescription()) + " - "+ product.getCreatedDate();
+
+        holder.alert_share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent shareIntent = new Intent();
+                shareIntent.setAction(Intent.ACTION_SEND);
+                shareIntent.putExtra(Intent.EXTRA_TEXT,sharetext);
+                shareIntent.setType("text/plain");
+                shareIntent = Intent.createChooser(shareIntent, "Share via: ");
+                context.startActivity(shareIntent);
+            }
+        });
+
 
 
     }

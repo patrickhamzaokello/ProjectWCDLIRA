@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 
 import com.pkasemer.worshipcenterdowntown.LoginMaterial;
 import com.pkasemer.worshipcenterdowntown.Models.User;
-import com.pkasemer.worshipcenterdowntown.Models.UserModel;
 
 /**
  * Created by Belal on 9/5/2017.
@@ -17,13 +16,12 @@ import com.pkasemer.worshipcenterdowntown.Models.UserModel;
 public class SharedPrefManager {
 
     //the constants
-    private static final String SHARED_PREF_NAME = "simplifiedcodingsharedpref";
-    private static final String KEY_FULLNAME = "keyfullname";
-    private static final String KEY_USERNAME = "keyusername";
+    private static final String SHARED_PREF_NAME = "worshipcenterDT";
+    private static final String KEY_FNAME = "key_fname";
+    private static final String KEY_LNAME = "key_lname";
     private static final String KEY_EMAIL = "keyemail";
     private static final String KEY_PHONE = "keyphone";
     private static final String KEY_ADDRESS = "keyaddress";
-    private static final String KEY_PROFILEIMAGE = "keyprofileimage";
     private static final String KEY_ID = "keyid";
 
 
@@ -43,33 +41,34 @@ public class SharedPrefManager {
 
     //method to let the user login
     //this method will store the user data in shared preferences
-    public void userAccount(UserModel userModel) {
+    public void userAccount(User user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_ID, userModel.getId());
-        editor.putString(KEY_FULLNAME, userModel.getFullname());
-        editor.putString(KEY_USERNAME, userModel.getUsername());
-        editor.putString(KEY_EMAIL, userModel.getEmail());
-        editor.putString(KEY_PHONE, userModel.getPhone());
-        editor.putString(KEY_ADDRESS, userModel.getAddress());
-        editor.putString(KEY_PROFILEIMAGE, userModel.getProfileimage());
+        editor.putInt(KEY_ID, user.getId());
+        editor.putString(KEY_FNAME, user.getFname());
+        editor.putString(KEY_LNAME, user.getLname());
+        editor.putString(KEY_EMAIL, user.getEmail());
+        editor.putString(KEY_PHONE, user.getPhone());
+        editor.putString(KEY_ADDRESS, user.getAddress());
         editor.apply();
     }
 
-    public void userLogin(User userModel) {
+    public void userLogin(User user) {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(KEY_ID, userModel.getId());
-        editor.putString(KEY_FULLNAME, userModel.getFullname());
-        editor.putString(KEY_EMAIL, userModel.getEmail());
-        editor.putString(KEY_PHONE, userModel.getPhone());
+        editor.putInt(KEY_ID, user.getId());
+        editor.putString(KEY_FNAME, user.getFname());
+        editor.putString(KEY_LNAME, user.getLname());
+        editor.putString(KEY_EMAIL, user.getEmail());
+        editor.putString(KEY_PHONE, user.getPhone());
+        editor.putString(KEY_ADDRESS, user.getAddress());
         editor.apply();
     }
 
     //this method will checker whether user is already logged in or not
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_EMAIL, null) != null;
+        return sharedPreferences.getString(KEY_PHONE, null) != null;
     }
 
 //    public boolean isLoggedIn() {
@@ -77,14 +76,17 @@ public class SharedPrefManager {
 //        return sharedPreferences.getString(KEY_USERNAME, null) != null;
 //    }
 
+
     //this method will give the logged in user
     public User getUser() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
         return new User(
                 sharedPreferences.getInt(KEY_ID, -1),
-                sharedPreferences.getString(KEY_FULLNAME, null),
+                sharedPreferences.getString(KEY_FNAME, null),
+                sharedPreferences.getString(KEY_LNAME, null),
                 sharedPreferences.getString(KEY_EMAIL, null),
-                sharedPreferences.getString(KEY_PHONE, null)
+                sharedPreferences.getString(KEY_PHONE, null),
+                sharedPreferences.getString(KEY_ADDRESS, null)
         );
     }
 

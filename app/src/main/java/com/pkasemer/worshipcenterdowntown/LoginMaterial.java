@@ -107,7 +107,7 @@ public class LoginMaterial extends AppCompatActivity {
 
         //validating inputs
         if (TextUtils.isEmpty(username)) {
-            inputTextUsername.setError("Please enter your username");
+            inputTextUsername.setError("Enter phone number");
             inputTextUsername.requestFocus();
             return;
         }
@@ -154,15 +154,17 @@ public class LoginMaterial extends AppCompatActivity {
                         JSONObject userJson = obj.getJSONObject("user");
 
                         //creating a new user object
-                        User userModel = new User(
+                        User user = new User(
                                 userJson.getInt("id"),
-                                userJson.getString("fullname"),
+                                userJson.getString("fname"),
+                                userJson.getString("lname"),
                                 userJson.getString("email"),
-                                userJson.getString("phone")
+                                userJson.getString("phone"),
+                                userJson.getString("address")
                         );
 
                         //storing the user in shared preferences
-                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(userModel);
+                        SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
 
                         //starting the RootActivity activity
                         finish();

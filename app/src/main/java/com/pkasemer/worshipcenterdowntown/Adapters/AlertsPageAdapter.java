@@ -85,7 +85,7 @@ public class AlertsPageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @NonNull
     private RecyclerView.ViewHolder getViewHolder(ViewGroup parent, LayoutInflater inflater) {
         RecyclerView.ViewHolder viewHolder;
-        View v1 = inflater.inflate(R.layout.sermon_page_layout, parent, false);
+        View v1 = inflater.inflate(R.layout.alert_page_layout, parent, false);
         viewHolder = new MovieVH(v1);
         return viewHolder;
     }

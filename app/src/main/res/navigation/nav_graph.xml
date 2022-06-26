@@ -17,13 +17,13 @@
         android:id="@+id/navigation_cart"
         android:name="com.pkasemer.worshipcenterdowntown.Fragments.Alert"
         android:label="@string/title_Alerts"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_alert" />
 
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.pkasemer.worshipcenterdowntown.Fragments.Sermon"
         android:label="@string/title_Sermon"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_sermon" />
 
     <fragment
         android:id="@+id/navigation_profile"

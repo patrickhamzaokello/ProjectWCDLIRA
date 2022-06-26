@@ -1,11 +1,10 @@
-package com.pkasemer.kakebeshoplira;
+package com.pkasemer.worshipcenterdowntown;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -35,7 +34,7 @@ public class PushNotificationService extends FirebaseMessagingService {
                     new Notification.Builder(this, CHANNEL_ID)
                             .setContentTitle(title)
                             .setContentText(text)
-                            .setSmallIcon(R.drawable.kakebelogo)
+                            .setSmallIcon(R.drawable.ic_worship_notification)
                             .setAutoCancel(true);
 
             NotificationManagerCompat.from(this).notify(1, notification.build());

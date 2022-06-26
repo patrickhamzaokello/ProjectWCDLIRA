@@ -121,6 +121,7 @@
                     android:background="#00000000"
                     android:text="Forgot Password?"
                     android:textAllCaps="false"
+                    android:visibility="invisible"
                     android:textColor="@color/purple_500" />
 
 

@@ -108,7 +108,7 @@ public class HomeEventsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
                 final MovieVH movieVH = (MovieVH) holder;
 
                 movieVH.event_title.setText(featuredCategory.getEventtitle());
-                movieVH.event_date.setText(featuredCategory.getCdate());
+                movieVH.event_date.setText(featuredCategory.getEventdate());
                         Glide
                         .with(context)
                         .load(BASE_URL_IMG + featuredCategory.getEventimage())

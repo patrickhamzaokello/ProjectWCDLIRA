@@ -44,9 +44,8 @@ public class RegisterMaterial extends AppCompatActivity {
 
     TextView logoText, sloganText;
     Button callLogIN, register_btn;
-    TextInputLayout username_layout, password_layout;
-
-    TextInputEditText inputTextFullname, inputTextEmail, inputTextPhone, inputTextPassword, inputTextConfirmPassword;
+    String user_email;
+    TextInputEditText r_fname_input, r_lname_input, r_email_input, r_phone_input, r_address_input,r_password_input,r_confirm_password_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,15 +71,15 @@ public class RegisterMaterial extends AppCompatActivity {
         register_btn = findViewById(R.id.register_btn);
         logoText = findViewById(R.id.register_welcomeback);
         sloganText = findViewById(R.id.register_subtext);
-        username_layout = findViewById(R.id.login_username);
-        password_layout = findViewById(R.id.login_password);
 
         //get text from input boxes
-        inputTextFullname = findViewById(R.id.inputTextFullname);
-        inputTextEmail = findViewById(R.id.inputTextEmail);
-        inputTextPhone = findViewById(R.id.inputTextPhone);
-        inputTextPassword = findViewById(R.id.inputTextPassword);
-        inputTextConfirmPassword = findViewById(R.id.inputTextConfirmPassword);
+        r_fname_input = findViewById(R.id.r_fname_input);
+        r_lname_input = findViewById(R.id.r_lname_input);
+        r_email_input = findViewById(R.id.r_email_input);
+        r_phone_input = findViewById(R.id.r_phone_input);
+        r_address_input = findViewById(R.id.r_address_input);
+        r_password_input = findViewById(R.id.r_password_input);
+        r_confirm_password_input = findViewById(R.id.r_confirm_password_input);
 
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,49 +112,63 @@ public class RegisterMaterial extends AppCompatActivity {
     }
 
     private void registerUser() {
-        final String full_name = inputTextFullname.getText().toString().trim();
-        final String user_email = inputTextEmail.getText().toString().trim();
-        final String user_phone = inputTextPhone.getText().toString().trim();
-        final String user_password = inputTextPassword.getText().toString().trim();
-        final String confirm_password = inputTextConfirmPassword.getText().toString().trim();
+        final String fname = r_fname_input.getText().toString().trim();
+        final String lname = r_lname_input.getText().toString().trim();
+        user_email = r_email_input.getText().toString().trim();
+        final String user_phone = r_phone_input.getText().toString().trim();
+        final String user_password = r_password_input.getText().toString().trim();
+        final String user_address = r_address_input.getText().toString().trim();
+        final String confirm_password = r_confirm_password_input.getText().toString().trim();
 
 
 
-        if (TextUtils.isEmpty(full_name)) {
-            inputTextFullname.setError("Enter Full Name");
-            inputTextFullname.requestFocus();
+        if (TextUtils.isEmpty(fname)) {
+            r_fname_input.setError("Enter Your FirstName");
+            r_fname_input.requestFocus();
             return;
         }
 
+        if (TextUtils.isEmpty(lname)) {
+            r_lname_input.setError("Enter Your LastName");
+            r_lname_input.requestFocus();
+            return;
+        }
 
         if (TextUtils.isEmpty(user_email)) {
-            inputTextEmail.setError("Please enter your email");
-            inputTextEmail.requestFocus();
-            return;
+            user_email = "guest@wcdtlira.com";
         }
 
         if (!android.util.Patterns.EMAIL_ADDRESS.matcher(user_email).matches()) {
-            inputTextEmail.setError("Enter a valid email");
-            inputTextEmail.requestFocus();
+            r_email_input.setError("Enter a valid email");
+            r_email_input.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(user_password)) {
-            inputTextPassword.setError("Enter a password");
-            inputTextPassword.requestFocus();
-            return;
-        }
 
         if (TextUtils.isEmpty(user_phone)) {
-            inputTextPhone.setError("Enter a Phone Number");
-            inputTextPhone.requestFocus();
+            r_phone_input.setError("Provide your phone number");
+            r_phone_input.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(user_address)) {
+            r_address_input.setError("Provide Home Address");
+            r_address_input.requestFocus();
+            return;
+        }
+
+
+
+        if (TextUtils.isEmpty(user_password)) {
+            r_password_input.setError("Enter a password");
+            r_password_input.requestFocus();
             return;
         }
 
 
         if (!user_password.equals(confirm_password)) {
-            inputTextPassword.setError("Password Does not Match");
-            inputTextPassword.requestFocus();
+            r_confirm_password_input.setError("Password Does not Match");
+            r_confirm_password_input.requestFocus();
             return;
         }
 
@@ -173,10 +186,12 @@ public class RegisterMaterial extends AppCompatActivity {
 
                 //creating request parameters
                 HashMap<String, String> params = new HashMap<>();
-                params.put("full_name", full_name);
+                params.put("fname", fname);
+                params.put("lname", lname);
                 params.put("email", user_email);
                 params.put("user_phone", user_phone);
                 params.put("password", user_password);
+                params.put("address",user_address);
 
                 //returing the response
                 return requestHandler.sendPostRequest(URLs.URL_REGISTER, params);
@@ -221,9 +236,11 @@ public class RegisterMaterial extends AppCompatActivity {
                         //creating a new user object
                         User userModel = new User(
                                 userJson.getInt("id"),
-                                userJson.getString("fullname"),
+                                userJson.getString("fname"),
+                                userJson.getString("lname"),
                                 userJson.getString("email"),
-                                userJson.getString("phone")
+                                userJson.getString("phone"),
+                                userJson.getString("address")
                         );
 
                         //storing the user in shared preferences

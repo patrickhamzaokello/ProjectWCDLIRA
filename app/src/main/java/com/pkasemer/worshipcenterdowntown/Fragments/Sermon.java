@@ -20,13 +20,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
 import com.pkasemer.worshipcenterdowntown.Adapters.SermonPageAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.AllSermon;
-import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
-import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
 import com.pkasemer.worshipcenterdowntown.Models.SermonPage;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
@@ -90,7 +87,7 @@ public class Sermon extends Fragment implements PaginationAdapterCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search, container, false);
+        View view = inflater.inflate(R.layout.fragment_sermon, container, false);
 
         rv = view.findViewById(R.id.main_recycler);
         progressBar = view.findViewById(R.id.main_progress);

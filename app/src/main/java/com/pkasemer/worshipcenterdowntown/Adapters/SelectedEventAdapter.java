@@ -153,15 +153,7 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
                         .into(heroVh.selected_sermon_banner);
 
 
-                heroVh.event_ask_question.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
 
-                        Intent i = new Intent(context.getApplicationContext(), AskQuestion.class);
-                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        context.startActivity(i);
-                    }
-                });
 
 
                 break;
@@ -326,7 +318,6 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
         private final ImageView selected_sermon_banner;
         private final TextView sermon_title, sermon_description, sermon_preacher, sermon_info_date;
 
-        private final CardView event_ask_question;
         private final ProgressBar mProgress;
 
         private final LinearLayout relatedProductslayout;
@@ -347,7 +338,7 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
 
 
             mProgress = itemView.findViewById(R.id.image_progress);
-            event_ask_question = itemView.findViewById(R.id.event_ask_question);
+
 
         }
     }

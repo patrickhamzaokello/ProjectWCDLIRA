@@ -13,8 +13,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="40dp"
         android:orientation="vertical"
+        android:paddingTop="20dp"
         tools:context=".Fragments.Profile">
 
 
@@ -23,14 +23,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginTop="50dp"
             android:layout_toRightOf="@+id/image_profile_card_view"
             android:fontFamily="@font/montserrat_bold"
             android:includeFontPadding="false"
             android:paddingHorizontal="20dp"
             android:text="PAG Worship Center Lira"
             android:textColor="@color/purple_500"
-            android:textSize="22sp" />
+            android:textSize="20sp" />
 
 
         <TextView
@@ -42,10 +41,10 @@
             android:layout_toRightOf="@+id/image_profile_card_view"
             android:fontFamily="@font/montserrat"
             android:includeFontPadding="false"
-            android:padding="20dp"
+            android:paddingHorizontal="20dp"
             android:text="@string/about_church"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -71,7 +70,6 @@
             android:text="Loving and Touching the City with His living Compassion"
             android:textColor="@color/black"
             android:textSize="15sp" />
-
 
 
         <TextView
@@ -122,6 +120,41 @@
             android:text="A constant equipping and service improvement"
             android:textColor="@color/black"
             android:textSize="15sp" />
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/buttonLogout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="#880B33"
+            app:cardCornerRadius="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingVertical="10dp"
+                android:paddingHorizontal="30dp">
+
+
+                <TextView
+                    android:id="@+id/logoout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat"
+                    android:includeFontPadding="false"
+                    android:text="Logout"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
 
 
     </LinearLayout>

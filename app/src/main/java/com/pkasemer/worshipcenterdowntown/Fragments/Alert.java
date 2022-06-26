@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,16 +22,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.AlertsPageAdapter;
-import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
-import com.pkasemer.worshipcenterdowntown.Adapters.SermonPageAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
+import com.pkasemer.worshipcenterdowntown.AskQuestion;
 import com.pkasemer.worshipcenterdowntown.Models.AlertsPage;
 import com.pkasemer.worshipcenterdowntown.Models.AllNotice;
-import com.pkasemer.worshipcenterdowntown.Models.AllSermon;
-import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
-import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
-import com.pkasemer.worshipcenterdowntown.Models.SermonPage;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
@@ -55,10 +51,11 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
 
     RecyclerView rv;
     ProgressBar progressBar;
-    LinearLayout errorLayout;
+    LinearLayout errorLayout,askquestion_layout;
     Button btnRetry;
     TextView txtError;
     SwipeRefreshLayout swipeRefreshLayout;
+    CardView event_ask_question;
 
     private static final int PAGE_START = 1;
 
@@ -93,11 +90,13 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cart, container, false);
+        View view = inflater.inflate(R.layout.fragment_alert, container, false);
 
         rv = view.findViewById(R.id.main_recycler);
         progressBar = view.findViewById(R.id.main_progress);
         errorLayout = view.findViewById(R.id.error_layout);
+        askquestion_layout = view.findViewById(R.id.askquestion_layout);
+        event_ask_question = view.findViewById(R.id.event_ask_question);
         btnRetry = view.findViewById(R.id.error_btn_retry);
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
@@ -144,10 +143,22 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
 
+        event_ask_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getContext(), AskQuestion.class);
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(i);
+            }
+        });
+
+
         return view;
     }
     private void doRefresh() {
         progressBar.setVisibility(View.VISIBLE);
+        askquestion_layout.setVisibility(View.GONE);
         if (callAllAlerts().isExecuted())
             callAllAlerts().cancel();
 
@@ -174,6 +185,7 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
                 // Got data. Send it to adapter
                 allSermons = fetchResults(response);
                 progressBar.setVisibility(View.GONE);
+                askquestion_layout.setVisibility(View.VISIBLE);
                 if(allSermons.isEmpty()){
                     showCategoryErrorView();
                     return;
@@ -268,7 +280,7 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
         if (errorLayout.getVisibility() == View.GONE) {
             errorLayout.setVisibility(View.VISIBLE);
             progressBar.setVisibility(View.GONE);
-
+            askquestion_layout.setVisibility(View.GONE);
             txtError.setText(fetchErrorMessage(throwable));
         }
     }
@@ -280,7 +292,7 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
         AlertDialog.Builder android = new AlertDialog.Builder(getContext());
         android.setTitle("Coming Soon");
         android.setIcon(R.drawable.aboutus);
-        android.setMessage("This Menu Category will be updated with great tastes soon, Stay Alert for Updates.")
+        android.setMessage("Stay Alert for Updates.")
                 .setCancelable(false)
 
                 .setPositiveButton("Home", new DialogInterface.OnClickListener() {
@@ -328,6 +340,7 @@ public class Alert extends Fragment implements PaginationAdapterCallback {
         if (errorLayout.getVisibility() == View.VISIBLE) {
             errorLayout.setVisibility(View.GONE);
             progressBar.setVisibility(View.VISIBLE);
+            askquestion_layout.setVisibility(View.GONE);
         }
     }
 

@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
+import com.pkasemer.worshipcenterdowntown.Models.User;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
 import com.smarteist.autoimageslider.SliderView;
@@ -121,19 +123,21 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 // passing this array list inside our adapter class.
                 HomeSliderAdapter slideradapter = new HomeSliderAdapter(context, homeFeed.getSliderBanners());
                 heroVh.sliderView.setSliderAdapter(slideradapter);
-
+                //getting the current user
+                User user = SharedPrefManager.getInstance(context).getUser();
+                String userFname = user.getFname();
 
                 Calendar c = Calendar.getInstance();
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
                 if(timeOfDay >= 0 && timeOfDay < 12){
-                    heroVh.home_greeting.setText("Good morning");
+                    heroVh.home_greeting.setText("Good morning, " + userFname);
                 }else if(timeOfDay >= 12 && timeOfDay < 16){
-                    heroVh.home_greeting.setText("Good afternoon");
+                    heroVh.home_greeting.setText("Good afternoon, "+ userFname);
                 }else if(timeOfDay >= 16 && timeOfDay < 21){
-                    heroVh.home_greeting.setText("Good evening");
+                    heroVh.home_greeting.setText("Good evening, "+ userFname);
                 }else if(timeOfDay >= 22 && timeOfDay < 24){
-                    heroVh.home_greeting.setText("Good night");
+                    heroVh.home_greeting.setText("Good night, "+ userFname);
                 }
 
                 break;

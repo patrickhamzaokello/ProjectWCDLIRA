@@ -4,13 +4,15 @@ package com.pkasemer.worshipcenterdowntown.Models;
 public class User {
 
     private int id;
-    private String fullname, email, phone;
+    private String fname,lname, email, phone,address;
 
-    public User(int id, String fullname, String email, String phone) {
+    public User(int id, String fname, String lname, String email, String phone, String address) {
         this.id = id;
-        this.fullname = fullname;
+        this.fname = fname;
+        this.lname = lname;
         this.email = email;
         this.phone = phone;
+        this.address = address;
     }
 
     public int getId() {
@@ -21,14 +23,13 @@ public class User {
         this.id = id;
     }
 
-    public String getFullname() {
-        return fullname;
+    public String getFname() {
+        return fname;
     }
 
-    public void setFullname(String fullname) {
-        this.fullname = fullname;
+    public String getLname() {
+        return lname;
     }
-
 
     public String getEmail() {
         return email;
@@ -44,6 +45,10 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getAddress() {
+        return address;
     }
 
 

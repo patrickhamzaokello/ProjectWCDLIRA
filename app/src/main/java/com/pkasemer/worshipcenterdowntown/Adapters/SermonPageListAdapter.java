@@ -84,7 +84,7 @@ public class SermonPageListAdapter extends RecyclerView.Adapter<SermonPageListAd
 
         holder.home_sermon_description.setText(html2text(product.getSermondescription()));
         holder.sermon_author.setText(product.getSermonauthor());
-        holder.sermon_verse.setText(product.getCdate());
+        holder.sermon_verse.setText(product.getSermondate());
 
         Glide
                 .with(context)

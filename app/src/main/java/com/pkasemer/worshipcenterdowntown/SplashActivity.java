@@ -56,11 +56,10 @@ public class SplashActivity extends AppCompatActivity {
                     Intent intent = new Intent(SplashActivity.this, OnBoarding.class);
                     startActivity(intent);
                 } else {
-//                    Intent intent = new Intent(SplashActivity.this, WelcomeChurch.class);
-//                    startActivity(intent);
-
-                    Intent intent = new Intent(SplashActivity.this, RootActivity.class);
+                    Intent intent = new Intent(SplashActivity.this, WelcomeChurch.class);
                     startActivity(intent);
+
+
                 }
                 finish();
 

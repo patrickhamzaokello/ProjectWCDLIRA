@@ -13,7 +13,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.R;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 
 
 public class Profile extends Fragment {
@@ -55,7 +58,29 @@ public class Profile extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
 
+        //when the user presses logout button
+        //calling the logout method
+        view.findViewById(R.id.buttonLogout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+
+                new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE)
+                        .setTitleText("Logout!")
+                        .setContentText("You will be required to Sign in next time")
+                        .setConfirmText("OK")
+                        .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sDialog) {
+
+                                sDialog.dismissWithAnimation();
+
+                                SharedPrefManager.getInstance(getContext()).logout();
+                            }
+                        }).show();
+
+            }
+        });
 
         return view;
     }
