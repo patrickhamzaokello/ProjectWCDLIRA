@@ -77,6 +77,7 @@
         android:textAllCaps="false"
         android:paddingVertical="12dp"
         android:backgroundTint="@color/white"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/w_login_screen"
         app:strokeWidth="1dp" />
 
