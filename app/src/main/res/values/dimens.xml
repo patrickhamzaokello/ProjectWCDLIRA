@@ -15,6 +15,7 @@
     <dimen name="cardsize">270dp</dimen>
     <dimen name="sectionHeading">18sp</dimen>
     <dimen name="SectionSubheading">15sp</dimen>
-    <dimen name="home_image_slider">157dp</dimen>
+    <dimen name="home_image_slider">250dp</dimen>
+    <dimen name="daily_highlighs_height">220dp</dimen>
 
 </resources>

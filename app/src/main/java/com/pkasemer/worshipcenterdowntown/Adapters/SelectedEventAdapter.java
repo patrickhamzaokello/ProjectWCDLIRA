@@ -299,11 +299,7 @@ public class SelectedEventAdapter extends RecyclerView.Adapter<RecyclerView.View
     }
 
 
-
-
-
-
-
+    
 
    /*
    View Holders
