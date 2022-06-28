@@ -33,6 +33,9 @@
                 android:gravity="bottom"
                 android:orientation="vertical">
 
+
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -49,16 +52,13 @@
                     android:layout_centerVertical="true"
                     >
 
-                    <androidx.cardview.widget.CardView
+
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/home_addToCart"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:clipToPadding="false"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        app:cardBackgroundColor="#FF2525"
-                        app:cardCornerRadius="100dp"
-                        app:cardElevation="0dp"/>
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:cardBackgroundColor="#FF003B"
+                        app:cardCornerRadius="15dp" />
 
                     <TextView
                         android:id="@+id/liveText"
@@ -77,16 +77,14 @@
 
                 </RelativeLayout>
 
-                    <androidx.cardview.widget.CardView
+                    <com.google.android.material.card.MaterialCardView
                         android:id="@+id/alert_share"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clipToPadding="false"
-                        app:cardBackgroundColor="@color/purple_500"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        app:cardBackgroundColor="#2F2F3C"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        app:cardCornerRadius="100dp"
-                        app:cardElevation="0dp">
+                        app:cardCornerRadius="20dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -97,17 +95,22 @@
                             android:orientation="horizontal"
                             android:padding="5dp">
 
-                            <ImageView
-                                android:id="@+id/shareicon"
-                                android:layout_width="25dp"
-                                android:layout_height="25dp"
-                                android:src="@drawable/ic_ei_share_apple__1_" />
+                            <Button
+                                android:id="@+id/btnshare"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_gravity="right"
+                                android:layout_margin="10dp"
+                                android:background="@drawable/ic_ei_share_apple"
+                                android:theme="@style/Highlightshare" />
 
 
                         </LinearLayout>
 
 
-                    </androidx.cardview.widget.CardView>
+                    </com.google.android.material.card.MaterialCardView>
 
                 </RelativeLayout>
 

@@ -37,15 +37,15 @@
         android:layout_alignParentRight="true"
         android:gravity="right"
         >
-        <androidx.cardview.widget.CardView
-            android:id="@+id/event_ask_question"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clipToPadding="false"
-            android:layout_margin="20dp"
-            app:cardBackgroundColor="#BD0A42"
-            app:cardCornerRadius="2000dp"
-            app:cardElevation="0dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/event_ask_question"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#AE0C52"
+                android:layout_marginTop="10dp"
+                android:layout_margin="20dp"
+                app:cardCornerRadius="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             </LinearLayout>
 
 
-        </androidx.cardview.widget.CardView>
+        </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
 

@@ -126,9 +126,10 @@
             android:id="@+id/buttonLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
             android:layout_weight="1"
-            app:cardBackgroundColor="#880B33"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="20dp"
+            app:cardBackgroundColor="@color/purple_500"
             app:cardCornerRadius="20dp">
 
             <LinearLayout

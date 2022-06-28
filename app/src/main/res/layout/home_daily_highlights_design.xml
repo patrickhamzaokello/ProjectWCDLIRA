@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="@dimen/cardsize"
     android:layout_height="@dimen/daily_highlighs_height"
-
     android:clipToPadding="false"
     android:padding="10dp">
 
