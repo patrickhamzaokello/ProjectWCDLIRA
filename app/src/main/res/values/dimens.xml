@@ -17,5 +17,7 @@
     <dimen name="SectionSubheading">15sp</dimen>
     <dimen name="home_image_slider">250dp</dimen>
     <dimen name="daily_highlighs_height">220dp</dimen>
+    <dimen name="sm">8dp</dimen>
+    <dimen name="md">16dp</dimen>
 
 </resources>

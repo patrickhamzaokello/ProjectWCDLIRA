@@ -9,6 +9,8 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
+import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
+import com.pkasemer.worshipcenterdowntown.Models.User;
 
 public class PushNotificationService extends FirebaseMessagingService {
 
@@ -29,15 +31,18 @@ public class PushNotificationService extends FirebaseMessagingService {
             );
 
             getSystemService(NotificationManager.class).createNotificationChannel(channel);
+            User user = SharedPrefManager.getInstance(this).getUser();
 
             Notification.Builder notification =
                     new Notification.Builder(this, CHANNEL_ID)
                             .setContentTitle(title)
-                            .setContentText(text)
+                            .setContentText(user.getFname()+", "+ text)
+                            .setStyle(new Notification.BigTextStyle()
+                                    .bigText(user.getFname()+ ", "+ text))
                             .setSmallIcon(R.drawable.ic_worship_notification)
                             .setAutoCancel(true);
-
-            NotificationManagerCompat.from(this).notify(1, notification.build());
+            int NOTIFICATION_ID = (int) System.currentTimeMillis();
+            NotificationManagerCompat.from(this).notify(NOTIFICATION_ID, notification.build());
 
         }
 

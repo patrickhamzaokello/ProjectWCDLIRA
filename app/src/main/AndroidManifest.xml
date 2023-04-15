@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -20,6 +20,12 @@
         android:theme="@style/Theme.ZodongoFoods"
         android:usesCleartextTraffic="true"
         tools:replace="android:icon">
+
+        <service
+            android:name=".PlayerService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".AskQuestion"
             android:exported="false" />
@@ -41,7 +47,15 @@
             android:exported="true" />
         <activity
             android:name=".RootActivity"
-            android:exported="true" />
+            android:autoVerify="true"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:exported="true"
+            android:launchMode="singleTask"
+            android:windowSoftInputMode="adjustPan">
+
+            <nav-graph android:value="@navigation/nav_graph" />
+        </activity>
+
         <activity
             android:name=".RegisterMaterial"
             android:exported="true" />
@@ -65,9 +79,7 @@
             android:name=".PushNotificationService"
             android:exported="false">
             <intent-filter>
-                <action
-                    android:name="com.google.firebase.MESSAGING_EVENT">
-                </action>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"></action>
             </intent-filter>
         </service>
 

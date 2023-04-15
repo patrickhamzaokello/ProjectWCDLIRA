@@ -63,4 +63,9 @@
         <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
     </style>
 
+    <style name="customSeekbar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:minHeight">2dp</item>
+        <item name="android:maxHeight">4dp</item>
+    </style>
+
 </resources>

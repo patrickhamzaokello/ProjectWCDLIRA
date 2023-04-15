@@ -1,7 +1,5 @@
 package com.pkasemer.worshipcenterdowntown.Adapters;
 
-import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -130,15 +128,16 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 Calendar c = Calendar.getInstance();
                 int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
-                if(timeOfDay >= 0 && timeOfDay < 12){
-                    heroVh.home_greeting.setText("Good morning, " + userFname);
-                }else if(timeOfDay >= 12 && timeOfDay < 16){
-                    heroVh.home_greeting.setText("Good afternoon, "+ userFname);
-                }else if(timeOfDay >= 16 && timeOfDay < 21){
-                    heroVh.home_greeting.setText("Good evening, "+ userFname);
-                }else if(timeOfDay >= 22 && timeOfDay < 24){
-                    heroVh.home_greeting.setText("Good night, "+ userFname);
+                if (timeOfDay >= 0 && timeOfDay < 12) {
+                    heroVh.home_greeting.setText("Good morning " + userFname + "! As you start your day, remember that God's love and blessings are always with you.");
+                } else if (timeOfDay >= 12 && timeOfDay < 16) {
+                    heroVh.home_greeting.setText("Good afternoon " + userFname+ "! Take a moment to pause and reflect on God's goodness in your life today.");
+                } else if (timeOfDay >= 16 && timeOfDay < 21) {
+                    heroVh.home_greeting.setText("Good evening " + userFname + "! As you wind down from the day, may you be filled with peace and rest knowing that God is watching over you.");
+                } else if (timeOfDay >= 21 && timeOfDay <= 24) {
+                    heroVh.home_greeting.setText("Good night " + userFname + "! May you sleep well, knowing that God's loving arms are wrapped around you, keeping you safe and secure through the night.");
                 }
+
 
                 break;
             case DAILY_HIGHLIGHTS:
@@ -175,7 +174,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 movieVH.itemRecyclerView.setLayoutManager(ITEMVH_HorizontalLayout);
 
 
-                HomeSermonsAdapter adapter = new HomeSermonsAdapter(context,homeFeed.getHomeSermons());
+                HomeSermonsAdapter adapter = new HomeSermonsAdapter(context, homeFeed.getHomeSermons());
                 movieVH.itemRecyclerView.setAdapter(adapter);
 
 
@@ -215,7 +214,7 @@ public class HomeFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             return HERO;
         } else if (position == 1) {
             return DAILY_HIGHLIGHTS;
-        }  else if (position == 2) {
+        } else if (position == 2) {
             return DAILY_EVENTS;
         } else {
             return (position == homeFeeds.size() - 1 && isLoadingAdded) ?

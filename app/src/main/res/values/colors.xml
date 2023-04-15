@@ -11,7 +11,6 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="rootbg">#EFF1F6</color>
-
     <color name="shimmer_color">#366C6C6C</color>
     <color name="light_grey">#A6A6A6</color>
     <color name="light_black">#404040</color>
@@ -46,7 +45,15 @@
     <color name="dotsdefault">#C2C3C7</color>
     <color name="default_image_bg">#28000000</color>
     <color name="default_image_icon">#8DFFFFFF</color>
-    <color name="play_view_bg">#4CAF50</color>
+    <color name="play_view_bg">#3A428C</color>
+    <color name="home_song_controller">#3A428C</color>
+    <color name="modernPlayerbg">#1F0233</color>
+    <color name="colorPrimaryText">#353535</color>
+    <color name="nicetext">#423A65</color>
+    <color name="player_view_bg">#270240</color>
+    <color name="seek_bar_progress_bg_tint">#DDDDDD</color>
+    <color name="seek_progress">#FFFFFF</color>
+    <color name="progressnoColor">#FFFFFF</color>
 
 
 </resources>

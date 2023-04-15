@@ -67,7 +67,7 @@
         android:includeFontPadding="false"
         android:layout_marginTop="4dp"
         app:layout_constraintTop_toBottomOf="@id/headingview"
-        android:text="GoodEvening"
+        android:text=""
         android:textColor="#72FFFFFF"
         android:layout_gravity="center"
         android:textSize="14sp" />

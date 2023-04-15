@@ -135,7 +135,7 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                     heroVh.home_greeting.setText("Good afternoon, " + userFname);
                 } else if (timeOfDay >= 16 && timeOfDay < 21) {
                     heroVh.home_greeting.setText("Good evening, " + userFname);
-                } else if (timeOfDay >= 22 && timeOfDay < 24) {
+                } else if (timeOfDay >= 21 && timeOfDay <= 24) {
                     heroVh.home_greeting.setText("Good night, " + userFname);
                 }
 
