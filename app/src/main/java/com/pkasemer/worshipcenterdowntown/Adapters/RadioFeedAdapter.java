@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -137,6 +138,8 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 } else if (timeOfDay >= 22 && timeOfDay < 24) {
                     heroVh.home_greeting.setText("Good night, " + userFname);
                 }
+
+
 
                 break;
 
@@ -277,6 +280,7 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         private final SliderView sliderView;
         private final TextView home_greeting;
+
 
         public HeroVH(View itemView) {
             super(itemView);

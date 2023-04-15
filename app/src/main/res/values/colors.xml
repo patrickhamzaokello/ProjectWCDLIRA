@@ -3,6 +3,7 @@
     <color name="purple_200">#3A428C</color>
     <color name="purple_500">#3A428C</color>
     <color name="purple_700">#3A428C</color>
+    <color name="the_year_2023">#1D1A2E</color>
     <color name="teal_200">#3A428C</color>
     <color name="teal_700">#262626</color>
     <color name="texton_green">#DEFFDD</color>
@@ -43,6 +44,9 @@
     <color name="accountcolors">#FFFFFF</color>
     <color name="profilecardtext">#ECECEC</color>
     <color name="dotsdefault">#C2C3C7</color>
+    <color name="default_image_bg">#28000000</color>
+    <color name="default_image_icon">#8DFFFFFF</color>
+    <color name="play_view_bg">#4CAF50</color>
 
 
 </resources>

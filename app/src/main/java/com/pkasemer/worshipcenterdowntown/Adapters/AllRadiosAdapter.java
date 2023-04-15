@@ -87,6 +87,7 @@ public class AllRadiosAdapter extends RecyclerView.Adapter<AllRadiosAdapter.Item
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         holder.mProgress.setVisibility(View.VISIBLE);
+                        holder.cover_image.setImageDrawable(context.getDrawable(R.drawable.default_radio));
                         return false;
                     }
 

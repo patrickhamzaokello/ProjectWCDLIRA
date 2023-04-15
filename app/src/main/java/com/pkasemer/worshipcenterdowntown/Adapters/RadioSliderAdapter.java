@@ -7,8 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
@@ -46,7 +49,7 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
     // inside on Create View Holder method.
     @Override
     public SliderAdapterViewHolder onCreateViewHolder(ViewGroup parent) {
-        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_slider_design, null);
+        View inflate = LayoutInflater.from(parent.getContext()).inflate(R.layout.radio_slider, null);
         return new SliderAdapterViewHolder(inflate);
     }
 
@@ -57,6 +60,9 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
 
         final Radio sliderBanner = sliderBanners.get(position);
 
+        viewHolder.title_text.setText(sliderBanner.getTitle());
+        viewHolder.category_text.setText(sliderBanner.getSummary());
+
         Glide
                 .with(viewHolder.itemView)
                 .load(BASE_URL_IMG + sliderBanner.getCover())
@@ -64,6 +70,7 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
                         viewHolder.msliderProgress.setVisibility(View.VISIBLE);
+                        viewHolder.imageViewBackground.setImageDrawable(context.getDrawable(R.drawable.default_radio));
                         return false;
                     }
 
@@ -78,6 +85,20 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
                 .centerCrop()
                 .transition(withCrossFade(factory))
                 .into(viewHolder.imageViewBackground);
+
+        viewHolder.playTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, sliderBanner.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, sliderBanner.getTitle(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
@@ -90,12 +111,18 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
 
         View itemView;
         ImageView imageViewBackground;
+        TextView title_text, category_text;
         ProgressBar msliderProgress;
+        private final ImageButton playTrack;
 
         public SliderAdapterViewHolder(View itemView) {
             super(itemView);
             imageViewBackground = itemView.findViewById(R.id.myimage);
+            title_text = itemView.findViewById(R.id.title_text);
+            category_text = itemView.findViewById(R.id.category_text);
             msliderProgress = itemView.findViewById(R.id.msliderProgress);
+            playTrack = itemView.findViewById(R.id.playTrack);
+
             this.itemView = itemView;
         }
     }

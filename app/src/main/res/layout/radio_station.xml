@@ -2,7 +2,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/small_rounded"
+    android:backgroundTint="#F8F8F8"
     android:layout_margin="10dp">
 
     <ImageView
@@ -10,7 +12,19 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_mycart" />
+        android:src="@drawable/default_radio" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:elevation="2dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_ion_play_circle_outline" />
 
     <ProgressBar
         android:id="@+id/sermon_image_progress_bar"
@@ -40,7 +54,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/title_text"
-        android:layout_marginTop="4dp"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat"
         android:gravity="left"
@@ -48,6 +61,6 @@
         android:paddingBottom="11dp"
         android:maxLines="2"
         android:textColor="#666"
-        android:textSize="14sp" />
+        android:textSize="12sp" />
 
 </RelativeLayout>
