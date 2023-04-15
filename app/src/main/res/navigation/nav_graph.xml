@@ -30,6 +30,11 @@
         android:name="com.pkasemer.worshipcenterdowntown.Fragments.Profile"
         android:label="@string/title_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_music"
+        android:name="com.pkasemer.worshipcenterdowntown.Fragments.MusicLibraryFragment"
+        android:label="fragment_music_library"
+        tools:layout="@layout/fragment_music_library" />
 
 
 </navigation>

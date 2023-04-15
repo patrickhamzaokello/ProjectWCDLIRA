@@ -4,6 +4,7 @@ package com.pkasemer.worshipcenterdowntown.Apis;
 
 import com.pkasemer.worshipcenterdowntown.Models.AlertsPage;
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
+import com.pkasemer.worshipcenterdowntown.Models.RadioScreen;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedEventPage;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermon;
 import com.pkasemer.worshipcenterdowntown.Models.SelectedSermonPage;
@@ -23,6 +24,11 @@ public interface ApiService {
 
     @GET("home_feed.php")
     Call<HomeBase> getHomeFeedRequest(
+            @Query("page") int pageIndex
+    );
+
+    @GET("radios.php")
+    Call<RadioScreen> getRadioScreen(
             @Query("page") int pageIndex
     );
 

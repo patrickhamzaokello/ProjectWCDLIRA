@@ -62,7 +62,7 @@ public class ApiBase {
                     .client(buildClient(context))
                     .addConverterFactory(GsonConverterFactory.create())
 //                    .baseUrl("http://192.168.0.155:8080/projects/WorshipCenterAPI/v1/")
-                    .baseUrl("https://ad.worshipcenterdowntown.com/mobile-api/v1/")
+                    .baseUrl("https://app.wcdt.online/v1/")
                     .build();
         }
         return retrofit;
