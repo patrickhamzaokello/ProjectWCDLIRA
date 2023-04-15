@@ -29,6 +29,7 @@ import com.pkasemer.worshipcenterdowntown.Models.Radio;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.SelectedSermonDetail;
 import com.pkasemer.worshipcenterdowntown.Utils.GlideApp;
+import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 
 import org.jsoup.Jsoup;
 
@@ -61,7 +62,7 @@ public class AllRadiosAdapter extends RecyclerView.Adapter<AllRadiosAdapter.Item
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
 
-    public AllRadiosAdapter(Context context, List<Radio> radios) {
+    public AllRadiosAdapter(Context context, List<Radio> radios, PlayRadioCallback playRadioCallback) {
         this.context = context;
         this.radioList = radios;
     }

@@ -25,6 +25,7 @@ import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.pkasemer.worshipcenterdowntown.Models.Radio;
 import com.pkasemer.worshipcenterdowntown.Models.SliderBanner;
 import com.pkasemer.worshipcenterdowntown.R;
+import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.List;
@@ -35,13 +36,14 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
     private final List<Radio> sliderBanners;
     private final Context context;
     private static final String BASE_URL_IMG = "";
-
+    private final PlayRadioCallback playRadioCallback;
     DrawableCrossFadeFactory factory =
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
     // Constructor
-    public RadioSliderAdapter(Context context, List<Radio> radioBanners) {
+    public RadioSliderAdapter(Context context, List<Radio> radioBanners, PlayRadioCallback playRadioCallback) {
         this.context = context;
+        this.playRadioCallback = playRadioCallback;
         this.sliderBanners = radioBanners;
     }
 
@@ -90,6 +92,7 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, sliderBanner.getTitle(), Toast.LENGTH_SHORT).show();
+                playRadioCallback.playablbum(sliderBanner);
             }
         });
 

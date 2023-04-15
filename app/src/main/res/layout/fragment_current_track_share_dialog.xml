@@ -1,0 +1,356 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="15dp"
+    android:paddingBottom="45dp"
+    android:paddingTop="20dp"
+    android:background="@drawable/cornercircle"
+    android:backgroundTint="#23221C"
+    android:orientation="vertical"
+    android:id="@+id/dialog_background"
+    >
+
+
+    <ImageButton
+        android:id="@+id/closebtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/white_small_bg"
+        android:backgroundTint="#2E2D2D"
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:tint="@color/shareColors"
+        />
+
+
+
+
+
+
+
+    <Button
+        android:id="@+id/createStation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Station"
+        android:textAllCaps="true"
+        android:background="@drawable/rounded_btn_bg"
+        android:textColor="#0C0C0C"
+        app:backgroundTint="#FFFFFF"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kufam_regular"
+        app:layout_constraintEnd_toStartOf="@id/likeBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewsharetwo"
+        />
+    <Button
+        android:id="@+id/likeBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Like"
+        app:iconTint="#D4C8DF"
+        android:textAllCaps="true"
+        android:background="@drawable/rounded_btn_bg"
+        android:textColor="#FFFFFF"
+        android:fontFamily="@font/kufam_regular"
+        app:backgroundTint="@color/track_not_Liked"
+        android:layout_marginStart="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/createStation"
+        app:layout_constraintTop_toTopOf="@+id/createStation"
+        />
+
+
+
+
+
+
+
+
+    <View
+        android:id="@+id/viewShare"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/shareArtwork"
+        android:background="#28FFFFFF" />
+
+    <TextView
+        android:id="@+id/viewlyricTilte"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="View Lyrics"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/viewShare"
+        android:textSize="15sp"
+        android:paddingHorizontal="15dp"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:background="@drawable/smallrounded"
+        android:backgroundTint="#1BFFFFFF"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/kufam_medium"
+        android:textColor="#FFFFFF"
+        />
+
+    <TextView
+        android:id="@+id/viewlyrics"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/request_lyrics"
+        app:layout_constraintTop_toBottomOf="@id/viewlyricTilte"
+        app:layout_constraintBottom_toTopOf="@+id/viewsharetwo"
+        android:paddingBottom="8dp"
+        android:paddingTop="4dp"
+        android:ellipsize="end"
+        android:maxLines="5"
+        android:textSize="12sp"
+        android:fontFamily="@font/roboto_light"
+        android:textColor="#61FFFFFF"
+        />
+
+
+    <View
+        android:id="@+id/viewsharetwo"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewlyrics"
+        android:background="#28FFFFFF" />
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/shareArtwork"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/default_radio"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_corner_radius="8dp"
+        android:layout_marginTop="15dp"
+        />
+
+
+    <TextView
+        android:id="@+id/ShareTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Track Title"
+        android:layout_marginStart="8dp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/shareArtwork"
+        android:fontFamily="@font/kufam_regular"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/shareArtwork"
+        app:layout_constraintBottom_toBottomOf="@+id/shareArtwork"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/ShareSub"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Track SubHeading"
+        android:layout_marginStart="8dp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toEndOf="@+id/shareArtwork"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/kufam_regular"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintTop_toBottomOf="@+id/ShareTitle"
+        android:textColor="#A4FFFFFF"/>
+
+
+    <View
+        android:id="@+id/viewsharethree"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp_text"
+        android:background="#28FFFFFF" />
+
+
+    <TextView
+        android:id="@+id/upnext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Mwonya"
+        android:textAllCaps="false"
+        android:paddingTop="15dp"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/kufam_medium"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:ellipsize="marquee"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewsharethree"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
+        android:id="@+id/nextTrack"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="We set the vibe"
+        android:includeFontPadding="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fontFamily="@font/kufam_regular"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:paddingBottom="10dp"
+        android:ellipsize="marquee"
+        app:layout_constraintTop_toBottomOf="@+id/upnext"
+        android:textColor="#A4FFFFFF"/>
+
+
+    <TextView
+        android:id="@+id/sharevia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share media"
+        android:textAllCaps="false"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:fontFamily="@font/kufam_medium"
+        app:layout_constraintTop_toBottomOf="@+id/createStation"
+        android:textColor="@color/white"/>
+
+
+    <ImageButton
+        android:id="@+id/link"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/white_small_bg"
+        android:backgroundTint="#2E2D2D"
+
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:src="@drawable/ic_mdi_link_variant"
+        app:tint="@color/shareColors"
+        android:layout_marginStart="15dp"
+        app:layout_constraintStart_toEndOf="@+id/twitter"
+        app:layout_constraintTop_toTopOf="@+id/whatsapp"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Copy Link"
+        android:textSize="10sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/shareColors"
+        android:fontFamily="@font/kufam_regular"
+        app:layout_constraintTop_toBottomOf="@+id/link"
+        app:layout_constraintStart_toStartOf="@+id/link"
+        app:layout_constraintEnd_toEndOf="@+id/link" />
+
+
+
+
+
+
+    <ImageButton
+        android:id="@+id/whatsapp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/white_small_bg"
+        android:backgroundTint="#2E2D2D"
+
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/color_whatsapp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sharevia"
+        />
+
+    <TextView
+        android:id="@+id/whatsapp_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WhatsApp"
+        android:textSize="10sp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/shareColors"
+        android:fontFamily="@font/kufam_regular"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp"
+        app:layout_constraintStart_toStartOf="@+id/whatsapp"
+        app:layout_constraintEnd_toEndOf="@+id/whatsapp" />
+
+    <ImageButton
+        android:id="@+id/twitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/white_small_bg"
+        android:backgroundTint="#2E2D2D"
+
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:src="@drawable/ic_logos_twitter"
+        app:layout_constraintStart_toEndOf="@+id/whatsapp"
+        app:layout_constraintTop_toTopOf="@+id/whatsapp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Twitter"
+        android:textSize="10sp"
+        android:textColor="@color/shareColors"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/kufam_regular"
+        app:layout_constraintTop_toBottomOf="@+id/twitter"
+        app:layout_constraintStart_toStartOf="@+id/twitter"
+        app:layout_constraintEnd_toEndOf="@+id/twitter" />
+
+    <ImageButton
+        android:id="@+id/Sharemore"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/white_small_bg"
+        android:backgroundTint="#2E2D2D"
+
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:src="@drawable/ic_baseline_more_horiz_24"
+        android:layout_marginStart="15dp"
+        app:tint="@color/shareColors"
+        app:layout_constraintStart_toEndOf="@+id/link"
+        app:layout_constraintTop_toTopOf="@+id/whatsapp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="More"
+        android:textSize="10sp"
+        android:textColor="@color/shareColors"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/kufam_regular"
+        app:layout_constraintTop_toBottomOf="@+id/Sharemore"
+        app:layout_constraintStart_toStartOf="@+id/Sharemore"
+        app:layout_constraintEnd_toEndOf="@+id/Sharemore" />
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

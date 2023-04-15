@@ -1,0 +1,161 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="20dp"
+    android:background="@color/my_purple"
+    android:orientation="vertical">
+
+
+
+    <TextView
+        android:id="@+id/shareHeading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share Now"
+        android:fontFamily="@font/kufam_bold"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/viewShare"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#FFFFFF"/>
+
+
+    <ImageButton
+        android:id="@+id/closebtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/green_small_bg"
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:layout_marginStart="15dp"
+        android:src="@drawable/ic_close"
+        android:backgroundTint="@color/shareTint"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/shareHeading"
+        app:tint="#FFECB3"
+        />
+
+    <View
+        android:id="@+id/viewShare"
+        android:layout_width="80dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/closebtn"
+        android:background="#B5FFFFFF"
+
+
+        />
+
+
+
+
+
+    <TextView
+        android:id="@+id/sharetext"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Share media using the following options.."
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="12sp"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_light"
+        android:textColor="#D0FFFFFF"
+        app:layout_constraintTop_toBottomOf="@+id/viewShare" />
+
+
+
+
+
+
+    <ImageButton
+        android:id="@+id/whatsapp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/green_small_bg"
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/shareTint"
+        android:src="@drawable/color_whatsapp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sharetext"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="WhatsApp"
+        android:textSize="10sp"
+        android:layout_marginTop="5dp"
+        android:textColor="#B5FFFFFF"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintTop_toBottomOf="@+id/whatsapp"
+        app:layout_constraintStart_toStartOf="@+id/whatsapp"
+        app:layout_constraintEnd_toEndOf="@+id/whatsapp" />
+
+    <ImageButton
+        android:id="@+id/twitter"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/green_small_bg"
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:src="@drawable/ic_logos_twitter"
+        android:backgroundTint="@color/shareTint"
+        app:layout_constraintStart_toEndOf="@+id/whatsapp"
+        app:layout_constraintTop_toTopOf="@+id/whatsapp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Twitter"
+        android:textSize="10sp"
+        android:textColor="#B5FFFFFF"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintTop_toBottomOf="@+id/twitter"
+        app:layout_constraintStart_toStartOf="@+id/twitter"
+        app:layout_constraintEnd_toEndOf="@+id/twitter" />
+
+    <ImageButton
+        android:id="@+id/Sharemore"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/green_small_bg"
+        android:contentDescription="@string/app_name"
+        android:padding="4dp"
+        android:src="@drawable/ic_baseline_more_horiz_24"
+        android:layout_marginStart="15dp"
+        app:tint="#FFFFFF"
+        android:backgroundTint="@color/shareTint"
+        app:layout_constraintStart_toEndOf="@+id/twitter"
+        app:layout_constraintTop_toTopOf="@+id/whatsapp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="More"
+        android:textSize="10sp"
+        android:textColor="#B5FFFFFF"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_light"
+        app:layout_constraintTop_toBottomOf="@+id/Sharemore"
+        app:layout_constraintStart_toStartOf="@+id/Sharemore"
+        app:layout_constraintEnd_toEndOf="@+id/Sharemore" />
+
+
+
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

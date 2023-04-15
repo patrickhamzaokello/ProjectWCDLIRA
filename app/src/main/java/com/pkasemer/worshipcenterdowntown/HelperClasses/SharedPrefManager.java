@@ -24,6 +24,21 @@ public class SharedPrefManager {
     private static final String KEY_ADDRESS = "keyaddress";
     private static final String KEY_ID = "keyid";
 
+    // CurrentTrack
+    private static final String SHARED_PREF_CURRENT_TRACK = "current_track";
+    private static final String KEY_TRACK_ID = "keyTrackID";
+    private static final String KEY_TRACK_TITLE = "keyTrackTitle";
+    private static final String KEY_TRACK_ARTIST = "keyTrackArtist";
+    private static final String KEY_TRACK_ARTIST_ID = "KeyTrackArtistID";
+    private static final String KEY_TRACK_ARTWORK_URL = "KeyTrackArtworkUrl";
+    private static final String KEY_TRACK_PATH = "KeyTrackPath";
+
+
+    // current mediaitems
+    private static final String SHARED_PREF_MEDIA_ITEMS = "current_media_items";
+    private static final String KEY_MEDIA_ITEM_ID = "key_media_item_id";
+
+
 
     private static SharedPrefManager mInstance;
     private static Context mCtx;
@@ -97,5 +112,17 @@ public class SharedPrefManager {
         editor.clear();
         editor.apply();
         mCtx.startActivity(new Intent(mCtx, LoginMaterial.class));
+    }
+
+    public void currentTrack(int id, String title, String artist, String artistId, String artwork, String path){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_CURRENT_TRACK, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(KEY_TRACK_ID, id);
+        editor.putString(KEY_TRACK_TITLE, title);
+        editor.putString(KEY_TRACK_ARTIST, artist);
+        editor.putString(KEY_TRACK_ARTIST_ID, artistId);
+        editor.putString(KEY_TRACK_ARTWORK_URL, artwork);
+        editor.putString(KEY_TRACK_PATH, path);
+        editor.apply();
     }
 }

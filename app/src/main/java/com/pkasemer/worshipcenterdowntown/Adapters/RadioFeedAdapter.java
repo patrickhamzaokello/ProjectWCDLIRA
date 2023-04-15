@@ -20,7 +20,9 @@ import com.pkasemer.worshipcenterdowntown.HelperClasses.SharedPrefManager;
 import com.pkasemer.worshipcenterdowntown.Models.RadioPage;
 import com.pkasemer.worshipcenterdowntown.Models.User;
 import com.pkasemer.worshipcenterdowntown.R;
+import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
+import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
@@ -52,13 +54,17 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private final PaginationAdapterCallback mCallback;
     private String errorMsg;
+    private RootActivity rootActivity;
+    private final PlayRadioCallback playRadioCallback;
 
     DrawableCrossFadeFactory factory =
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
-    public RadioFeedAdapter(Context context, PaginationAdapterCallback callback) {
+    public RadioFeedAdapter(Context context, PaginationAdapterCallback callback,PlayRadioCallback playRadioCallback,RootActivity rootActivity) {
         this.context = context;
         this.mCallback = callback;
+        this.playRadioCallback = playRadioCallback;
+        this.rootActivity = rootActivity;
         radioPages = new ArrayList<>();
     }
 
@@ -120,7 +126,7 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
                 heroVh.sliderView.setAutoCycle(true);
                 heroVh.sliderView.startAutoCycle();
                 // passing this array list inside our adapter class.
-                RadioSliderAdapter radioSliderAdapter = new RadioSliderAdapter(context, radioPage.getRadio());
+                RadioSliderAdapter radioSliderAdapter = new RadioSliderAdapter(context, radioPage.getRadio(),playRadioCallback);
                 heroVh.sliderView.setSliderAdapter(radioSliderAdapter);
                 //getting the current user
                 User user = SharedPrefManager.getInstance(context).getUser();
@@ -153,7 +159,7 @@ public class RadioFeedAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
 // set up recycler view
                 radioVH.itemRecyclerView.setLayoutManager(layoutManager);
-                AllRadiosAdapter adapter = new AllRadiosAdapter(context, radioPage.getRadio());
+                AllRadiosAdapter adapter = new AllRadiosAdapter(context, radioPage.getRadio(),playRadioCallback);
                 radioVH.itemRecyclerView.setAdapter(adapter);
                 break;
 

@@ -4,14 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,20 +14,31 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
 import com.pkasemer.worshipcenterdowntown.Adapters.RadioFeedAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
-import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
-import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
+import com.pkasemer.worshipcenterdowntown.Dialogs.ShareFeature;
+import com.pkasemer.worshipcenterdowntown.Models.Radio;
 import com.pkasemer.worshipcenterdowntown.Models.RadioPage;
 import com.pkasemer.worshipcenterdowntown.Models.RadioScreen;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationScrollListener;
+import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -42,7 +47,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MusicLibraryFragment extends Fragment implements PaginationAdapterCallback {
+public class MusicLibraryFragment extends Fragment implements PaginationAdapterCallback, PlayRadioCallback {
 
 
 
@@ -72,6 +77,8 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     private ApiService apiService;
     private Object PaginationAdapterCallback;
 
+    ExoPlayer player;
+    private RootActivity rootActivity;
 
     public MusicLibraryFragment() {
         // Required empty public constructor
@@ -82,9 +89,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        rootActivity = (RootActivity) getActivity();
     }
 
     @Override
@@ -100,7 +105,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
 
-        radioFeedAdapter = new RadioFeedAdapter(getContext(), this);
+        radioFeedAdapter = new RadioFeedAdapter(getContext(), this, this,rootActivity);
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
@@ -340,4 +345,53 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         return cm.getActiveNetworkInfo() != null;
     }
 
+    @Override
+    public void playablbum(Radio radio) {
+
+        if (radio != null) {
+            //start the player service
+            player = rootActivity.player;
+            Log.d("mcallback", String.valueOf(player));
+            player.setMediaItems(getMediaItems(radio));
+            //prepare and play the song
+            player.prepare();
+            player.play();
+        } else {
+            Toast.makeText(getContext(), "Unable to Play Track", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void shareFeatureCallback(String share_id, String name, String artist, String share_type) {
+        ShareFeature shareFeature = new ShareFeature(share_id, name, artist, share_type);
+        shareFeature.setCancelable(true);
+        shareFeature.show(getChildFragmentManager(), "ShareTrackGeneral");
+    }
+
+    private List<MediaItem> getMediaItems(Radio radio) {
+        List<MediaItem> mediaItems = new ArrayList<>();
+
+            MediaItem mediaItem = new MediaItem.Builder()
+                    .setUri(radio.getPath())
+                    .setMediaMetadata(getMetadata(radio))
+                    .build();
+
+            // add the media items to media items list
+            mediaItems.add(mediaItem);
+        return mediaItems;
+    }
+
+    private MediaMetadata getMetadata(Radio radio) {
+        Bundle bundle = new Bundle();
+        bundle.putString("artist_bn_id", radio.getId());
+        bundle.putString("song_bn_id", radio.getId());
+        bundle.putString("song_path", radio.getPath());
+
+        return new MediaMetadata.Builder()
+                .setTitle(radio.getTitle())
+                .setArtist("WCDT Radio")
+                .setArtworkUri(Uri.parse(radio.getCover()))
+                .setExtras(bundle)
+                .build();
+    }
 }

@@ -38,6 +38,14 @@
     <string name="grid_sectioned_recyclerview">Grid Sectioned RecyclerView</string>
     <string name="show_all">Show All</string>
 
+    <string name="share_type_artist">artist</string>
+    <string name="share_type_collection">collection</string>
+    <string name="share_type_track">track</string>
+    <string name="share_type_playlist">playlist</string>
+    <string name="share_type_event">event</string>
+    <string name="like">Like</string>
+    <string name="unlike">Unlike</string>
+
     <string name="cartcoutAction">cartmsg</string>
     <string name="cartCount">cartcount</string>
     <string name="google_maps_key">AIzaSyB9MxxJBmzLHdfsMEZSdV0vORR_MRwirPI</string>
@@ -46,4 +54,5 @@
     <string name="search_hint">Search</string>
     <string name="about_church">PAG Worship Centre is a church of believers who were thirsty for a congregational worship teamed up to begin a service. In their midst were servants of God who have a passion for True Worship and a Leadership that transforms a Christian life through holistic approach. Mathew 5:14-15.\"you are the Light of World” Shine your Light so your Father in Heaven be glorified” We are Christ Church</string>
     <string name="request_lyrics">Request For Lyrics</string>
+    <string name="songId">bc_songID</string>
 </resources>
