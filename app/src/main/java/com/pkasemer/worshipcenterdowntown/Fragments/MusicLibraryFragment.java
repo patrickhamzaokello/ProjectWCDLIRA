@@ -22,10 +22,13 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
+import com.pkasemer.worshipcenterdowntown.Adapters.RadioFeedAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
 import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
 import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
+import com.pkasemer.worshipcenterdowntown.Models.RadioPage;
+import com.pkasemer.worshipcenterdowntown.Models.RadioScreen;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
@@ -45,7 +48,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
 
     private static final String TAG = "MainActivity";
 
-    HomeFeedAdapter adapter;
+    RadioFeedAdapter radioFeedAdapter;
     LinearLayoutManager linearLayoutManager;
 
     RecyclerView rv;
@@ -64,7 +67,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     private int currentPage = PAGE_START;
     private final int selectCategoryId = 3;
 
-    List<HomeFeed> homeFeeds;
+    List<RadioPage> radioPageList;
 
     private ApiService apiService;
     private Object PaginationAdapterCallback;
@@ -97,13 +100,13 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
 
-        adapter = new HomeFeedAdapter(getContext(), this);
+        radioFeedAdapter = new RadioFeedAdapter(getContext(), this);
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        rv.setAdapter(adapter);
+        rv.setAdapter(radioFeedAdapter);
 
         rv.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -148,8 +151,8 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
 
         // TODO: Check if data is stale.
         //  Execute network request if cache is expired; otherwise do not update data.
-        adapter.getMovies().clear();
-        adapter.notifyDataSetChanged();
+        radioFeedAdapter.getMovies().clear();
+        radioFeedAdapter.notifyDataSetChanged();
         loadFirstPage();
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -161,29 +164,29 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         hideErrorView();
         currentPage = PAGE_START;
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<RadioScreen>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<RadioScreen> call, Response<RadioScreen> response) {
                 hideErrorView();
 
 //                Log.i(TAG, "onResponse: " + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
                 // Got data. Send it to adapter
-                homeFeeds = fetchResults(response);
+                radioPageList = fetchResults(response);
                 progressBar.setVisibility(View.GONE);
-                if(homeFeeds.isEmpty()){
+                if(radioPageList.isEmpty()){
                     showCategoryErrorView();
                     return;
                 } else {
-                    adapter.addAll(homeFeeds);
+                    radioFeedAdapter.addAll(radioPageList);
                 }
 
-                if (currentPage < TOTAL_PAGES) adapter.addLoadingFooter();
+                if (currentPage < TOTAL_PAGES) radioFeedAdapter.addLoadingFooter();
                 else isLastPage = true;
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<RadioScreen> call, Throwable t) {
                 t.printStackTrace();
                 showErrorView(t);
             }
@@ -192,37 +195,37 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
 
 
 
-    private List<HomeFeed> fetchResults(Response<HomeBase> response) {
-        HomeBase homeBase = response.body();
-        TOTAL_PAGES = homeBase.getTotalPages();
+    private List<RadioPage> fetchResults(Response<RadioScreen> response) {
+        RadioScreen radioScreen = response.body();
+        TOTAL_PAGES = radioScreen.getTotalPages();
         System.out.println("total pages" + TOTAL_PAGES);
 
-        return homeBase.getHomeFeed();
+        return radioScreen.getRadioPage();
     }
 
     private void loadNextPage() {
         Log.d(TAG, "loadNextPage: " + currentPage);
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<RadioScreen>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<RadioScreen> call, Response<RadioScreen> response) {
                 Log.i(TAG, "onResponse: " + currentPage
                         + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
-                adapter.removeLoadingFooter();
+                radioFeedAdapter.removeLoadingFooter();
                 isLoading = false;
 
-                homeFeeds = fetchResults(response);
-                adapter.addAll(homeFeeds);
+                radioPageList = fetchResults(response);
+                radioFeedAdapter.addAll(radioPageList);
 
-                if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
+                if (currentPage != TOTAL_PAGES) radioFeedAdapter.addLoadingFooter();
                 else isLastPage = true;
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<RadioScreen> call, Throwable t) {
                 t.printStackTrace();
-                adapter.showRetry(true, fetchErrorMessage(t));
+                radioFeedAdapter.showRetry(true, fetchErrorMessage(t));
             }
         });
     }
@@ -234,8 +237,8 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
      * As {@link #currentPage} will be incremented automatically
      * by @{@link PaginationScrollListener} to load next page.
      */
-    private Call<HomeBase> callHomeCategories() {
-        return apiService.getHomeFeedRequest(
+    private Call<RadioScreen> callHomeCategories() {
+        return apiService.getRadioScreen(
                 currentPage
         );
     }
