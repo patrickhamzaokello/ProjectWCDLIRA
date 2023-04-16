@@ -288,7 +288,7 @@
             android:singleLine="true"
             android:gravity="center"
             android:layout_marginTop="35dp"
-            android:text="Read More about this Station"
+            android:text="Station Description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:textColor="#31FFFFFF"
@@ -297,7 +297,7 @@
 
 
         <TextView
-            android:id="@+id/sermon_description"
+            android:id="@+id/radio_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"

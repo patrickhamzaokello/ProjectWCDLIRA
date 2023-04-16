@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -69,7 +70,8 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     RadioFeedAdapter radioFeedAdapter;
     LinearLayoutManager linearLayoutManager;
     private Dialog track_dialog;
-    private ImageButton linkBtn, whatsappBtn, twitterBtn, sharemoreBtn, closebtn;
+    private ImageButton closebtn;
+    private ImageView myimage;
     RecyclerView rv;
     ProgressBar progressBar;
     LinearLayout errorLayout;
@@ -95,6 +97,9 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
 
     ExoPlayer player;
     private RootActivity rootActivity;
+
+    private  TextView title_text, category_text,about_summary, about_summary2;
+    private Button playTrack;
 
     public MusicLibraryFragment() {
         // Required empty public constructor
@@ -169,11 +174,13 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         track_dialog = new Dialog(getContext());
         track_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         track_dialog.setContentView(R.layout.fragment_current_track_share_dialog);
-        linkBtn = track_dialog.findViewById(R.id.link);
         ConstraintLayout dialog_background = track_dialog.findViewById(R.id.dialog_background);
-        whatsappBtn = track_dialog.findViewById(R.id.whatsapp);
-        twitterBtn = track_dialog.findViewById(R.id.twitter);
-        sharemoreBtn = track_dialog.findViewById(R.id.Sharemore);
+        myimage = track_dialog.findViewById(R.id.myimage);
+        title_text = track_dialog.findViewById(R.id.title_text);
+        category_text = track_dialog.findViewById(R.id.category_text);
+        about_summary = track_dialog.findViewById(R.id.about_summary);
+        about_summary2 = track_dialog.findViewById(R.id.about_summary2);
+        playTrack = track_dialog.findViewById(R.id.playTrack);
         closebtn = track_dialog.findViewById(R.id.closebtn);
 
 
@@ -425,12 +432,13 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
                 .setTitle(radio.getTitle())
                 .setArtist("WCDT Radio")
                 .setArtworkUri(Uri.parse(radio.getCover()))
+                .setDescription(radio.getDescription())
                 .setExtras(bundle)
                 .build();
     }
 
 
-    private void dialogParent(Radio Radio) {
+    private void dialogParent(Radio radio) {
 
         closebtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -439,16 +447,28 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
             }
         });
 
-//        Glide.with(getContext())
-//                .applyDefaultRequestOptions(new RequestOptions()
-//                        .placeholder(R.drawable.default_radio)
-//                        .error(R.drawable.default_radio))
-//                .load(Objects.requireNonNull(player.getCurrentMediaItem()).mediaMetadata.artworkUri)
-//                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)    // cache both original & resized image
-//                .centerCrop()
-//                .transition(withCrossFade(factory))
-//                .into(shareArtwork);
+        playTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playablbum(radio);
+                track_dialog.dismiss();
+            }
+        });
 
+        Glide.with(getContext())
+                .applyDefaultRequestOptions(new RequestOptions()
+                        .placeholder(R.drawable.default_radio)
+                        .error(R.drawable.default_radio))
+                .load(radio.getCover())
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)    // cache both original & resized image
+                .centerCrop()
+                .transition(withCrossFade(factory))
+                .into(myimage);
+
+        title_text.setText(radio.getTitle());
+        category_text.setText(radio.getDateAdded());
+        about_summary.setText(radio.getSummary());
+        about_summary2.setText(radio.getDescription());
 
         track_dialog.show();
         track_dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);

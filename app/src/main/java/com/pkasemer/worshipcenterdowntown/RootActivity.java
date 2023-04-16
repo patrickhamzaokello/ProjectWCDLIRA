@@ -103,7 +103,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
     //controls
     TextView songNameView, songArtist, progressView, durationView, playerLyrics;
 
-    TextView homeSongNameView, viewlyricTilte,  homeArtistNameView;
+    TextView homeSongNameView, radio_description,  homeArtistNameView;
     ImageButton homePlayPauseBtn,homeSkipNextBtn,homeskipPrevBtn;
     ImageView homeSongImage;
     MaterialCardView loveHMBtn, loveBtn;
@@ -251,6 +251,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         shuffleModeBtn = findViewById(R.id.shuffleModeBtn);
 
         homeSongNameView = findViewById(R.id.homeSongNameView);
+        radio_description = findViewById(R.id.radio_description);
         playerLyrics = findViewById(R.id.playerLyrics);
         homeArtistNameView = findViewById(R.id.homeArtistNameView);
         homePlayPauseBtn = findViewById(R.id.homePlayPauseBtn);
@@ -387,6 +388,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         songNameView.setSelected(true);
         songArtist.setSelected(true);
         homeSongNameView.setSelected(true);
+        radio_description.setSelected(true);
         homeArtistNameView.setSelected(true);
         homeSongImage.setSelected(true);
         //exit player view
@@ -406,6 +408,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                 songNameView.setText(mediaItem.mediaMetadata.title);
                 songArtist.setText(mediaItem.mediaMetadata.artist);
                 homeSongNameView.setText(mediaItem.mediaMetadata.title);
+                radio_description.setText(mediaItem.mediaMetadata.description);
                 homeArtistNameView.setText(mediaItem.mediaMetadata.artist);
                 progressView.setText(getReadableTime((int) player.getCurrentPosition()));
                 seekbar.setProgress((int) player.getCurrentPosition());
@@ -834,7 +837,6 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
             playerView.setBackgroundColor(darkenbgColor(playerColor));
 //            layoutPlayer.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
             playerLyrics.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-            dialog_background.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
             homeControlWrapper.setBackgroundColor(darkenColor(playerColor));
 
             // track info btns
