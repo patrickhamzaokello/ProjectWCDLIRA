@@ -1,27 +1,40 @@
 package com.pkasemer.worshipcenterdowntown.Fragments;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
 import com.google.android.exoplayer2.ExoPlayer;
 import com.google.android.exoplayer2.MediaItem;
 import com.google.android.exoplayer2.MediaMetadata;
@@ -40,6 +53,7 @@ import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 import retrofit2.Call;
@@ -50,12 +64,12 @@ import retrofit2.Response;
 public class MusicLibraryFragment extends Fragment implements PaginationAdapterCallback, PlayRadioCallback {
 
 
-
     private static final String TAG = "MainActivity";
 
     RadioFeedAdapter radioFeedAdapter;
     LinearLayoutManager linearLayoutManager;
-
+    private Dialog track_dialog;
+    private ImageButton linkBtn, whatsappBtn, twitterBtn, sharemoreBtn, closebtn;
     RecyclerView rv;
     ProgressBar progressBar;
     LinearLayout errorLayout;
@@ -72,6 +86,8 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     private int currentPage = PAGE_START;
     private final int selectCategoryId = 3;
 
+    DrawableCrossFadeFactory factory =
+            new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
     List<RadioPage> radioPageList;
 
     private ApiService apiService;
@@ -83,7 +99,6 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     public MusicLibraryFragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -105,7 +120,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
 
-        radioFeedAdapter = new RadioFeedAdapter(getContext(), this, this,rootActivity);
+        radioFeedAdapter = new RadioFeedAdapter(getContext(), this, this, rootActivity);
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
@@ -146,9 +161,24 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
 
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
-
+        shareTrackDialog();
         return view;
     }
+
+    private void shareTrackDialog() {
+        track_dialog = new Dialog(getContext());
+        track_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        track_dialog.setContentView(R.layout.fragment_current_track_share_dialog);
+        linkBtn = track_dialog.findViewById(R.id.link);
+        ConstraintLayout dialog_background = track_dialog.findViewById(R.id.dialog_background);
+        whatsappBtn = track_dialog.findViewById(R.id.whatsapp);
+        twitterBtn = track_dialog.findViewById(R.id.twitter);
+        sharemoreBtn = track_dialog.findViewById(R.id.Sharemore);
+        closebtn = track_dialog.findViewById(R.id.closebtn);
+
+
+    }
+
     private void doRefresh() {
         progressBar.setVisibility(View.VISIBLE);
         if (callHomeCategories().isExecuted())
@@ -179,7 +209,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
                 // Got data. Send it to adapter
                 radioPageList = fetchResults(response);
                 progressBar.setVisibility(View.GONE);
-                if(radioPageList.isEmpty()){
+                if (radioPageList.isEmpty()) {
                     showCategoryErrorView();
                     return;
                 } else {
@@ -197,7 +227,6 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
             }
         });
     }
-
 
 
     private List<RadioPage> fetchResults(Response<RadioScreen> response) {
@@ -263,6 +292,7 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         super.onResume();
         doRefresh();
     }
+
     /**
      * @param throwable required for {@link #fetchErrorMessage(Throwable)}
      * @return
@@ -306,7 +336,6 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
         android.create().show();
 
     }
-
 
 
     /**
@@ -362,6 +391,11 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     }
 
     @Override
+    public void openDetails(Radio Radio) {
+        dialogParent(Radio);
+    }
+
+    @Override
     public void shareFeatureCallback(String share_id, String name, String artist, String share_type) {
         ShareFeature shareFeature = new ShareFeature(share_id, name, artist, share_type);
         shareFeature.setCancelable(true);
@@ -371,13 +405,13 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
     private List<MediaItem> getMediaItems(Radio radio) {
         List<MediaItem> mediaItems = new ArrayList<>();
 
-            MediaItem mediaItem = new MediaItem.Builder()
-                    .setUri(radio.getPath())
-                    .setMediaMetadata(getMetadata(radio))
-                    .build();
+        MediaItem mediaItem = new MediaItem.Builder()
+                .setUri(radio.getPath())
+                .setMediaMetadata(getMetadata(radio))
+                .build();
 
-            // add the media items to media items list
-            mediaItems.add(mediaItem);
+        // add the media items to media items list
+        mediaItems.add(mediaItem);
         return mediaItems;
     }
 
@@ -393,5 +427,34 @@ public class MusicLibraryFragment extends Fragment implements PaginationAdapterC
                 .setArtworkUri(Uri.parse(radio.getCover()))
                 .setExtras(bundle)
                 .build();
+    }
+
+
+    private void dialogParent(Radio Radio) {
+
+        closebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                track_dialog.dismiss();
+            }
+        });
+
+//        Glide.with(getContext())
+//                .applyDefaultRequestOptions(new RequestOptions()
+//                        .placeholder(R.drawable.default_radio)
+//                        .error(R.drawable.default_radio))
+//                .load(Objects.requireNonNull(player.getCurrentMediaItem()).mediaMetadata.artworkUri)
+//                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)    // cache both original & resized image
+//                .centerCrop()
+//                .transition(withCrossFade(factory))
+//                .into(shareArtwork);
+
+
+        track_dialog.show();
+        track_dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        track_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        track_dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        track_dialog.getWindow().setGravity(Gravity.BOTTOM);
+
     }
 }

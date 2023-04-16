@@ -47,10 +47,10 @@
     <color name="default_image_icon">#8DFFFFFF</color>
     <color name="play_view_bg">#3A428C</color>
     <color name="home_song_controller">#3A428C</color>
-    <color name="modernPlayerbg">#1F0233</color>
+    <color name="modernPlayerbg">#3A428C</color>
     <color name="colorPrimaryText">#353535</color>
     <color name="nicetext">#423A65</color>
-    <color name="player_view_bg">#270240</color>
+    <color name="player_view_bg">#3A428C</color>
     <color name="seek_bar_progress_bg_tint">#DDDDDD</color>
     <color name="seek_progress">#FFFFFF</color>
     <color name="progressnoColor">#FFFFFF</color>
@@ -61,6 +61,7 @@
     <color name="shareColors">#FFFFFF</color>
     <color name="purple_on_purple">#604088</color>
     <color name="track_not_Liked">#E91E63</color>
+    <color name="lessBtn">#8DFFFFFF</color>
 
 
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/modernPlayer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
     android:background="@color/modernPlayerbg"
+    android:id="@+id/modernPlayer"
     android:clickable="true"
     android:elevation="200dp"
     android:focusable="true"
@@ -15,177 +15,12 @@
     tools:context=".RootActivity"
     tools:visibility="visible">
 
-    <View
-        android:id="@+id/viewSupporterForBackground"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@id/layoutPlayer"
-        app:layout_constraintStart_toStartOf="@id/layoutPlayer"
-        app:layout_constraintTop_toTopOf="@id/layoutPlayer"
-
-        />
-
-    <View
-        android:id="@+id/viewSupporterForAlbumArt"
-        android:layout_width="1dp"
-        android:layout_height="1dp"
-        app:layout_constraintBottom_toTopOf="@id/layoutPlayer"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textNowPlaying"
-
-        />
-
-    <View
-        android:id="@+id/view1"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/viewSupporterForAlbumArt"
-        app:layout_constraintEnd_toStartOf="@id/viewSupporterForAlbumArt"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/viewSupporterForBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/view1"
-        app:layout_constraintTop_toBottomOf="@id/view1" />
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@id/viewSupporterForAlbumArt"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/viewSupporterForAlbumArt">
+        android:paddingBottom="20dp"
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/cir_artworkView"
-            android:scaleType="centerCrop"
-            android:src="@drawable/default_radio"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginHorizontal="20dp"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="8dp" />
-
-        <TextView
-            android:id="@+id/playerLyrics"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:fontFamily="@font/roboto_light"
-            android:text="@string/request_lyrics"
-            android:padding="20dp"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:background="@drawable/smallrounded"
-            android:backgroundTint="#280B63"
-            app:layout_constraintStart_toStartOf="@+id/cir_artworkView"
-            app:layout_constraintEnd_toEndOf="@+id/cir_artworkView"
-            app:layout_constraintBottom_toBottomOf="@+id/cir_artworkView"
-            app:layout_constraintTop_toTopOf="@+id/cir_artworkView"
-            android:textColor="#61FFFFFF"
-            android:textSize="20sp" />
-
-
-        <TextView
-            android:id="@+id/songNameView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/roboto_light"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:text="Current Song Title"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/loveBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cir_artworkView" />
-
-        <TextView
-            android:id="@+id/songArtist"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:ellipsize="marquee"
-            android:fontFamily="@font/roboto_light"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:singleLine="true"
-            android:text="Artist Name"
-            app:layout_constraintEnd_toStartOf="@+id/loveBtn"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="#FFFFFF"
-            android:textSize="15dp"
-            app:layout_constraintTop_toBottomOf="@id/songNameView" />
-
-        <ImageButton
-            android:id="@+id/trackshareBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/small_control_background"
-            android:contentDescription="@string/app_name"
-            android:padding="4dp"
-            android:src="@drawable/ic_circum_share_1"
-            app:layout_constraintTop_toTopOf="@id/songNameView"
-            app:layout_constraintBottom_toBottomOf="@+id/songArtist"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white" />
-
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/loveBtn"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:clipToPadding="false"
-            android:layout_marginEnd="5dp"
-            app:cardBackgroundColor="#00000000"
-            app:layout_constraintEnd_toStartOf="@+id/trackshareBtn"
-            app:layout_constraintTop_toTopOf="@id/trackshareBtn"
-            app:layout_constraintBottom_toBottomOf="@id/trackshareBtn"
-            app:cardElevation="0dp"
-            app:cardCornerRadius="20dp">
-
-            <RelativeLayout
-                android:padding="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <android.widget.Button
-                    android:id="@+id/loveTrackBtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_centerHorizontal="true"
-                    android:background="@drawable/ic_lovedtrack"
-                    android:clickable="false"
-                    android:theme="@style/WhiteBtn" />
-
-
-            </RelativeLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-
-
-
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        >
 
 
     <TextView
@@ -193,17 +28,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:fontFamily="@font/roboto_light"
+        android:fontFamily="@font/montserrat"
         android:ellipsize="marquee"
         android:marqueeRepeatLimit="marquee_forever"
         android:singleLine="true"
         android:text="WCDT ONLINE RADIO"
         android:textAllCaps="true"
-        android:textColor="@color/colorPrimaryText"
+        android:textColor="#D7FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageButton
         android:id="@+id/playerCloseBtns"
@@ -220,26 +56,130 @@
         app:layout_constraintTop_toTopOf="@+id/textNowPlaying"
         app:tint="@color/white" />
 
-    <ImageButton
-        android:id="@+id/topbtnShare"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:background="@drawable/small_control_background"
-        android:contentDescription="@string/app_name"
-        android:padding="4dp"
-        android:src="@drawable/ic_baseline_more_horiz_24"
-        app:tint="@color/white"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/textNowPlaying"
-        app:layout_constraintTop_toTopOf="@+id/textNowPlaying" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layoutPlayer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/player_background"
-        app:layout_constraintBottom_toBottomOf="parent">
+
+
+
+
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/cir_artworkView"
+            android:scaleType="centerCrop"
+            android:src="@drawable/default_radio"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="20dp"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/textNowPlaying"
+            app:riv_corner_radius="8dp" />
+
+        <TextView
+            android:id="@+id/playerLyrics"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fontFamily="@font/roboto_light"
+            android:text="@string/request_lyrics"
+            android:padding="20dp"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:background="@drawable/smallrounded"
+            android:backgroundTint="#2D3471"
+            app:layout_constraintStart_toStartOf="@+id/cir_artworkView"
+            app:layout_constraintEnd_toEndOf="@+id/cir_artworkView"
+            app:layout_constraintBottom_toBottomOf="@+id/cir_artworkView"
+            app:layout_constraintTop_toTopOf="@+id/cir_artworkView"
+            android:textColor="#E6FFFFFF"
+            android:textSize="20sp" />
+
+        <SeekBar
+            android:id="@+id/seekbar"
+            style="@style/customSeekbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginHorizontal="8dp"
+            android:elevation="4dp"
+            android:progress="10"
+            android:progressBackgroundTint="@color/seek_bar_progress_bg_tint"
+            android:secondaryProgressTint="#FFFFFF"
+            android:secondaryProgress="20"
+            android:progressTint="@color/seek_progress"
+            android:splitTrack="false"
+            android:thumb="@drawable/seek_thumb"
+            android:thumbOffset="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/cir_artworkView" />
+
+        <TextView
+            android:id="@+id/progressView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="4dp"
+            android:text="00:00"
+            android:textColor="@color/lessBtn"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintStart_toStartOf="@id/seekbar"
+            app:layout_constraintTop_toBottomOf="@id/seekbar" />
+
+        <TextView
+            android:id="@+id/durationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="20dp"
+            android:text="01:37"
+            android:textColor="@color/lessBtn"
+            android:textSize="12sp"
+            android:fontFamily="@font/roboto_light"
+            app:layout_constraintTop_toBottomOf="@id/seekbar"
+            app:layout_constraintEnd_toEndOf="@id/seekbar"
+            />
+
+
+        <TextView
+            android:id="@+id/songNameView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="8dp"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/montserrat"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="Current Song Title"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/durationView"
+            />
+
+        <TextView
+            android:id="@+id/songArtist"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/montserrat"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:gravity="center"
+            android:layout_marginEnd="20dp"
+            android:text="Artist Name"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#BFFFFD"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/songNameView" />
 
 
 
@@ -248,12 +188,13 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginBottom="55dp"
-            android:background="@drawable/play_background_btn"
+            android:background="@null"
             android:contentDescription="@string/app_name"
             android:padding="12dp"
             android:src="@drawable/ic_baseline_play_circle_filled_24"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/songArtist"
+            android:layout_marginTop="20dp"
             app:layout_constraintStart_toStartOf="parent"
 
             />
@@ -276,10 +217,11 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginEnd="15dp"
-            android:background="@drawable/next_previous_btn_background"
+            android:background="@null"
             android:contentDescription="@string/app_name"
             android:padding="4dp"
-            android:src="@drawable/ic_skip_previous"
+            app:tint="#FFFFFF"
+            android:src="@drawable/fluent_skip_back_10_32_filled"
             app:layout_constraintBottom_toBottomOf="@id/playPauseBtn"
             app:layout_constraintEnd_toStartOf="@id/playPauseBtn"
             app:layout_constraintTop_toTopOf="@id/playPauseBtn"
@@ -291,10 +233,11 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginStart="15dp"
-            android:background="@drawable/next_previous_btn_background"
+            android:background="@null"
             android:contentDescription="@string/app_name"
             android:padding="4dp"
-            android:src="@drawable/ic_skip_next"
+            android:src="@drawable/fluent_skip_forward_10_32_filled"
+            app:tint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="@id/playPauseBtn"
             app:layout_constraintStart_toEndOf="@id/playPauseBtn"
             app:layout_constraintTop_toTopOf="@id/playPauseBtn"
@@ -310,6 +253,7 @@
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:src="@drawable/shuffle_off"
+            app:tint="@color/lessBtn"
             app:layout_constraintBottom_toBottomOf="@id/playPauseBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/playPauseBtn"
@@ -324,100 +268,63 @@
             android:background="@null"
             android:contentDescription="@string/app_name"
             android:src="@drawable/repeat_all_off_24_regular"
+            app:tint="@color/lessBtn"
             app:layout_constraintBottom_toBottomOf="@id/playPauseBtn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/playPauseBtn"
 
             />
 
+
         <TextView
-            android:id="@+id/plViewLyricsTitle"
+            android:id="@+id/stationDetails"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Up Next"
-            android:background="@drawable/smallrounded"
-            android:backgroundTint="@color/white"
-            android:textSize="12sp"
-            android:paddingHorizontal="5dp"
-            android:fontFamily="@font/kufam_medium"
-            android:paddingBottom="2dp"
-            android:textColor="#0F1729"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginStart="20dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginBottom="15dp"
-
-            />
-
-
-
-        <TextView
-            android:id="@+id/upNext"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginEnd="20dp"
-            android:fontFamily="@font/roboto_light"
-            android:text="Upnext"
-            android:maxLines="1"
-            android:ellipsize="end"
-            app:layout_constraintStart_toEndOf="@id/plViewLyricsTitle"
+            android:ellipsize="marquee"
+            android:fontFamily="@font/montserrat"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:gravity="center"
+            android:layout_marginTop="35dp"
+            android:text="Read More about this Station"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="#FFFFFF"
-            app:layout_constraintTop_toTopOf="@id/plViewLyricsTitle"
-            app:layout_constraintBottom_toBottomOf="@id/plViewLyricsTitle"
-            android:textSize="12sp" />
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#31FFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/playPauseBtn" />
 
-
-        <SeekBar
-            android:id="@+id/seekbar"
-            style="@style/customSeekbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginHorizontal="8dp"
-            android:elevation="4dp"
-            android:progress="10"
-            android:progressBackgroundTint="@color/seek_bar_progress_bg_tint"
-            android:secondaryProgressTint="#FFFFFF"
-            android:secondaryProgress="20"
-            android:progressTint="@color/seek_progress"
-            android:splitTrack="false"
-            android:thumb="@drawable/seek_thumb"
-            android:thumbOffset="0dp"
-            app:layout_constraintBottom_toTopOf="@id/playPauseBtn" />
 
         <TextView
-            android:id="@+id/progressView"
-            android:layout_width="wrap_content"
+            android:id="@+id/sermon_description"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="4dp"
-            android:text="00:00"
-            android:textColor="@color/progressnoColor"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_light"
-            app:layout_constraintBottom_toTopOf="@id/seekbar"
-            app:layout_constraintStart_toStartOf="@id/seekbar"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/durationView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginBottom="4dp"
-            android:text="01:37"
-            android:textColor="@color/progressnoColor"
-            android:textSize="12sp"
-            android:fontFamily="@font/roboto_light"
-            app:layout_constraintBottom_toTopOf="@id/seekbar"
-            app:layout_constraintEnd_toEndOf="@id/seekbar"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:ellipsize="marquee"
+            android:fontFamily="@font/montserrat"
+            android:padding="20dp"
+            android:gravity="center"
+            android:background="@drawable/smallrounded"
+            android:backgroundTint="#36000000"
+            android:layout_marginTop="10dp"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="#5EFFFFFF"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@id/stationDetails" />
+
+
+
+
+
+
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

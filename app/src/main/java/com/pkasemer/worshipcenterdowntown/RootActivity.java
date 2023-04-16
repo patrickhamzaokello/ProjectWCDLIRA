@@ -98,15 +98,16 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
     //today
     public ExoPlayer player;
 
-    public ConstraintLayout playerView, layoutPlayer;
-    ImageButton playerCloseBtn, topbtnShare;
+    public ScrollView playerView;
+    ImageButton playerCloseBtn;
     //controls
     TextView songNameView, songArtist, progressView, durationView, playerLyrics;
 
-    TextView homeSongNameView, plViewLyricsTitle, viewlyricTilte, upNext, homeArtistNameView, homePlayPauseBtn, homeSkipNextBtn;
+    TextView homeSongNameView, viewlyricTilte,  homeArtistNameView;
+    ImageButton homePlayPauseBtn,homeSkipNextBtn,homeskipPrevBtn;
     ImageView homeSongImage;
     MaterialCardView loveHMBtn, loveBtn;
-    ImageButton playPauseBtn, skipPreviousBtn, skipNextBtn, shuffleModeBtn, repeatModeBtn, trackshareBtn;
+    ImageButton playPauseBtn, skipPreviousBtn, skipNextBtn, shuffleModeBtn, repeatModeBtn;
     Button createStation, likeBtn;
     ProgressBar songLoaderProgress, homesongLoaderProgress;
     private static final int BUFFER_UPDATE_INTERVAL = 1000; // 1 sec
@@ -117,7 +118,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
     //artwork
     RoundedImageView artworkView;
     SeekBar seekbar;
-    Button loveHMTrackBtn, loveTrackBtn;
+    Button loveHMTrackBtn;
     // status bar & navigation color
     // repeat mode
     int repeatMode = 1; //  repeat one = 1 repeat all = 2, repeat off = 3;
@@ -139,15 +140,11 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
     List<Radio> RadioList;
 
     //a broadcast to know weather the data is synced or not
-    public static final String shareWebLink = "https://open.mwonya.com/link/share/track/";
 
 
     //Broadcast receiver to know the sync status
     private FirebaseAnalytics mFirebaseAnalytics;
-    private Dialog track_dialog;
-    private ImageButton linkBtn, whatsappBtn, twitterBtn, sharemoreBtn, closebtn;
-    private TextView ShareSubBtn, ShareTitleBtn;
-    private RoundedImageView shareArtwork;
+
     User userModel;
 
     @Override
@@ -171,7 +168,6 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         setupFirebaseAnalytics();
         bindToPlayerService();
 
-        shareTrackDialog();
 
     }
 
@@ -208,7 +204,6 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
 
     private void initializePlayer() {
         playerView = findViewById(R.id.modernPlayer);
-        layoutPlayer = findViewById(R.id.layoutPlayer);
         playerView.setVisibility(View.GONE);
 
     }
@@ -229,28 +224,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         onBindService();
     }
 
-    private void shareTrackDialog() {
-        track_dialog = new Dialog(this);
-        track_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        track_dialog.setContentView(R.layout.fragment_current_track_share_dialog);
-        linkBtn = track_dialog.findViewById(R.id.link);
-        dialog_background = track_dialog.findViewById(R.id.dialog_background);
-        whatsappBtn = track_dialog.findViewById(R.id.whatsapp);
-        twitterBtn = track_dialog.findViewById(R.id.twitter);
-        sharemoreBtn = track_dialog.findViewById(R.id.Sharemore);
-        likeBtn = track_dialog.findViewById(R.id.likeBtn);
-        createStation = track_dialog.findViewById(R.id.createStation);
-        closebtn = track_dialog.findViewById(R.id.closebtn);
-        lyricsView = track_dialog.findViewById(R.id.viewlyrics);
 
-        shareArtwork = track_dialog.findViewById(R.id.shareArtwork);
-        ShareTitleBtn = track_dialog.findViewById(R.id.ShareTitle);
-        ShareSubBtn = track_dialog.findViewById(R.id.ShareSub);
-        viewlyricTilte = track_dialog.findViewById(R.id.viewlyricTilte);
-
-
-
-    }
 
 
 
@@ -268,23 +242,18 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
 
     private void initializeViews() {
         playerCloseBtn = findViewById(R.id.playerCloseBtns);
-        topbtnShare = findViewById(R.id.topbtnShare);
         songNameView = findViewById(R.id.songNameView);
         songArtist = findViewById(R.id.songArtist);
         skipPreviousBtn = findViewById(R.id.skipPreviousBtn);
         skipNextBtn = findViewById(R.id.skipnextBtn);
         playPauseBtn = findViewById(R.id.playPauseBtn);
         repeatModeBtn = findViewById(R.id.repeatModeBtn);
-        trackshareBtn = findViewById(R.id.trackshareBtn);
         shuffleModeBtn = findViewById(R.id.shuffleModeBtn);
 
         homeSongNameView = findViewById(R.id.homeSongNameView);
         playerLyrics = findViewById(R.id.playerLyrics);
         homeArtistNameView = findViewById(R.id.homeArtistNameView);
-        upNext = findViewById(R.id.upNext);
-        homeSkipNextBtn = findViewById(R.id.homeSkipNextBtn);
         homePlayPauseBtn = findViewById(R.id.homePlayPauseBtn);
-        plViewLyricsTitle = findViewById(R.id.plViewLyricsTitle);
         homeSongImage = findViewById(R.id.homeSongImage);
 
 
@@ -298,10 +267,8 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         seekbar = findViewById(R.id.seekbar);
         progressView = findViewById(R.id.progressView);
         durationView = findViewById(R.id.durationView);
-        loveHMTrackBtn = findViewById(R.id.loveHMTrackBtn);
-        loveTrackBtn = findViewById(R.id.loveTrackBtn);
-        loveHMBtn = findViewById(R.id.loveHMBtn);
-        loveBtn = findViewById(R.id.loveBtn);
+        homeskipPrevBtn = findViewById(R.id.homeskipPrevBtn);
+        homeSkipNextBtn = findViewById(R.id.homeSkipNextBtn);
 
         // Set the default visibility of the textView to GONE
         playerLyrics.setVisibility(View.GONE);
@@ -319,16 +286,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
             }
         });
 
-        loveHMBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-        loveBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
+
 
 
     }
@@ -431,10 +389,6 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         homeSongNameView.setSelected(true);
         homeArtistNameView.setSelected(true);
         homeSongImage.setSelected(true);
-        upNext.setSelected(true);
-        loveHMBtn.setSelected(true);
-        ShareTitleBtn.setSelected(true);
-        ShareSubBtn.setSelected(true);
         //exit player view
         playerCloseBtn.setOnClickListener(view -> exitPlayerView());
         //open player view on home control
@@ -459,28 +413,19 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                 seekbar.setMax((int) player.getDuration());
                 durationView.setText(getReadableTime((int) player.getDuration()));
                 playPauseBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
-                homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0);
+                homePlayPauseBtn.setImageResource(R.drawable.ic_pause);
 
                 // share Dialog
-                ShareSubBtn.setText(mediaItem.mediaMetadata.artist);
-                ShareTitleBtn.setText(mediaItem.mediaMetadata.title);
 
                 // show the current artwork
                 showCurrentArtwork();
-                if (mediaItem != null && mediaItem.mediaMetadata != null) {
-                    // Get the title of the next song
-                    String nextSongTitle = mediaItem.mediaMetadata.title.toString();
-
-                    // Update the next song TextView
-                    upNext.setText("Next Song: " + nextSongTitle);
-                }
 
                 //update the progress of the current song
 
 //                artworkView.setAnimation(loadRotation());
                 songArtistClick(songArtist, mediaItem);
                 SongNameClicked(songNameView, mediaItem);
-                shareSong(mediaItem);
+
 
 
                 if (!player.isPlaying()) {
@@ -540,12 +485,10 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                     homesongLoaderProgress.setVisibility(View.GONE);
 
                     // share Dialog
-                    ShareSubBtn.setText(Objects.requireNonNull(player.getCurrentMediaItem()).mediaMetadata.artist);
-                    ShareTitleBtn.setText(Objects.requireNonNull(player.getCurrentMediaItem()).mediaMetadata.title);
 
 
                     playPauseBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
-                    homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0);
+                    homePlayPauseBtn.setImageResource(R.drawable.ic_pause);
 
                     // show the current artwork
                     showCurrentArtwork();
@@ -556,7 +499,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                 } else {
 
                     playPauseBtn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
-                    homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0);
+                    homePlayPauseBtn.setImageResource(R.drawable.ic_play);
                     player.setPlayWhenReady(false);
                     //remove callbacks
                     updateBufferHandler.removeCallbacks(updateBufferRunnable);
@@ -570,10 +513,10 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                 Player.Listener.super.onIsPlayingChanged(isplaying);
                 if (isplaying) {
                     playPauseBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
-                    homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0);
+                    homePlayPauseBtn.setImageResource(R.drawable.ic_pause);
                 } else {
                     playPauseBtn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
-                    homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0);
+                    homePlayPauseBtn.setImageResource(R.drawable.ic_play);
                 }
             }
 
@@ -604,6 +547,7 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         // skip to next track
         skipNextBtn.setOnClickListener(view -> skipToNextTrack());
         homeSkipNextBtn.setOnClickListener(view -> skipToNextTrack());
+        homeskipPrevBtn.setOnClickListener(view -> skipToPreviousTrack());
         // skip to previous track
         skipPreviousBtn.setOnClickListener(view -> skipToPreviousTrack());
 
@@ -729,111 +673,11 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
     }
 
     // Define a method for sharing a song
-    public void shareSong(MediaItem mediaItem) {
-        trackshareBtn.setOnClickListener(view -> {
-            dialogParent(mediaItem);
-        });
-        topbtnShare.setOnClickListener(view -> {
-            dialogParent(mediaItem);
-        });
-    }
-
-    private void dialogParent(MediaItem mediaItem) {
-        linkBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                shareTrack("copy", mediaItem);
-            }
-        });
 
 
-        whatsappBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // setTrack information as argument
-                shareTrack("com.whatsapp", mediaItem);
-            }
-        });
-
-        twitterBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // setTrack information as argument
-                shareTrack("com.twitter.android", mediaItem);
-            }
-        });
-
-        sharemoreBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // setTrack information as argument
-                shareTrack(null, mediaItem);
-            }
-        });
 
 
-        createStation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                track_dialog.dismiss();
-            }
-        });
-        viewlyricTilte.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                track_dialog.dismiss();
-            }
-        });
 
-        closebtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                track_dialog.dismiss();
-            }
-        });
-
-
-        track_dialog.show();
-        track_dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        track_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        track_dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
-        track_dialog.getWindow().setGravity(Gravity.BOTTOM);
-
-    }
-
-    private void shareTrack(String packageName, MediaItem mediaItem) {
-        Bundle media_bundle = mediaItem.mediaMetadata.extras;
-        if (media_bundle != null) {
-            String m_songID = media_bundle.getString("song_bn_id");
-            String social = "Listen to " + mediaItem.mediaMetadata.title + " by " + mediaItem.mediaMetadata.artist + " on Mwonya by clicking the link below  ";
-
-
-            if (!TextUtils.isEmpty(m_songID)) {
-                // Create a URI for the track
-                Uri trackUri = Uri.parse(shareWebLink + m_songID);
-                // Create an intent for sharing the track
-                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-                shareIntent.setType("text/plain");
-                shareIntent.putExtra(Intent.EXTRA_TEXT, social + trackUri.toString());
-                shareIntent.setPackage(packageName);
-                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                if (packageName == "copy") {
-                    // Get the clipboard manager
-                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                    // Create a new ClipData object
-                    ClipData clip = ClipData.newPlainText("trackUri", social + trackUri.toString());
-                    // Set the ClipData object to the clipboard
-                    clipboard.setPrimaryClip(clip);
-                    // Show a message that the text is copied
-                    Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Display a list of available sharing options
-                    startActivity(Intent.createChooser(shareIntent, "Share track using"));
-                }
-            }
-        }
-    }
 
 
     private void SongNameClicked(TextView songName, MediaItem mediaItem) {
@@ -891,29 +735,31 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
         if (player.isPlaying()) {
             player.pause();
             playPauseBtn.setImageResource(R.drawable.ic_baseline_play_circle_filled_24);
-            homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play, 0, 0, 0);
+            homePlayPauseBtn.setImageResource(R.drawable.ic_play);
 //            artworkView.clearAnimation();
 
         } else {
             player.play();
             playPauseBtn.setImageResource(R.drawable.ic_baseline_pause_circle_filled_24);
-            homePlayPauseBtn.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause, 0, 0, 0);
+            homePlayPauseBtn.setImageResource(R.drawable.ic_pause);
 //            artworkView.startAnimation(loadRotation());
 
         }
     }
 
     private void skipToNextTrack() {
-        if (player.hasNextMediaItem()) {
-            player.seekToNext();
+        if (player.isPlaying()) {
+            player.seekTo(player.getCurrentPosition() + 10000);
         } else {
-            Toast.makeText(this, "Select New Media to play", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Media Not Playing", Toast.LENGTH_SHORT).show();
         }
     }
 
     private void skipToPreviousTrack() {
-        if (player.hasPreviousMediaItem()) {
-            player.seekToPrevious();
+        if (player.isPlaying()) {
+            player.seekTo(player.getCurrentPosition() - 10000);
+        } else {
+            Toast.makeText(this, "Media Not Playing", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -956,15 +802,6 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
                 .into(artworkView);
 
 
-        Glide.with(getApplicationContext())
-                .applyDefaultRequestOptions(new RequestOptions()
-                        .placeholder(R.drawable.default_radio)
-                        .error(R.drawable.default_radio))
-                .load(Objects.requireNonNull(player.getCurrentMediaItem()).mediaMetadata.artworkUri)
-                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)    // cache both original & resized image
-                .centerCrop()
-                .transition(withCrossFade(factory))
-                .into(shareArtwork);
     }
 
 
@@ -995,26 +832,19 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
 
             // Set the background color of the LinearLayout
             playerView.setBackgroundColor(darkenbgColor(playerColor));
-            layoutPlayer.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
+//            layoutPlayer.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
             playerLyrics.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
             dialog_background.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
             homeControlWrapper.setBackgroundColor(darkenColor(playerColor));
 
             // track info btns
-            trackshareBtn.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-            loveBtn.setCardBackgroundColor(darkenColor(playerColor));
             playerCloseBtn.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-            topbtnShare.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
 
             //player controls
             skipPreviousBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
             playPauseBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
             skipNextBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            whatsappBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            linkBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            twitterBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            sharemoreBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            closebtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
+
 
 
             //text_color

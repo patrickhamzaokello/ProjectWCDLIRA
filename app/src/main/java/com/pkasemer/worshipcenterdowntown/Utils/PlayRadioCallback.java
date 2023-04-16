@@ -11,5 +11,7 @@ import java.util.List;
 
 public interface PlayRadioCallback {
     void playablbum(Radio radio);
+
+    void openDetails(Radio Radio);
     void shareFeatureCallback(String share_id,String name, String artist, String share_type);
 }

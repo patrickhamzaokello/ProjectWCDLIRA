@@ -92,7 +92,7 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, sliderBanner.getTitle(), Toast.LENGTH_SHORT).show();
-                playRadioCallback.playablbum(sliderBanner);
+                playRadioCallback.openDetails(sliderBanner);
             }
         });
 
@@ -100,6 +100,7 @@ public class RadioSliderAdapter extends SliderViewAdapter<RadioSliderAdapter.Sli
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, sliderBanner.getTitle(), Toast.LENGTH_SHORT).show();
+                playRadioCallback.openDetails(sliderBanner);
             }
         });
     }

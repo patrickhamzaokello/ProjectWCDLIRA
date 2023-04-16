@@ -57,7 +57,7 @@ public class AllRadiosAdapter extends RecyclerView.Adapter<AllRadiosAdapter.Item
     private final Context context;
     private final List<Radio> radioList;
     private static final String BASE_URL_IMG = "";
-
+    PlayRadioCallback playRadioCallback;
     DrawableCrossFadeFactory factory =
             new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
 
@@ -65,6 +65,7 @@ public class AllRadiosAdapter extends RecyclerView.Adapter<AllRadiosAdapter.Item
     public AllRadiosAdapter(Context context, List<Radio> radios, PlayRadioCallback playRadioCallback) {
         this.context = context;
         this.radioList = radios;
+        this.playRadioCallback = playRadioCallback;
     }
 
     @Override
@@ -106,17 +107,10 @@ public class AllRadiosAdapter extends RecyclerView.Adapter<AllRadiosAdapter.Item
 
 
         //show toast on click of show all button
-        holder.cover_image.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(context.getApplicationContext(), SelectedSermonDetail.class);
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                //PACK DATA
-                i.putExtra("SENDER_KEY", "MenuDetails");
-                i.putExtra("selectedSermonId", radio.getId());
-                i.putExtra("selectedSermonTitle", radio.getTitle());
-                context.startActivity(i);
+                playRadioCallback.openDetails(radio);
             }
         });
     }
