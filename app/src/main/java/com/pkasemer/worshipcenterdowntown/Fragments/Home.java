@@ -1,36 +1,60 @@
 package com.pkasemer.worshipcenterdowntown.Fragments;
 
+import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
+
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.pkasemer.worshipcenterdowntown.Adapters.HomeFeedAdapter;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
+import com.google.android.exoplayer2.ExoPlayer;
+import com.google.android.exoplayer2.MediaItem;
+import com.google.android.exoplayer2.MediaMetadata;
+import com.pkasemer.worshipcenterdowntown.Adapters.RadioFeedAdapter;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiBase;
 import com.pkasemer.worshipcenterdowntown.Apis.ApiService;
-import com.pkasemer.worshipcenterdowntown.Models.HomeBase;
-import com.pkasemer.worshipcenterdowntown.Models.HomeFeed;
+import com.pkasemer.worshipcenterdowntown.Dialogs.ShareFeature;
+import com.pkasemer.worshipcenterdowntown.Models.Radio;
+import com.pkasemer.worshipcenterdowntown.Models.RadioPage;
+import com.pkasemer.worshipcenterdowntown.Models.RadioScreen;
 import com.pkasemer.worshipcenterdowntown.R;
 import com.pkasemer.worshipcenterdowntown.RootActivity;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationAdapterCallback;
 import com.pkasemer.worshipcenterdowntown.Utils.PaginationScrollListener;
+import com.pkasemer.worshipcenterdowntown.Utils.PlayRadioCallback;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.TimeoutException;
 
 import retrofit2.Call;
@@ -38,15 +62,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class Home extends Fragment implements PaginationAdapterCallback {
-
+public class Home extends Fragment implements PaginationAdapterCallback, PlayRadioCallback {
 
 
     private static final String TAG = "MainActivity";
 
-    HomeFeedAdapter adapter;
+    RadioFeedAdapter radioFeedAdapter;
     LinearLayoutManager linearLayoutManager;
-
+    private Dialog track_dialog;
+    private ImageButton closebtn;
+    private ImageView myimage;
     RecyclerView rv;
     ProgressBar progressBar;
     LinearLayout errorLayout;
@@ -63,24 +88,28 @@ public class Home extends Fragment implements PaginationAdapterCallback {
     private int currentPage = PAGE_START;
     private final int selectCategoryId = 3;
 
-    List<HomeFeed> homeFeeds;
+    DrawableCrossFadeFactory factory =
+            new DrawableCrossFadeFactory.Builder().setCrossFadeEnabled(true).build();
+    List<RadioPage> radioPageList;
 
     private ApiService apiService;
     private Object PaginationAdapterCallback;
 
+    ExoPlayer player;
+    private RootActivity rootActivity;
+
+    private  TextView title_text, category_text,about_summary, about_summary2;
+    private Button playTrack;
 
     public Home() {
         // Required empty public constructor
     }
 
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
+        rootActivity = (RootActivity) getActivity();
     }
 
     @Override
@@ -96,13 +125,13 @@ public class Home extends Fragment implements PaginationAdapterCallback {
         txtError = view.findViewById(R.id.error_txt_cause);
         swipeRefreshLayout = view.findViewById(R.id.main_swiperefresh);
 
-        adapter = new HomeFeedAdapter(getContext(), this);
+        radioFeedAdapter = new RadioFeedAdapter(getContext(), this, this, rootActivity);
 
         linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         rv.setLayoutManager(linearLayoutManager);
         rv.setItemAnimator(new DefaultItemAnimator());
 
-        rv.setAdapter(adapter);
+        rv.setAdapter(radioFeedAdapter);
 
         rv.addOnScrollListener(new PaginationScrollListener(linearLayoutManager) {
             @Override
@@ -137,9 +166,26 @@ public class Home extends Fragment implements PaginationAdapterCallback {
 
         swipeRefreshLayout.setOnRefreshListener(this::doRefresh);
 
-
+        shareTrackDialog();
         return view;
     }
+
+    private void shareTrackDialog() {
+        track_dialog = new Dialog(getContext());
+        track_dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        track_dialog.setContentView(R.layout.fragment_current_track_share_dialog);
+        ConstraintLayout dialog_background = track_dialog.findViewById(R.id.dialog_background);
+        myimage = track_dialog.findViewById(R.id.myimage);
+        title_text = track_dialog.findViewById(R.id.title_text);
+        category_text = track_dialog.findViewById(R.id.category_text);
+        about_summary = track_dialog.findViewById(R.id.about_summary);
+        about_summary2 = track_dialog.findViewById(R.id.about_summary2);
+        playTrack = track_dialog.findViewById(R.id.playTrack);
+        closebtn = track_dialog.findViewById(R.id.closebtn);
+
+
+    }
+
     private void doRefresh() {
         progressBar.setVisibility(View.VISIBLE);
         if (callHomeCategories().isExecuted())
@@ -147,8 +193,8 @@ public class Home extends Fragment implements PaginationAdapterCallback {
 
         // TODO: Check if data is stale.
         //  Execute network request if cache is expired; otherwise do not update data.
-        adapter.getMovies().clear();
-        adapter.notifyDataSetChanged();
+        radioFeedAdapter.getMovies().clear();
+        radioFeedAdapter.notifyDataSetChanged();
         loadFirstPage();
         swipeRefreshLayout.setRefreshing(false);
     }
@@ -160,29 +206,29 @@ public class Home extends Fragment implements PaginationAdapterCallback {
         hideErrorView();
         currentPage = PAGE_START;
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<RadioScreen>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<RadioScreen> call, Response<RadioScreen> response) {
                 hideErrorView();
 
 //                Log.i(TAG, "onResponse: " + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
                 // Got data. Send it to adapter
-                homeFeeds = fetchResults(response);
+                radioPageList = fetchResults(response);
                 progressBar.setVisibility(View.GONE);
-                if(homeFeeds.isEmpty()){
+                if (radioPageList.isEmpty()) {
                     showCategoryErrorView();
                     return;
                 } else {
-                    adapter.addAll(homeFeeds);
+                    radioFeedAdapter.addAll(radioPageList);
                 }
 
-                if (currentPage < TOTAL_PAGES) adapter.addLoadingFooter();
+                if (currentPage < TOTAL_PAGES) radioFeedAdapter.addLoadingFooter();
                 else isLastPage = true;
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<RadioScreen> call, Throwable t) {
                 t.printStackTrace();
                 showErrorView(t);
             }
@@ -190,38 +236,37 @@ public class Home extends Fragment implements PaginationAdapterCallback {
     }
 
 
-
-    private List<HomeFeed> fetchResults(Response<HomeBase> response) {
-        HomeBase homeBase = response.body();
-        TOTAL_PAGES = homeBase.getTotalPages();
+    private List<RadioPage> fetchResults(Response<RadioScreen> response) {
+        RadioScreen radioScreen = response.body();
+        TOTAL_PAGES = radioScreen.getTotalPages();
         System.out.println("total pages" + TOTAL_PAGES);
 
-        return homeBase.getHomeFeed();
+        return radioScreen.getRadioPage();
     }
 
     private void loadNextPage() {
         Log.d(TAG, "loadNextPage: " + currentPage);
 
-        callHomeCategories().enqueue(new Callback<HomeBase>() {
+        callHomeCategories().enqueue(new Callback<RadioScreen>() {
             @Override
-            public void onResponse(Call<HomeBase> call, Response<HomeBase> response) {
+            public void onResponse(Call<RadioScreen> call, Response<RadioScreen> response) {
                 Log.i(TAG, "onResponse: " + currentPage
                         + (response.raw().cacheResponse() != null ? "Cache" : "Network"));
 
-                adapter.removeLoadingFooter();
+                radioFeedAdapter.removeLoadingFooter();
                 isLoading = false;
 
-                homeFeeds = fetchResults(response);
-                adapter.addAll(homeFeeds);
+                radioPageList = fetchResults(response);
+                radioFeedAdapter.addAll(radioPageList);
 
-                if (currentPage != TOTAL_PAGES) adapter.addLoadingFooter();
+                if (currentPage != TOTAL_PAGES) radioFeedAdapter.addLoadingFooter();
                 else isLastPage = true;
             }
 
             @Override
-            public void onFailure(Call<HomeBase> call, Throwable t) {
+            public void onFailure(Call<RadioScreen> call, Throwable t) {
                 t.printStackTrace();
-                adapter.showRetry(true, fetchErrorMessage(t));
+                radioFeedAdapter.showRetry(true, fetchErrorMessage(t));
             }
         });
     }
@@ -233,8 +278,8 @@ public class Home extends Fragment implements PaginationAdapterCallback {
      * As {@link #currentPage} will be incremented automatically
      * by @{@link PaginationScrollListener} to load next page.
      */
-    private Call<HomeBase> callHomeCategories() {
-        return apiService.getHomeFeedRequest(
+    private Call<RadioScreen> callHomeCategories() {
+        return apiService.getRadioScreen(
                 currentPage
         );
     }
@@ -254,6 +299,7 @@ public class Home extends Fragment implements PaginationAdapterCallback {
         super.onResume();
         doRefresh();
     }
+
     /**
      * @param throwable required for {@link #fetchErrorMessage(Throwable)}
      * @return
@@ -299,7 +345,6 @@ public class Home extends Fragment implements PaginationAdapterCallback {
     }
 
 
-
     /**
      * @param throwable to identify the type of error
      * @return appropriate error message
@@ -336,4 +381,100 @@ public class Home extends Fragment implements PaginationAdapterCallback {
         return cm.getActiveNetworkInfo() != null;
     }
 
+    @Override
+    public void playablbum(Radio radio) {
+
+        if (radio != null) {
+            //start the player service
+            player = rootActivity.player;
+            Log.d("mcallback", String.valueOf(player));
+            player.setMediaItems(getMediaItems(radio));
+            //prepare and play the song
+            player.prepare();
+            player.play();
+        } else {
+            Toast.makeText(getContext(), "Unable to Play Track", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void openDetails(Radio Radio) {
+        dialogParent(Radio);
+    }
+
+    @Override
+    public void shareFeatureCallback(String share_id, String name, String artist, String share_type) {
+        ShareFeature shareFeature = new ShareFeature(share_id, name, artist, share_type);
+        shareFeature.setCancelable(true);
+        shareFeature.show(getChildFragmentManager(), "ShareTrackGeneral");
+    }
+
+    private List<MediaItem> getMediaItems(Radio radio) {
+        List<MediaItem> mediaItems = new ArrayList<>();
+
+        MediaItem mediaItem = new MediaItem.Builder()
+                .setUri(radio.getPath())
+                .setMediaMetadata(getMetadata(radio))
+                .build();
+
+        // add the media items to media items list
+        mediaItems.add(mediaItem);
+        return mediaItems;
+    }
+
+    private MediaMetadata getMetadata(Radio radio) {
+        Bundle bundle = new Bundle();
+        bundle.putString("artist_bn_id", radio.getId());
+        bundle.putString("song_bn_id", radio.getId());
+        bundle.putString("song_path", radio.getPath());
+
+        return new MediaMetadata.Builder()
+                .setTitle(radio.getTitle())
+                .setArtist("WCDT Radio")
+                .setArtworkUri(Uri.parse(radio.getCover()))
+                .setDescription(radio.getDescription())
+                .setExtras(bundle)
+                .build();
+    }
+
+
+    private void dialogParent(Radio radio) {
+
+        closebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                track_dialog.dismiss();
+            }
+        });
+
+        playTrack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playablbum(radio);
+                track_dialog.dismiss();
+            }
+        });
+
+        Glide.with(getContext())
+                .applyDefaultRequestOptions(new RequestOptions()
+                        .placeholder(R.drawable.default_radio)
+                        .error(R.drawable.default_radio))
+                .load(radio.getCover())
+                .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)    // cache both original & resized image
+                .centerCrop()
+                .transition(withCrossFade(factory))
+                .into(myimage);
+
+        title_text.setText(radio.getTitle());
+        category_text.setText(radio.getDateAdded());
+        about_summary.setText(radio.getSummary());
+        about_summary2.setText(radio.getDescription());
+
+        track_dialog.show();
+        track_dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        track_dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        track_dialog.getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
+        track_dialog.getWindow().setGravity(Gravity.BOTTOM);
+
+    }
 }

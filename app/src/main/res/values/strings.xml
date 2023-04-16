@@ -19,7 +19,7 @@
     <string name="title_home">Home</string>
     <string name="title_profile">About</string>
     <string name="title_Sermon">Sermon</string>
-    <string name="title_Music">Music</string>
+    <string name="title_for_you">Events</string>
     <string name="title_Alerts">Alerts</string>
 
     <string name="default_notification_channel_id">PushNotifications</string>

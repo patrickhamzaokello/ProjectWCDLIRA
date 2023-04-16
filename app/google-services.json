@@ -1,39 +1,11 @@
 {
   "project_info": {
     "project_number": "164283943626",
+    "firebase_url": "https://worship-center-downtown-lira-default-rtdb.firebaseio.com",
     "project_id": "worship-center-downtown-lira",
     "storage_bucket": "worship-center-downtown-lira.appspot.com"
   },
   "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:164283943626:android:5f90a31430ac8222984233",
-        "android_client_info": {
-          "package_name": "com.pkasemer.myshell"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "164283943626-4ukinkbdu4u02dkm08dsfh7usrl2uo7l.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCs1989dLr0pOwM8FUoAArFaQ1GgM4BAfA"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "164283943626-4ukinkbdu4u02dkm08dsfh7usrl2uo7l.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
     {
       "client_info": {
         "mobilesdk_app_id": "1:164283943626:android:fff901cbd8572e86984233",
@@ -43,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "164283943626-4ukinkbdu4u02dkm08dsfh7usrl2uo7l.apps.googleusercontent.com",
+          "client_id": "164283943626-4klmm39vo3rjbrufajci8u359lqd88gb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pkasemer.worshipcenterdowntown",
+            "certificate_hash": "f4abab3a35683ab347bd1981cae9addb0219937e"
+          }
+        },
+        {
+          "client_id": "164283943626-7rvld4j2kj083dbq364v01edr1dva3rk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
