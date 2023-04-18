@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="280dp"
             app:sliderAnimationDuration="600"
-            android:background="#E8283078"
+            android:background="@color/mainAccent"
             app:sliderAutoCycleDirection="back_and_forth"
             app:sliderAutoCycleEnabled="true"
             app:sliderIndicatorAnimationDuration="600"

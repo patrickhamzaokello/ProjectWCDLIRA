@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
     android:layout_gravity="bottom"
-    android:background="@color/onboardingBG">
+    android:background="@color/mainAccent">
 
     <ImageView
         android:id="@+id/slider_image"
@@ -28,7 +28,7 @@
         android:layout_gravity="center"
         android:paddingVertical="10dp"
         android:text="TextView"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="19sp"
         app:layout_constraintBottom_toTopOf="@+id/slider_desc"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +43,7 @@
         android:gravity="center"
         android:layout_gravity="center"
         android:text="@string/first_slide_desc"
-        android:textColor="@color/black"
+        android:textColor="#81FFFFFF"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"

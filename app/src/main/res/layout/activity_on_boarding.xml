@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="20dp"
-    android:background="@color/onboardingBG"
+    android:background="@color/mainAccent"
     tools:context=".OnBoarding">
 
 
@@ -36,13 +35,13 @@
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/purple_500"
+            android:backgroundTint="@color/activePlay"
             android:paddingVertical="10dp"
             android:text="@string/let_get_started"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/purple_500"
+            app:strokeColor="@color/activePlay"
             app:strokeWidth="1dp" />
 
         <LinearLayout

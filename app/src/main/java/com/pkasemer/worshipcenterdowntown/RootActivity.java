@@ -833,24 +833,22 @@ public class RootActivity extends AppCompatActivity implements PlayTracksCallbac
             int textColor = RootActivity.this.getResources().getColor(R.color.artist_name_color);
 
 
-            // Set the background color of the LinearLayout
-            playerView.setBackgroundColor(darkenbgColor(playerColor));
-//            layoutPlayer.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-            playerLyrics.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-            homeControlWrapper.setBackgroundColor(darkenColor(playerColor));
-
-            // track info btns
-            playerCloseBtn.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
-
-            //player controls
-            skipPreviousBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            playPauseBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-            skipNextBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
-
-
-
-            //text_color
-            songArtist.setTextColor(darkenColor(textColor));
+//            playerView.setBackgroundColor(darkenbgColor(playerColor));
+//            playerLyrics.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
+//            homeControlWrapper.setBackgroundColor(darkenColor(playerColor));
+//
+//            // track info btns
+//            playerCloseBtn.setBackgroundTintList(ColorStateList.valueOf(darkenColor(playerColor)));
+//
+//            //player controls
+//            skipPreviousBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
+//            playPauseBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
+//            skipNextBtn.setBackgroundTintList(ColorStateList.valueOf(playerColor));
+//
+//
+//
+//            //text_color
+//            songArtist.setTextColor(darkenColor(textColor));
         }
 
 

@@ -25,7 +25,7 @@
         android:id="@+id/homeControlWrapper"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/home_song_controller"
+        android:background="@color/playerColor"
         app:layout_constraintBottom_toTopOf="@id/bottomNav_view"
         android:visibility="gone"
         tools:visibility="visible">
@@ -99,7 +99,7 @@
             android:marqueeRepeatLimit="marquee_forever"
             android:singleLine="true"
             android:text="Mwonyaa Media"
-            android:textColor="#FFFFFF"
+            android:textColor="#C1FFFFFF"
             android:textSize="14dp"
             app:layout_constraintEnd_toStartOf="@+id/homeskipPrevBtn"
             app:layout_constraintHorizontal_bias="0"
@@ -141,7 +141,7 @@
             android:background="@null"
             android:layout_marginEnd="16dp"
             app:tint="@color/lessBtn"
-            android:src="@drawable/fluent_skip_forward_10_32_filled"
+            android:src="@drawable/custom_btn_close"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -157,7 +157,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
-        android:background="@color/purple_500"
+        android:background="@color/mainwhite"
         android:paddingTop="8dp"
         app:itemIconTint="@color/navigationcolors"
         app:itemTextColor="@color/navigationcolors"
@@ -168,7 +168,6 @@
         app:menu="@menu/bottom_nav_menu" />
 
 
-    <!-- include player vieww layout -->
         <include
             layout="@layout/player_view"
             android:layout_width="match_parent"
@@ -176,6 +175,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
+            tools:visibility="gone"
             tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

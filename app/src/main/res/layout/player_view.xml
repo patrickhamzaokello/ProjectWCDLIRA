@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:animateLayoutChanges="true"
-    android:background="@color/modernPlayerbg"
+    android:background="@color/playerColor"
     android:id="@+id/modernPlayer"
     android:clickable="true"
     android:elevation="200dp"
@@ -34,7 +34,7 @@
         android:singleLine="true"
         android:text="WCDT ONLINE RADIO"
         android:textAllCaps="true"
-        android:textColor="#D7FFFFFF"
+        android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,6 +48,7 @@
         android:background="@drawable/small_control_background"
         android:contentDescription="@string/app_name"
         android:padding="4dp"
+        android:backgroundTint="#19FFFFFF"
         android:src="@drawable/ic_tabler_chevron_down"
         app:layout_constraintBottom_toBottomOf="@+id/textNowPlaying"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,7 +87,7 @@
             android:gravity="center"
             android:textAlignment="center"
             android:background="@drawable/smallrounded"
-            android:backgroundTint="#2D3471"
+            android:backgroundTint="#12131B"
             app:layout_constraintStart_toStartOf="@+id/cir_artworkView"
             app:layout_constraintEnd_toEndOf="@+id/cir_artworkView"
             app:layout_constraintBottom_toBottomOf="@+id/cir_artworkView"
@@ -177,7 +178,7 @@
             android:layout_marginTop="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:textColor="#BFFFFD"
+            android:textColor="@color/lessBtn"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/songNameView" />
 
@@ -291,7 +292,7 @@
             android:text="Station Description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:textColor="#31FFFFFF"
+            android:textColor="#83FFFFFF"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@id/playPauseBtn" />
 
